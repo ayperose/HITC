@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
+<title>Robotics — HITC Intelliteach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
+.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
+.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
+.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
+.nl:hover,.nl.active{color:#0A0F1C}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FAFAF8;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:#1E6BFF}
+label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#5A6880;display:block;margin-bottom:6px}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
+    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+  </a>
+  <div style="display:flex;align-items:center;gap:28px">
+    <a href="about.html" class="nl">About</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="robotics.html" class="nl" style="color:#0A0F1C">Robotics</a>
+    <a href="contact.html" class="nl">Contact</a>
+  </div>
+  <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:100px 8% 72px;background:#EAEAE4;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-20%;right:-5%;width:55%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(245,168,0,.08) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent,rgba(10,15,28,.1));pointer-events:none"></div>
+  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
+    <span style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase">HITC</span>
+    <span style="color:#C8C8C0">›</span>
+    <span style="font-size:11px;color:#F5A800;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Intelliteach</span>
+  </div>
+  <h1 class="rv d1" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,96px);font-weight:900;line-height:.88;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">
+    Teaching<br>Tomorrow's<br><span style="color:#F5A800">Engineers</span>
+  </h1>
+  <p class="rv d2" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:480px;margin-bottom:32px">
+    HITC's Intelliteach program equips Filipino schools with LEGO® MINDSTORMS® EV3 robotics kits and a full Learning Management System — giving every student hands-on access to real engineering skills.
+  </p>
+  <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+    <span class="chip"><span class="chip-dot" style="background:#F5A800"></span>Grade 4–10</span>
+    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>DepEd Aligned</span>
+<span class="chip"><span class="chip-dot" style="background:#0A0F1C"></span>LEGO® EV3 Certified</span>
+  </div>
+  <div class="rv d4" style="display:flex;gap:12px;flex-wrap:wrap">
+    <a href="contact.html" class="btn-primary">Bring Robotics to Your School →</a>
+    <a href="#program" class="btn-outline">Learn More</a>
+  </div>
+</section>
+
+<!-- PRODUCT VISUAL + VIDEO -->
+<div style="background:#EAEAE4;padding:0 8% 52px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+  <div class="rv" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12)">
+    <img src="https://www.hitc.ph/assets/imgs/intelliteach2.png" alt="IntelliTeach" style="width:100%;display:block" />
+  </div>
+  <div class="rv d2" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.15);position:relative;padding-top:56.25%">
+    <iframe src="https://www.youtube.com/embed/KwWRGxRCxRs" title="HITC IntelliTeach Learning Management System (2024)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div style="background:#0A0F1C;padding:28px 8%">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center">
+    <div>
+      <div class="stat-num" style="color:white">7</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">Grade Levels</div>
+    </div>
+    <div style="border-left:1px solid rgba(255,255,255,.08)">
+      <div class="stat-num" style="color:#1E6BFF">100%</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">DepEd Curriculum Aligned</div>
+    </div>
+    <div style="border-left:1px solid rgba(255,255,255,.08)">
+      <div class="stat-num" style="color:white">24/7</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">LMS Access</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM OVERVIEW -->
+<section id="program" style="padding:72px 8%;background:#F4F4F0">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div class="rv">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F5A800;margin-bottom:12px">The Program</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em;line-height:.95;margin-bottom:20px">
+        Build. Program.<br>Compete. Learn.
+      </h2>
+      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:14px">
+        Intelliteach delivers a complete LEGO® MINDSTORMS® EV3 robotics curriculum to Philippine schools. Students learn engineering thinking through a hands-on build-program-test methodology, fully aligned to DepEd STEM standards.
+      </p>
+      <p style="font-size:13px;color:#5A6880;line-height:1.8">
+        Top students gain access to regional and national robotics competition preparation — producing the next generation of Filipino engineers and problem-solvers.
+      </p>
+    </div>
+    <div class="rv d2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card">
+        <div style="width:36px;height:36px;border-radius:10px;background:#FFF8E8;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5A800" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:4px">Online LMS</div>
+        <p style="font-size:11px;color:#6B7A8D;line-height:1.6">Full web-based platform for lessons, assignments, and student tracking.</p>
+      </div>
+      <div class="card">
+        <div style="width:36px;height:36px;border-radius:10px;background:#FFF8E8;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5A800" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:4px">Teacher Training</div>
+        <p style="font-size:11px;color:#6B7A8D;line-height:1.6">Comprehensive workshops before and after deployment.</p>
+      </div>
+      <div class="card">
+        <div style="width:36px;height:36px;border-radius:10px;background:#FFF8E8;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5A800" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:4px">Competition Ready</div>
+        <p style="font-size:11px;color:#6B7A8D;line-height:1.6">Prep for regional and national robotics competitions.</p>
+      </div>
+      <div class="card">
+        <div style="width:36px;height:36px;border-radius:10px;background:#FFF8E8;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5A800" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:4px">Full Kit Included</div>
+        <p style="font-size:11px;color:#6B7A8D;line-height:1.6">Complete EV3 kit delivery, setup, and ongoing support included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION STEPS -->
+<section style="padding:72px 8%;background:#EAEAE4">
+  <div class="rv" style="text-align:center;margin-bottom:48px">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F5A800;margin-bottom:10px">Getting Started</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">How It Works</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+    <div class="rv d1" style="background:#FFFFFF;border-radius:16px;padding:28px;border:1px solid #E0E0D8;position:relative">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:#F0F0EC;line-height:1;margin-bottom:12px">01</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">Enrollment &amp; Assessment</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.65">Your school enrolls and we assess your needs — class size, infrastructure, and grade levels.</p>
+    </div>
+    <div class="rv d2" style="background:#FFFFFF;border-radius:16px;padding:28px;border:1px solid #E0E0D8">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:#F0F0EC;line-height:1;margin-bottom:12px">02</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">Teacher Training</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.65">We run comprehensive training workshops so your teachers are ready and confident before classes begin.</p>
+    </div>
+    <div class="rv d3" style="background:#FFFFFF;border-radius:16px;padding:28px;border:1px solid #E0E0D8">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:#F0F0EC;line-height:1;margin-bottom:12px">03</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">Equipment Delivery</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.65">EV3 kits are delivered and fully set up at your school, along with LMS platform access and credentials.</p>
+    </div>
+    <div class="rv d4" style="background:#0A0F1C;border-radius:16px;padding:28px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:rgba(245,168,0,.2);line-height:1;margin-bottom:12px">04</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:white;margin-bottom:8px">Ongoing Support</div>
+      <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.65">24/7 on-site and remote support keeps your program running — we're with you every step of the way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section style="padding:72px 8%;background:#F4F4F0">
+  <div class="rv" style="text-align:center;margin-bottom:40px">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F5A800;margin-bottom:10px">Gallery</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">Students In Action</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="rv d1" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot1.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d2" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot2.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d3" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot3.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d4" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot4.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d1" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot5.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d2" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot6.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d3" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot7.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d4" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot8.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d1" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot9.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d2" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot10.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d3" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot11.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d4" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot12.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d1" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot13.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d2" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot14.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d3" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot15.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="rv d4" style="border-radius:14px;overflow:hidden;aspect-ratio:4/3"><img src="photos/robot16.jpg" alt="Intelliteach robotics" style="width:100%;height:100%;object-fit:cover" /></div>
+  </div>
+</section>
+
+<!-- ENROLL FORM -->
+<section style="padding:72px 8%;background:#0A0F1C">
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center">
+    <div class="rv">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F5A800;margin-bottom:12px">Enroll Your School</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:900;text-transform:uppercase;color:white;letter-spacing:-.01em;line-height:.95;margin-bottom:20px">Bring EV3 Robotics to<br><span style="color:#F5A800">Your Classroom</span></h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.8">Bring the Intelliteach program to your school. Fill in the form and our team will get back to you within one business day.</p>
+    </div>
+    <div class="rv d2" style="background:#111828;border-radius:20px;border:1px solid rgba(255,255,255,.08);padding:36px">
+      <form onsubmit="event.preventDefault();this.innerHTML='<div style=\'text-align:center;padding:32px 0\'><div style=\'font-family:Barlow Condensed,sans-serif;font-size:1.8rem;font-weight:900;color:#F5A800;text-transform:uppercase\'>Enrollment Request Sent!</div><div style=\'font-size:13px;color:rgba(255,255,255,.5);margin-top:8px\'>We\'ll be in touch within one business day.</div></div>'" style="display:flex;flex-direction:column;gap:16px">
+        <div><label style="color:rgba(255,255,255,.4)">School Name</label><input type="text" placeholder="Cagayan National High School" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:white" /></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label style="color:rgba(255,255,255,.4)">Contact Person</label><input type="text" placeholder="Teacher Flores" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:white" /></div>
+          <div><label style="color:rgba(255,255,255,.4)">Email</label><input type="email" placeholder="teacher@school.edu.ph" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:white" /></div>
+        </div>
+        <div>
+          <label style="color:rgba(255,255,255,.4)">Grade Level</label>
+          <select style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:white">
+            <option value="">Select grade level(s)...</option>
+            <option>Grade 4–6 (Elementary)</option>
+            <option>Grade 7–10 (Junior High School)</option>
+            <option>Grade 4–10 (All Levels)</option>
+          </select>
+        </div>
+        <button type="submit" style="width:100%;padding:13px;background:#F5A800;color:#0A0F1C;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.01em;transition:opacity .2s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Submit Enrollment Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
+    <div>
+      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
+      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
+      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">info@hitc.ph</a>
+    </div>
+    <div style="display:flex;gap:52px">
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="index.html" class="nl" style="font-size:12px">Home</a>
+          <a href="about.html" class="nl" style="font-size:12px">About</a>
+          <a href="services.html" class="nl" style="font-size:12px">Services</a>
+          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
+          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="services.html#intelliteach" class="nl" style="font-size:12px">Intelliteach</a>
+          <a href="services.html#attendance" class="nl" style="font-size:12px">Attendance</a>
+          <a href="services.html#turnstile" class="nl" style="font-size:12px">Turnstile</a>
+          <a href="services.html#ebroadcasting" class="nl" style="font-size:12px">eBroadcasting</a>
+          <a href="services.html#sfms" class="nl" style="font-size:12px">SFMS · eCash · iAsk</a>
+        </div>
+      </div>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </div>
+  <div style="overflow:hidden;margin:0 -8%">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+  </div>
+</footer>
+
+<script>
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
