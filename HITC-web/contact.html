@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — HITC, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
+.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
+.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
+.nl:hover,.nl.active{color:#0A0F1C}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FAFAF8;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:#1E6BFF}
+label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#5A6880;display:block;margin-bottom:6px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
+    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+  </a>
+  <div style="display:flex;align-items:center;gap:28px">
+    <a href="about.html" class="nl">About</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk Manager</a></div></div>
+    <a href="robotics.html" class="nl">Robotics</a>
+    <a href="contact.html" class="nl" style="color:#0A0F1C">Contact</a>
+  </div>
+  <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:100px 8% 64px;background:#EAEAE4;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-20%;right:-5%;width:50%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.07) 0%,transparent 65%);pointer-events:none"></div>
+  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
+    <span style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase">HITC</span>
+    <span style="color:#C8C8C0">›</span>
+    <span style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Contact</span>
+  </div>
+  <h1 class="rv d1" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,88px);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">Let's Build<br><span style="color:#1E6BFF">Together</span></h1>
+  <p class="rv d2" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:480px;margin-bottom:28px">Ready to transform your institution with smart technology? Reach out to our team — we'd love to hear from you.</p>
+  <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:8px">
+    <span class="chip"><span class="chip-dot" style="background:#22C55E"></span>Typically responds within 1 business day</span>
+    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>Tuguegarao City, Philippines</span>
+  </div>
+</section>
+
+<!-- CONTACT BODY -->
+<section style="padding:72px 8%;background:#F4F4F0">
+  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start">
+
+    <!-- Left: Info -->
+    <div class="rv" style="display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:16px">Get In Touch</div>
+      </div>
+
+      <!-- Phone -->
+      <div style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:22px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:8px">Phone</div>
+            <div style="font-size:13px;color:#0A0F1C;font-weight:500;margin-bottom:2px">(078) 377-1067</div>
+            <div style="font-size:12px;color:#8A96A8">PLDT: (078) 373-0017</div>
+            <div style="font-size:12px;color:#8A96A8">Viber: (0919) 082-7982</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:22px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:8px">Email</div>
+            <a href="mailto:admin@hitc.ph" style="font-size:13px;color:#1E6BFF;text-decoration:none;font-weight:500">admin@hitc.ph</a><br>
+            <a href="mailto:support@hitc.ph" style="font-size:12px;color:#8A96A8;text-decoration:none">support@hitc.ph</a><br>
+            <a href="mailto:sales@hitc.ph" style="font-size:12px;color:#8A96A8;text-decoration:none">sales@hitc.ph</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:22px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:8px">Office</div>
+            <div style="font-size:13px;color:#0A0F1C;font-weight:500">Tuguegarao City</div>
+            <div style="font-size:12px;color:#8A96A8">Cagayan, Philippines 3500</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hours -->
+      <div style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:22px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;color:#0A0F1C;margin-bottom:8px">Office Hours</div>
+            <div style="font-size:12px;color:#0A0F1C;font-weight:500">Mon–Fri: 8AM–5PM</div>
+            <div style="font-size:12px;color:#8A96A8">Saturday: 8AM–12PM</div>
+            <div style="font-size:12px;color:#8A96A8">Sunday: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="rv d2" style="background:#FFFFFF;border-radius:20px;border:1px solid #E0E0D8;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,.06)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;color:#0A0F1C;margin-bottom:6px">Send Us a Message</div>
+      <div style="font-size:12px;color:#8A96A8;margin-bottom:28px">Our team typically responds within one business day.</div>
+      <form onsubmit="event.preventDefault();this.innerHTML='<div style=\'text-align:center;padding:40px 0\'><div style=\'font-family:Barlow Condensed,sans-serif;font-size:1.8rem;font-weight:900;color:#1E6BFF;text-transform:uppercase\'>Message Sent!</div><div style=\'font-size:13px;color:#5A6880;margin-top:8px\'>We\'ll get back to you within one business day.</div></div>'" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div><label>Name</label><input type="text" placeholder="Juan dela Cruz" /></div>
+          <div><label>Email</label><input type="email" placeholder="juan@school.edu.ph" /></div>
+        </div>
+        <div><label>School / Institution</label><input type="text" placeholder="Cagayan National High School" /></div>
+        <div>
+          <label>Product of Interest</label>
+          <select>
+            <option value="">Select a product...</option>
+            <option>Intelliteach EV3 Robotics &amp; LMS</option>
+            <option>Attendance Manager</option>
+            <option>Turnstile System</option>
+            <option>eBroadcasting System</option>
+            <option>SFMS (School Financial Management)</option>
+            <option>eCash System</option>
+            <option>iAsk Manager</option>
+            <option>Full Suite / Multiple Products</option>
+          </select>
+        </div>
+        <div><label>Message</label><textarea rows="4" placeholder="Tell us about your institution and what you're looking for..." style="resize:none;line-height:1.65"></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;border-radius:10px;padding:13px">Send Message →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:72px 8%;background:#EAEAE4">
+  <div class="rv" style="text-align:center;margin-bottom:40px">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Common Questions</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">FAQ</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:900px;margin:0 auto">
+    <div class="rv d1" style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">How long does implementation take?</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Typically 2–6 weeks depending on the product and school size. Our team handles the full setup including installation and configuration.</p>
+    </div>
+    <div class="rv d2" style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">Does it include training?</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Yes. All implementations include teacher and administrator training workshops. We ensure your team is fully equipped before going live.</p>
+    </div>
+    <div class="rv d1" style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">What grades is EV3 for?</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.7">The Intelliteach EV3 program covers Grades 4–10, fully aligned with DepEd STEM standards and designed for the Philippine curriculum.</p>
+    </div>
+    <div class="rv d2" style="background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:8px">Is ongoing support available?</div>
+      <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Absolutely. HITC provides 24/7 on-site and remote support post-deployment. We're committed to keeping your systems running smoothly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
+    <div>
+      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
+      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
+      <a href="mailto:admin@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">admin@hitc.ph</a>
+    </div>
+    <div style="display:flex;gap:52px">
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="index.html" class="nl" style="font-size:12px">Home</a>
+          <a href="about.html" class="nl" style="font-size:12px">About</a>
+          <a href="services.html" class="nl" style="font-size:12px">Services</a>
+          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
+          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="services.html#intelliteach" class="nl" style="font-size:12px">Intelliteach</a>
+          <a href="services.html#attendance" class="nl" style="font-size:12px">Attendance</a>
+          <a href="services.html#turnstile" class="nl" style="font-size:12px">Turnstile</a>
+          <a href="services.html#ebroadcasting" class="nl" style="font-size:12px">eBroadcasting</a>
+          <a href="services.html#sfms" class="nl" style="font-size:12px">SFMS · eCash · iAsk</a>
+        </div>
+      </div>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </div>
+  <div style="overflow:hidden;margin:0 -8%">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+  </div>
+</footer>
+
+<script>
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>

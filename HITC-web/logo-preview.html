@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>HITC Logo Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:#F4F4F0}
+.row{display:flex;align-items:center;gap:40px;padding:48px;flex-wrap:wrap}
+.label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A96A8;margin-bottom:12px}
+.bg-light{background:#F4F4F0}
+.bg-white{background:#FFFFFF}
+.bg-dark{background:#0A0F1C}
+.bg-blue{background:#1E6BFF}
+h2{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:20px 48px 8px;color:#0A0F1C}
+.divider{height:1px;background:#D8D8D0;margin:0 48px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+
+<div style="padding:48px 48px 16px">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#0A0F1C">HITC Logo — Modernized</div>
+  <div style="font-size:12px;color:#8A96A8;margin-top:4px">Compare original vs new across backgrounds and sizes</div>
+</div>
+
+<!-- ORIGINAL -->
+<h2>Original (2006)</h2>
+<div class="row bg-white" style="border-radius:16px;margin:0 48px">
+  <div>
+    <div class="label">Current logo</div>
+    <img src="brand_assets/hitc%20logo%202006%20-%20Copy.png" style="height:80px"/>
+  </div>
+  <div>
+    <div class="label">Small (nav size)</div>
+    <img src="brand_assets/hitc%20logo%202006%20-%20Copy.png" style="height:36px"/>
+  </div>
+  <div>
+    <div class="label">On dark</div>
+    <div style="background:#0A0F1C;padding:16px;border-radius:8px">
+      <img src="brand_assets/hitc%20logo%202006%20-%20Copy.png" style="height:48px"/>
+    </div>
+  </div>
+</div>
+
+<div style="height:32px"></div>
+
+<!-- MODERNIZED -->
+<h2>Modernized</h2>
+<div class="row bg-white" style="border-radius:16px 16px 0 0;margin:0 48px">
+  <div>
+    <div class="label">Full size</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:80px"/>
+  </div>
+  <div>
+    <div class="label">Nav size (36px)</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:36px"/>
+  </div>
+  <div>
+    <div class="label">Large (hero)</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:56px"/>
+  </div>
+</div>
+<div class="row bg-dark" style="margin:0 48px">
+  <div>
+    <div class="label" style="color:#4A5A6A">On dark background</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:48px;filter:brightness(0) invert(1)"/>
+  </div>
+  <div>
+    <div class="label" style="color:#4A5A6A">Icon only</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:48px;clip-path:inset(0 160px 0 0)"/>
+  </div>
+</div>
+<div class="row bg-blue" style="border-radius:0 0 16px 16px;margin:0 48px">
+  <div>
+    <div class="label" style="color:rgba(255,255,255,.5)">On brand blue</div>
+    <img src="brand_assets/hitc-logo-modern.svg" style="height:48px;filter:brightness(0) invert(1)"/>
+  </div>
+</div>
+
+<div style="height:32px"></div>
+
+<!-- SYMBOL MEANING -->
+<h2>Symbol Breakdown</h2>
+<div class="row bg-white" style="border-radius:16px;margin:0 48px;gap:32px">
+  <div style="display:flex;align-items:flex-start;gap:16px;max-width:220px">
+    <div style="width:40px;height:40px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">📖</div>
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:4px">Open Book</div>
+      <div style="font-size:12px;color:#6B7A8D;line-height:1.6">Education — HITC's core market is schools and institutions</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:16px;max-width:220px">
+    <div style="width:40px;height:40px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">💻</div>
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:4px">Laptop Base</div>
+      <div style="font-size:12px;color:#6B7A8D;line-height:1.6">Technology — the IT in HITC, digital solutions for education</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:16px;max-width:220px">
+    <div style="width:40px;height:40px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">🟦</div>
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;color:#0A0F1C;margin-bottom:4px">Blue Gradient</div>
+      <div style="font-size:12px;color:#6B7A8D;line-height:1.6">Trust, innovation, and the HITC brand color throughout the product suite</div>
+    </div>
+  </div>
+</div>
+
+<div style="height:48px"></div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>HITC Logo Variations</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E8E8E4;font-family:'Space Grotesk',sans-serif;padding:48px}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#0A0F1C;margin-bottom:6px;text-transform:uppercase;letter-spacing:-.02em}
+.sub{font-size:12px;color:#8A96A8;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.card{background:white;border-radius:16px;padding:28px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.card svg{width:100%;height:auto}
+.vnum{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A96A8}
+.vname{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;text-transform:uppercase;color:#0A0F1C;text-align:center}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+<h1>HITC Logo — 5 Variations</h1>
+<div class="sub">Same original composition: open book · laptop · HITC overlay · blue accents</div>
+
+<div class="grid">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- V1: CLASSIC BLUE — closest to original spirit -->
+<!-- ══════════════════════════════════════════ -->
+<div class="card">
+<div class="vnum">01</div>
+<svg viewBox="0 0 300 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="v1bl" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2979FF"/><stop offset="1" stop-color="#0035B8"/></linearGradient>
+    <linearGradient id="v1br" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1E6BFF"/><stop offset="1" stop-color="#0040C8"/></linearGradient>
+    <linearGradient id="v1p" x1="0" y1="0" x2="300" y2="232" gradientUnits="userSpaceOnUse"><stop stop-color="#2575FF"/><stop offset="1" stop-color="#003AC0"/></linearGradient>
+  </defs>
+  <!-- Blue accents -->
+  <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="url(#v1bl)"/>
+  <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="url(#v1br)"/>
+  <!-- Book -->
+  <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="white" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#EDECE4" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="148" y="11" width="6" height="209" rx="2" fill="#0F1728"/>
+  <line x1="14" y1="220" x2="288" y2="220" stroke="#0F1728" stroke-width="2.5"/>
+  <!-- Page lines left -->
+  <rect x="26" y="36" width="108" height="2" rx="1" fill="#D0D0C4"/><rect x="26" y="48" width="80" height="2" rx="1" fill="#D0D0C4"/><rect x="26" y="60" width="96" height="2" rx="1" fill="#D0D0C4"/>
+  <rect x="26" y="190" width="108" height="2" rx="1" fill="#D0D0C4"/><rect x="26" y="202" width="80" height="2" rx="1" fill="#D0D0C4"/>
+  <!-- Page lines right -->
+  <rect x="164" y="36" width="108" height="2" rx="1" fill="#C4C4B8"/><rect x="164" y="48" width="80" height="2" rx="1" fill="#C4C4B8"/><rect x="164" y="60" width="96" height="2" rx="1" fill="#C4C4B8"/>
+  <!-- Laptop -->
+  <rect x="8" y="142" width="88" height="66" rx="4" fill="#0F1E40" stroke="#0F1728" stroke-width="2"/>
+  <rect x="14" y="148" width="76" height="54" rx="3" fill="#162B5C"/>
+  <rect x="18" y="152" width="68" height="46" rx="2" fill="#1E6BFF" opacity="0.5"/>
+  <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#1A2440" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="22" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.2)"/>
+  <rect x="32" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.2)"/>
+  <rect x="42" y="212" width="16" height="3" rx="1" fill="rgba(255,255,255,.2)"/>
+  <rect x="62" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.2)"/>
+  <rect x="72" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.2)"/>
+  <!-- HITC Panel -->
+  <rect x="36" y="96" width="256" height="98" rx="6" fill="url(#v1p)"/>
+  <rect x="36" y="96" width="256" height="36" rx="6" fill="rgba(255,255,255,.06)"/>
+  <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="white">HITC</text>
+</svg>
+<div class="vname">Classic Blue</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- V2: DARK PREMIUM — navy book, gold HITC -->
+<!-- ══════════════════════════════════════════ -->
+<div class="card" style="background:#0A0F1C">
+<div class="vnum" style="color:#4A5A6A">02</div>
+<svg viewBox="0 0 300 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="v2al" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0D2060"/><stop offset="1" stop-color="#060E30"/></linearGradient>
+    <linearGradient id="v2ar" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0A1848"/><stop offset="1" stop-color="#050C28"/></linearGradient>
+    <linearGradient id="v2p" x1="0" y1="0" x2="300" y2="232" gradientUnits="userSpaceOnUse"><stop stop-color="#1A2650"/><stop offset="1" stop-color="#090E28"/></linearGradient>
+  </defs>
+  <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="url(#v2al)"/>
+  <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="url(#v2ar)"/>
+  <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="#141E3A" stroke="#2A3A5A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#0F1830" stroke="#2A3A5A" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="148" y="11" width="6" height="209" rx="2" fill="#2A3A6A"/>
+  <line x1="14" y1="220" x2="288" y2="220" stroke="#2A3A5A" stroke-width="2.5"/>
+  <rect x="26" y="36" width="108" height="1.5" rx="1" fill="rgba(255,255,255,.08)"/><rect x="26" y="48" width="80" height="1.5" rx="1" fill="rgba(255,255,255,.06)"/><rect x="26" y="60" width="96" height="1.5" rx="1" fill="rgba(255,255,255,.06)"/>
+  <rect x="164" y="36" width="108" height="1.5" rx="1" fill="rgba(255,255,255,.06)"/><rect x="164" y="48" width="80" height="1.5" rx="1" fill="rgba(255,255,255,.05)"/>
+  <!-- Laptop -->
+  <rect x="8" y="142" width="88" height="66" rx="4" fill="#0A1438" stroke="#2A3A5A" stroke-width="2"/>
+  <rect x="14" y="148" width="76" height="54" rx="3" fill="#0E1E50"/>
+  <rect x="18" y="152" width="68" height="46" rx="2" fill="#1E6BFF" opacity="0.35"/>
+  <rect x="22" y="157" width="30" height="2" rx="1" fill="rgba(255,255,255,.4)"/>
+  <rect x="22" y="163" width="22" height="2" rx="1" fill="rgba(255,255,255,.25)"/>
+  <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#0A1230" stroke="#2A3A5A" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="22" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.12)"/>
+  <rect x="32" y="212" width="6" height="3" rx="1" fill="rgba(255,255,255,.12)"/>
+  <rect x="42" y="212" width="16" height="3" rx="1" fill="rgba(255,255,255,.12)"/>
+  <!-- Panel dark -->
+  <rect x="36" y="96" width="256" height="98" rx="6" fill="url(#v2p)"/>
+  <rect x="36" y="96" width="256" height="3" rx="1.5" fill="#F5A800" opacity="0.6"/>
+  <rect x="36" y="191" width="256" height="3" rx="1.5" fill="#F5A800" opacity="0.6"/>
+  <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="#F5A800">HITC</text>
+</svg>
+<div class="vname" style="color:white">Dark · Gold</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- V3: MINIMAL — no panel, clean outlines only -->
+<!-- ══════════════════════════════════════════ -->
+<div class="card">
+<div class="vnum">03</div>
+<svg viewBox="0 0 300 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Very subtle blue accents -->
+  <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="#EAF0FF"/>
+  <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="#EAF0FF"/>
+  <!-- Book — clean thin lines -->
+  <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="white" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#F6F5EE" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="149" y="11" width="4" height="209" rx="2" fill="#0F1728"/>
+  <line x1="14" y1="220" x2="288" y2="220" stroke="#0F1728" stroke-width="2"/>
+  <path d="M149 11 Q151 6 153 11" fill="none" stroke="#0F1728" stroke-width="2" stroke-linecap="round"/>
+  <rect x="26" y="36" width="108" height="1.5" rx="1" fill="#D4D4C8"/><rect x="26" y="48" width="80" height="1.5" rx="1" fill="#D4D4C8"/><rect x="26" y="60" width="96" height="1.5" rx="1" fill="#D4D4C8"/><rect x="26" y="72" width="68" height="1.5" rx="1" fill="#D4D4C8"/>
+  <rect x="26" y="192" width="108" height="1.5" rx="1" fill="#D4D4C8"/><rect x="26" y="204" width="80" height="1.5" rx="1" fill="#D4D4C8"/>
+  <rect x="164" y="36" width="108" height="1.5" rx="1" fill="#C8C8BC"/><rect x="164" y="48" width="80" height="1.5" rx="1" fill="#C8C8BC"/><rect x="164" y="60" width="96" height="1.5" rx="1" fill="#C8C8BC"/>
+  <!-- Laptop — outline style -->
+  <rect x="8" y="142" width="88" height="66" rx="4" fill="white" stroke="#0F1728" stroke-width="2"/>
+  <rect x="14" y="148" width="76" height="54" rx="3" fill="#F0F4FF"/>
+  <rect x="18" y="152" width="68" height="46" rx="2" fill="#E8F0FF"/>
+  <rect x="22" y="157" width="30" height="2" rx="1" fill="#1E6BFF" opacity="0.4"/>
+  <rect x="22" y="163" width="22" height="2" rx="1" fill="#1E6BFF" opacity="0.3"/>
+  <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#F0F0EC" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+  <!-- HITC — directly on book, no panel -->
+  <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="#0F1728">HITC</text>
+  <!-- Blue accent line under HITC -->
+  <rect x="54" y="177" width="220" height="4" rx="2" fill="#1E6BFF" opacity="0.25"/>
+</svg>
+<div class="vname">Minimal</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- V4: ELECTRIC — vivid blue-to-purple gradient -->
+<!-- ══════════════════════════════════════════ -->
+<div class="card">
+<div class="vnum">04</div>
+<svg viewBox="0 0 300 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="v4al" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4060FF"/><stop offset="1" stop-color="#1E6BFF"/></linearGradient>
+    <linearGradient id="v4ar" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1E6BFF"/><stop offset="1" stop-color="#6030C0"/></linearGradient>
+    <linearGradient id="v4p" x1="36" y1="96" x2="292" y2="194" gradientUnits="userSpaceOnUse"><stop stop-color="#3060FF"/><stop offset="0.5" stop-color="#1E6BFF"/><stop offset="1" stop-color="#5020B0"/></linearGradient>
+    <linearGradient id="v4bk" x1="0" y1="0" x2="300" y2="232" gradientUnits="userSpaceOnUse"><stop stop-color="#F8F8F8"/><stop offset="1" stop-color="#EEF2FF"/></linearGradient>
+  </defs>
+  <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="url(#v4al)"/>
+  <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="url(#v4ar)"/>
+  <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="url(#v4bk)" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#EEF0F8" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="148" y="11" width="6" height="209" rx="2" fill="#0F1728"/>
+  <line x1="14" y1="220" x2="288" y2="220" stroke="#0F1728" stroke-width="2.5"/>
+  <rect x="26" y="36" width="108" height="2" rx="1" fill="#C8D0E8"/><rect x="26" y="48" width="80" height="2" rx="1" fill="#C8D0E8"/><rect x="26" y="60" width="96" height="2" rx="1" fill="#C8D0E8"/>
+  <rect x="164" y="36" width="108" height="2" rx="1" fill="#BCC8E0"/><rect x="164" y="48" width="80" height="2" rx="1" fill="#BCC8E0"/>
+  <!-- Laptop -->
+  <rect x="8" y="142" width="88" height="66" rx="4" fill="#0A1240" stroke="#0F1728" stroke-width="2"/>
+  <rect x="14" y="148" width="76" height="54" rx="3" fill="#142060"/>
+  <rect x="18" y="152" width="68" height="46" rx="2" fill="url(#v4p)" opacity="0.7"/>
+  <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#0E1840" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="30" y="212" width="50" height="3" rx="1" fill="rgba(255,255,255,.15)"/>
+  <!-- HITC panel gradient -->
+  <rect x="36" y="96" width="256" height="98" rx="6" fill="url(#v4p)"/>
+  <rect x="36" y="96" width="256" height="38" rx="6" fill="rgba(255,255,255,.08)"/>
+  <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="white">HITC</text>
+</svg>
+<div class="vname">Electric</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- V5: NAVY + GOLD — professional / institutional -->
+<!-- ══════════════════════════════════════════ -->
+<div class="card">
+<div class="vnum">05</div>
+<svg viewBox="0 0 300 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="v5al" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0A2040"/><stop offset="1" stop-color="#061228"/></linearGradient>
+    <linearGradient id="v5ar" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081830"/><stop offset="1" stop-color="#040E20"/></linearGradient>
+    <linearGradient id="v5p" x1="36" y1="96" x2="292" y2="194" gradientUnits="userSpaceOnUse"><stop stop-color="#0C1E3C"/><stop offset="1" stop-color="#060E20"/></linearGradient>
+  </defs>
+  <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="url(#v5al)"/>
+  <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="url(#v5ar)"/>
+  <!-- Gold corner accent lines -->
+  <path d="M-2 86 L40 70" stroke="#F5A800" stroke-width="2" opacity="0.5"/>
+  <path d="M288 220 L302 210" stroke="#F5A800" stroke-width="2" opacity="0.4"/>
+  <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="white" stroke="#0A1830" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#F4F3EA" stroke="#0A1830" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="148" y="11" width="6" height="209" rx="2" fill="#0A1830"/>
+  <line x1="14" y1="220" x2="288" y2="220" stroke="#0A1830" stroke-width="2.5"/>
+  <rect x="26" y="36" width="108" height="2" rx="1" fill="#D0CFC0"/><rect x="26" y="48" width="80" height="2" rx="1" fill="#D0CFC0"/><rect x="26" y="60" width="96" height="2" rx="1" fill="#D0CFC0"/>
+  <rect x="26" y="192" width="108" height="2" rx="1" fill="#D0CFC0"/><rect x="26" y="204" width="80" height="2" rx="1" fill="#D0CFC0"/>
+  <rect x="164" y="36" width="108" height="2" rx="1" fill="#C8C7B8"/><rect x="164" y="48" width="80" height="2" rx="1" fill="#C8C7B8"/><rect x="164" y="60" width="96" height="2" rx="1" fill="#C8C7B8"/>
+  <!-- Laptop -->
+  <rect x="8" y="142" width="88" height="66" rx="4" fill="#0A1830" stroke="#0A1830" stroke-width="2"/>
+  <rect x="14" y="148" width="76" height="54" rx="3" fill="#0E2040"/>
+  <rect x="18" y="152" width="68" height="46" rx="2" fill="#0C1830" opacity="0.8"/>
+  <rect x="22" y="157" width="30" height="2" rx="1" fill="#F5A800" opacity="0.5"/>
+  <rect x="22" y="163" width="20" height="2" rx="1" fill="#F5A800" opacity="0.3"/>
+  <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#081428" stroke="#0A1830" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="30" y="212" width="50" height="3" rx="1" fill="rgba(255,255,255,.1)"/>
+  <!-- HITC panel — deep navy -->
+  <rect x="36" y="96" width="256" height="98" rx="6" fill="url(#v5p)"/>
+  <!-- Gold top & bottom borders on panel -->
+  <rect x="36" y="96" width="256" height="3" rx="1.5" fill="#F5A800" opacity="0.7"/>
+  <rect x="36" y="191" width="256" height="3" rx="1.5" fill="#F5A800" opacity="0.7"/>
+  <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="white">HITC</text>
+</svg>
+<div class="vname">Navy · Gold</div>
+</div>
+
+</div><!-- end grid -->
+
+<!-- Side by side with original -->
+<div style="margin-top:48px">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;text-transform:uppercase;color:#0A0F1C;margin-bottom:20px">Side by side with original</div>
+<div style="display:flex;align-items:center;gap:32px;background:white;border-radius:16px;padding:28px;flex-wrap:wrap">
+  <div style="text-align:center">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A96A8;margin-bottom:10px">Original 2006</div>
+    <img src="brand_assets/hitc%20logo%202006%20-%20Copy.png" style="height:90px;width:auto"/>
+  </div>
+  <div style="font-size:2rem;color:#C8C8C0">→</div>
+  <div style="text-align:center">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A96A8;margin-bottom:10px">V1 Classic Blue</div>
+    <svg viewBox="0 0 300 232" width="150" height="116" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="sb1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2979FF"/><stop offset="1" stop-color="#0035B8"/></linearGradient><linearGradient id="sb2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1E6BFF"/><stop offset="1" stop-color="#0040C8"/></linearGradient><linearGradient id="sbp" x1="0" y1="0" x2="300" y2="232" gradientUnits="userSpaceOnUse"><stop stop-color="#2575FF"/><stop offset="1" stop-color="#003AC0"/></linearGradient></defs>
+      <path d="M-2 86 L126 40 L132 232 L-2 232 Z" fill="url(#sb1)"/>
+      <path d="M168 2 L302 44 L302 232 L162 200 Z" fill="url(#sb2)"/>
+      <path d="M14 220 L14 22 Q17 19 151 11 L151 212 Z" fill="white" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M151 11 Q285 19 288 22 L288 220 L151 212 Z" fill="#EDECE4" stroke="#0F1728" stroke-width="2.5" stroke-linejoin="round"/>
+      <rect x="148" y="11" width="6" height="209" rx="2" fill="#0F1728"/>
+      <line x1="14" y1="220" x2="288" y2="220" stroke="#0F1728" stroke-width="2.5"/>
+      <rect x="8" y="142" width="88" height="66" rx="4" fill="#0F1E40" stroke="#0F1728" stroke-width="2"/>
+      <rect x="14" y="148" width="76" height="54" rx="3" fill="#162B5C"/>
+      <rect x="18" y="152" width="68" height="46" rx="2" fill="#1E6BFF" opacity="0.5"/>
+      <path d="M3 208 L104 208 L98 224 L9 224 Z" fill="#1A2440" stroke="#0F1728" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="36" y="96" width="256" height="98" rx="6" fill="url(#sbp)"/>
+      <text x="164" y="172" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="90" letter-spacing="-2" fill="white">HITC</text>
+    </svg>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

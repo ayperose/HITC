@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
+<title>Attendance Manager — HITC, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{'hbg':'#F4F4F0','hcard':'#EAEAE4','hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C','hmt':'#5A6880'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);padding:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
+.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
+.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
+.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
+.nl:hover,.nl.active{color:#0A0F1C}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.tag-gray{background:#E8E8E0;color:#5A6880}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
+input,textarea,select{width:100%;padding:10px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FFFFFF;outline:none;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:#1E6BFF}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8A96A8;margin-bottom:6px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
+    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+  </a>
+  <div style="display:flex;align-items:center;gap:28px">
+    <a href="about.html" class="nl">About</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px;color:#0A0F1C">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="robotics.html" class="nl">Robotics</a>
+    <a href="contact.html" class="nl">Contact</a>
+  </div>
+  <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:100px 8% 64px;background:#EAEAE4;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-20%;right:-5%;width:50%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.07) 0%,transparent 65%);pointer-events:none"></div>
+  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
+    <a href="index.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">HITC</a>
+    <span style="color:#C8C8C0">›</span>
+    <a href="services.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">Services</a>
+    <span style="color:#C8C8C0">›</span>
+    <span style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Attendance Manager</span>
+  </div>
+  <div class="rv d1" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px">
+    <span style="background:#0A0F1C;color:rgba(255,255,255,.5);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Product 02</span>
+  </div>
+  <h1 class="rv d2" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,88px);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">
+    Attendance Manager<br><span style="color:#1E6BFF">Android & iOS Mobile App</span>
+  </h1>
+  <p class="rv d3" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:520px;margin-bottom:32px">Smart digital attendance tracking for Philippine schools. Real-time monitoring, instant notifications to parents, and comprehensive reporting — all from a mobile app.</p>
+  <div class="rv d4" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px">
+    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>Android</span><span class="chip"><span class="chip-dot" style="background:#22C55E"></span>Turnstile-Integrated</span><span class="chip"><span class="chip-dot" style="background:#F5A800"></span>SMS to Parents</span>
+  </div>
+  <div class="rv d5" style="display:flex;gap:12px;flex-wrap:wrap">
+    <a href="contact.html" class="btn-primary">Request a Demo →</a>
+    <a href="services.html" class="btn-outline">← All Products</a>
+  </div>
+</section>
+
+<!-- PRODUCT VISUAL + VIDEOS -->
+<div style="background:#EAEAE4;padding:0 8% 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+  <div class="rv" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12)">
+    <img src="https://www.hitc.ph/assets/imgs/attbanner1.png" alt="Attendance System" style="width:100%;display:block" />
+  </div>
+  <div class="rv d2" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.15);position:relative;padding-top:56.25%">
+    <video src="videos/attendancemanager.mp4" controls playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;background:#000"></video>
+  </div>
+</div>
+<div style="background:#EAEAE4;padding:0 8% 52px">
+  <div class="rv" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.15);position:relative;padding-top:56.25%">
+    <iframe src="https://www.youtube.com/embed/z_TGBL3ueDc" title="HITC Attendance Manager" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section style="padding:80px 8%;background:#F4F4F0">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Features</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">What Attendance Manager Does</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+
+    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-6 4h4"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Automated Time-In / Time-Out</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Students tap their ID at the Turnstile System to log time-in and time-out automatically. No manual entry, no paper registers.</p>
+      </div>
+    </div>
+    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Instant SMS to Parents</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Parents receive an SMS the moment their child taps in or out — immediate notification, no app required on the parent's side.</p>
+      </div>
+    </div>
+    <div class="rv d3 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Attendance Analytics</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">View daily, weekly, and term-wide reports. Flag students with chronic absenteeism automatically.</p>
+      </div>
+    </div>
+    <div class="rv d4 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Admin Dashboard</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">School administrators get a real-time overview across all classes and grade levels from one screen.</p>
+      </div>
+    </div>
+    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Seamless Integration</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Works alongside SFMS and iAsk — student records sync across the entire HITC ecosystem.</p>
+      </div>
+    </div>
+    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Mobile App for Online Classes</div>
+        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">When classes move online, the Attendance Manager mobile app takes over — students tap their virtual ID on their Android phone to mark attendance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:72px 8%;background:#0A0F1C" class="rv">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px">
+    <div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Get Attendance Manager</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:white;letter-spacing:-.01em;line-height:1">Ready to Bring Attendance Manager<br>to Your School?</h2>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="contact.html" class="btn-primary">Contact Sales →</a>
+      <a href="services.html" class="btn-outline" style="color:white;border-color:rgba(255,255,255,.2)">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- PREV / NEXT NAV -->
+<div style="background:#EAEAE4;padding:28px 8%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #D8D8D0">
+  <a href="robotics.html" class="btn-outline" style="font-size:12px">← Intelliteach</a>
+  <a href="turnstile.html" class="btn-primary" style="font-size:12px">Turnstile →</a>
+</div>
+
+
+<!-- FOOTER -->
+<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
+    <div>
+      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
+      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
+      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">info@hitc.ph</a>
+    </div>
+    <div style="display:flex;gap:52px">
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="index.html" class="nl" style="font-size:12px">Home</a>
+          <a href="about.html" class="nl" style="font-size:12px">About</a>
+          <a href="services.html" class="nl" style="font-size:12px">Services</a>
+          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
+          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="robotics.html" class="nl" style="font-size:12px">Intelliteach</a>
+          <a href="attendance.html" class="nl" style="font-size:12px">Attendance</a>
+          <a href="turnstile.html" class="nl" style="font-size:12px">Turnstile</a>
+          <a href="ebroadcasting.html" class="nl" style="font-size:12px">eBroadcasting</a>
+          <a href="sfms.html" class="nl" style="font-size:12px">SFMS</a>
+          <a href="ecash.html" class="nl" style="font-size:12px">eCash</a>
+          <a href="iask.html" class="nl" style="font-size:12px">iAsk</a>
+        </div>
+      </div>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </div>
+  <div style="overflow:hidden;margin:0 -8%">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+  </div>
+</footer>
+<script>
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>

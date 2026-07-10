@@ -1,0 +1,608 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HITC, Inc. — Headstart Information Technology & Consultancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      'hbg':  '#F4F4F0',
+      'hcard':'#EAEAE4',
+      'hup':  '#E0E0D8',
+      'hbl':  '#1E6BFF',
+      'hgd':  '#F5A800',
+      'htx':  '#0A0F1C',
+      'hmt':  '#5A6880',
+      'hborder':'#D8D8D0'
+    },
+    fontFamily: {
+      disp:['"Barlow Condensed"','sans-serif'],
+      body:['"Space Grotesk"','sans-serif']
+    }
+  }}
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* BADGE CHIP */
+.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* CARDS */
+.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.cardd{background:#0A0F1C;border-radius:16px;overflow:hidden}
+.card-gray{background:#EAEAE4;border-radius:16px;overflow:hidden}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s}
+.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s}
+.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
+
+/* SERVICE CARD */
+.scard{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.scard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
+.scard-featured{background:#0A0F1C;border-radius:16px;padding:28px;border:none;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;grid-column:span 2}
+
+/* NAV LINK */
+.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
+.nl:hover,.nl.active{color:#0A0F1C}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.tag-gray{background:#E8E8E0;color:#5A6880}
+
+/* STAT */
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
+
+/* INPUT */
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FAFAF8;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:#1E6BFF}
+label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#5A6880;display:block;margin-bottom:6px}
+
+/* IMAGE */
+.img-cover{width:100%;height:100%;object-fit:cover;display:block}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav class="nav">
+  <a href="#home" style="display:flex;align-items:center;text-decoration:none">
+    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+  </a>
+
+  <div style="display:flex;align-items:center;gap:28px">
+    <a href="#about" class="nl">About</a>
+    <div class="nav-dropdown"><a href="#services" class="nl" style="display:flex;align-items:center;gap:3px">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk Manager</a></div></div>
+    <a href="#robotics" class="nl">Robotics</a>
+    <a href="#contact" class="nl">Contact</a>
+  </div>
+
+  <button class="btn-primary" style="padding:9px 20px;font-size:12px"
+    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    Get Started →
+  </button>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section id="home" style="min-height:100vh;padding-top:56px;background:#EAEAE4;position:relative;overflow:hidden">
+
+  <!-- Blue glow behind mockup -->
+  <div style="position:absolute;top:-10%;right:-5%;width:60%;height:120%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.12) 0%,transparent 65%);pointer-events:none"></div>
+  <!-- Bottom fade into dark stats bar -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(10,15,28,.18));pointer-events:none"></div>
+
+  <div style="position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:calc(100vh - 56px)">
+
+    <!-- Left: headline -->
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#EAF0FF;border:1px solid rgba(30,107,255,.2);border-radius:999px;padding:5px 14px;margin-bottom:28px">
+        <span style="width:6px;height:6px;border-radius:50%;background:#1E6BFF;flex-shrink:0"></span>
+        <span style="font-size:11px;font-weight:600;color:#1E6BFF;letter-spacing:.06em;text-transform:uppercase">Philippines' Leading IT Firm</span>
+      </div>
+
+      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(5rem,10vw,9.5rem);line-height:.92;letter-spacing:-.01em;color:#0A0F1C;text-transform:uppercase;margin-bottom:0">
+        WE<br>INNOVATE
+      </h1>
+      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(5rem,10vw,9.5rem);line-height:.92;letter-spacing:-.01em;color:#F5A800;text-transform:uppercase;margin-bottom:28px">
+        TECHNOLOGIES
+      </h1>
+
+      <p style="font-size:14px;color:#5A6880;line-height:1.75;max-width:420px;margin-bottom:32px">
+        Empowering schools and institutions across the Philippines with robotics education, smart attendance systems, turnstile automation, and intelligent campus management.
+      </p>
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:40px">
+        <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+          Explore Services →
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+          ⊙ Our Story
+        </button>
+      </div>
+
+      <!-- Tech tags -->
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10px;color:#8A96A8;letter-spacing:.04em;text-transform:uppercase;margin-right:4px">Built for</span>
+        <span class="tag">EV3 Robotics</span>
+        <span class="tag">School Automation</span>
+        <span class="tag">Attendance AI</span>
+        <span class="tag">eCash</span>
+      </div>
+    </div>
+
+    <!-- Right: book mockup + floating badges -->
+    <div style="position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0">
+
+      <!-- Floating badges -->
+      <div class="chip rv" style="position:absolute;top:8%;left:0px;animation:float1 4s ease-in-out infinite">
+        <span class="chip-dot" style="background:#FF8C00"></span>
+        Powered by LEGO® EV3
+      </div>
+<div class="chip rv d2" style="position:absolute;bottom:22%;right:8px;animation:float1 5s ease-in-out infinite">
+        <span class="chip-dot" style="background:#1E6BFF"></span>
+        Live Systems
+      </div>
+      <div class="chip rv d3" style="position:absolute;bottom:8%;left:8px;animation:float2 4.8s ease-in-out infinite">
+        <span class="chip-dot" style="background:#F5A800"></span>
+        Made in Philippines
+      </div>
+
+      <!-- Book / device mockup -->
+      <div style="width:280px;height:340px;position:relative;transform:perspective(800px) rotateX(8deg) rotateY(-12deg);transform-style:preserve-3d">
+        <!-- Book cover -->
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1E6BFF,#0A3EBA);border-radius:12px 4px 4px 12px;box-shadow:8px 12px 40px rgba(30,107,255,.25),0 4px 20px rgba(0,0,0,.12)">
+          <!-- Book spine -->
+          <div style="position:absolute;left:0;top:0;bottom:0;width:22px;background:linear-gradient(90deg,#0A3EBA,#1557D4);border-radius:12px 0 0 12px"></div>
+          <!-- Cover content -->
+          <div style="padding:28px 20px 20px 36px;height:100%;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <img src="brand_assets/hitclogo.png" alt="HITC" style="height:28px;width:auto;filter:brightness(0) invert(1);opacity:.9;margin-bottom:16px" />
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:white;line-height:1.1;letter-spacing:.02em;text-transform:uppercase">
+                Intelliteach<br>
+                <span style="color:rgba(255,255,255,.6);font-size:1rem">EV3 Robotics</span>
+              </div>
+            </div>
+            <!-- Screen sim -->
+            <div style="background:rgba(0,0,0,.3);border-radius:8px;padding:12px;margin-top:12px">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+                <div style="width:6px;height:6px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.8)"></div>
+                <span style="font-size:9px;color:rgba(255,255,255,.6)">Live 1</span>
+              </div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:white">Technologies</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.4);margin-top:2px">HITC, Inc. Platform</div>
+            </div>
+          </div>
+        </div>
+        <!-- Book shadow/depth -->
+        <div style="position:absolute;bottom:-16px;left:10px;right:10px;height:20px;background:rgba(30,107,255,.15);border-radius:50%;filter:blur(10px)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;z-index:2">
+    <div style="font-size:10px;color:#8A96A8;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">Scroll to explore</div>
+    <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid #C8C8C0;display:flex;align-items:center;justify-content:center;margin:0 auto;cursor:pointer" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})">
+      <span style="font-size:12px;color:#8A96A8">↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ STATS BAR ══════ -->
+<div id="stats" style="background:#0A0F1C;padding:0 8%">
+  <div style="display:grid;grid-template-columns:repeat(2,1fr)">
+    <div style="text-align:center;padding:28px 0;border-right:1px solid rgba(255,255,255,.08)">
+      <div class="stat-num" style="color:white">7</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;letter-spacing:.04em;text-transform:uppercase">Product Systems</div>
+    </div>
+    <div style="text-align:center;padding:28px 0">
+      <div class="stat-num" style="color:#F5A800">100%</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;letter-spacing:.04em;text-transform:uppercase">Filipino Made</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ ABOUT ══════ -->
+<section id="about" style="padding:100px 8%;background:#F4F4F0">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div class="rv">
+      <span class="tag" style="margin-bottom:20px;display:inline-flex">About HITC</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.8rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:16px;margin-bottom:20px">
+        DRIVING<br>INNOVATION<br><span style="color:#1E6BFF">ACROSS THE</span><br>PHILIPPINES
+      </h2>
+      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:16px">HITC, Inc. (Headstart Information Technology &amp; Consultancy Inc.) is one of the Philippines' leading IT firms, headquartered in Tuguegarao City, Cagayan.</p>
+      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:28px">We specialize in developing highly diversified automation products for schools, government agencies, and private institutions nationwide — staffed by young, creative, and dedicated professionals.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-size:12px;color:#3D4A5C">Cost-effective automation built for every institution's budget</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-size:12px;color:#3D4A5C">Serving schools and institutions across the Philippines</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-size:12px;color:#3D4A5C">End-to-end support from deployment to ongoing maintenance</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See Our Products →</button>
+    </div>
+
+    <div class="rv d2" style="position:relative">
+      <div style="border-radius:20px;overflow:hidden;height:420px;box-shadow:0 12px 40px rgba(0,0,0,.1)">
+        <img src="https://picsum.photos/seed/school-philippines-classroom/600/420" alt="HITC Schools" style="width:100%;height:100%;object-fit:cover" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,28,.5),transparent 50%)"></div>
+        <div style="position:absolute;bottom:20px;left:20px">
+          <img src="brand_assets/hitclogo.png" alt="HITC" style="height:28px;filter:brightness(0) invert(1);opacity:.8" />
+        </div>
+      </div>
+      <!-- Stat card -->
+      <div class="card" style="position:absolute;bottom:-20px;right:-16px;padding:18px 20px;width:170px">
+        <div style="font-size:10px;color:#8A96A8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Client Rating</div>
+        <div class="stat-num" style="font-size:2rem;color:#0A0F1C">4.9<span style="font-size:1rem;color:#F5A800"> ★</span></div>
+        <div style="font-size:10px;color:#8A96A8;margin-top:4px">Tuguegarao City, PH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SERVICES ══════ -->
+<section id="services" style="padding:100px 8%;background:#EAEAE4">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px" class="rv">
+    <div>
+      <span class="tag" style="margin-bottom:16px;display:inline-flex">Our Products</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.5rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px">
+        COMPLETE IT SOLUTIONS<br><span style="color:#1E6BFF">FOR MODERN INSTITUTIONS</span>
+      </h2>
+    </div>
+    <p style="font-size:13px;color:#5A6880;line-height:1.75;max-width:320px">From robotics classrooms to campus-wide automation — a full ecosystem of intelligent management systems.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="rv d1">
+
+    <!-- Featured: Intelliteach -->
+    <div class="scard-featured" style="position:relative;overflow:hidden;cursor:pointer" onclick="location.href='services.html#intelliteach'">
+      <div style="position:absolute;top:16px;left:16px">
+        <span style="background:#1E6BFF;color:white;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Featured</span>
+      </div>
+      <div style="padding-top:32px">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:white;text-transform:uppercase;margin-bottom:6px">Intelliteach</h3>
+        <div style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">EV3 Robotics &amp; LMS</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.65;max-width:300px">A dynamic web-based Learning Management System integrating LEGO® MINDSTORMS® EV3 curriculum. Empowers teachers to deliver hands-on robotics education.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:20px">
+        <span class="tag" style="background:rgba(30,107,255,.2);color:#6AAEFF">LEGO EV3</span>
+        <span class="tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)">Online LMS</span>
+        <button style="width:32px;height:32px;border-radius:50%;background:#1E6BFF;border:none;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;margin-left:auto;transition:background .2s" onmouseover="this.style.background='#1559D4'" onmouseout="this.style.background='#1E6BFF'">→</button>
+      </div>
+    </div>
+
+    <!-- Attendance Manager -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#attendance'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-6 4h4"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Attendance Manager</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Smart digital attendance tracking for schools. Real-time monitoring with mobile app support and comprehensive reporting.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">Real-Time</span><span class="tag-gray tag">Mobile App</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+    <!-- Turnstile -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#turnstile'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Turnstile System</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">RFID School ID Gates</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Automated school gate management using RFID-enabled student and staff ID cards. Seamless entry/exit logging for any campus size.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">RFID</span><span class="tag-gray tag">Auto-Log</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+    <!-- eBroadcasting -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#ebroadcasting'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eBroadcasting</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Campus Announcements</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Campus-wide announcement and communication platform. Broadcast messages, alerts, and critical information to your entire institution instantly.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">Broadcast</span><span class="tag-gray tag">Multi-Channel</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+    <!-- SFMS -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#sfms'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">SFMS</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">School Financial Management</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Complete financial management for educational institutions. Tuition tracking, payroll, budgeting, and financial reporting in one unified system.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">Tuition</span><span class="tag-gray tag">Payroll</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+    <!-- eCash -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#ecash'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eCash System</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Cashless Campus</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Cashless payment platform for school canteens, bookstores, and fee collection. Safer, faster, and more transparent digital transactions.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">Cashless</span><span class="tag-gray tag">Digital Wallet</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+    <!-- iAsk Manager -->
+    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#iask'">
+      <div>
+        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">iAsk Manager</h3>
+        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
+        <p style="font-size:12px;color:#5A6880;line-height:1.65">Interactive communication and Q&amp;A management system connecting administrators, faculty, and students in a unified, accessible platform.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+        <div style="display:flex;gap:5px"><span class="tag-gray tag">Q&amp;A</span><span class="tag-gray tag">Multi-User</span></div>
+        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ ROBOTICS ══════ -->
+<section id="robotics" style="padding:100px 8%;background:#F4F4F0">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <!-- Left: photo -->
+    <div class="rv" style="position:relative">
+      <div style="border-radius:20px;overflow:hidden;height:480px;box-shadow:0 12px 40px rgba(0,0,0,.1)">
+        <img src="photos/robot1.jpg" alt="LEGO EV3 Robotics" style="width:100%;height:100%;object-fit:cover" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,28,.6),transparent 50%)"></div>
+        <div style="position:absolute;bottom:20px;left:24px;right:24px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:white;letter-spacing:.06em;text-transform:uppercase">LEGO® MINDSTORMS® EV3</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.55);margin-top:2px">Intelliteach Program</div>
+        </div>
+      </div>
+      <!-- Floating card -->
+      <div class="card" style="position:absolute;top:24px;right:-20px;padding:14px 18px;width:160px">
+        <div style="font-size:10px;color:#8A96A8;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase">Grade Levels</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#0A0F1C">4 – 10</div>
+        <div style="font-size:10px;color:#1E6BFF;margin-top:3px;font-weight:600">DepEd Aligned</div>
+      </div>
+    </div>
+
+    <!-- Right: text -->
+    <div class="rv d2">
+      <span class="tag" style="margin-bottom:20px;display:inline-flex">Robotics Program</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px;margin-bottom:20px">
+        TEACHING TOMORROW'S<br>ENGINEERS WITH<br><span style="color:#F5A800">LEGO® EV3</span>
+      </h2>
+      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:28px">HITC's Intelliteach robotics program brings hands-on engineering education to Filipino schools. Students build and program real robots using the LEGO® MINDSTORMS® EV3 platform, developing critical thinking, problem-solving, and STEM skills aligned with the national curriculum.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px">
+        <div class="card" style="padding:16px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Curriculum-Aligned</div>
+          <div style="font-size:11px;color:#8A96A8">Lessons mapped to DepEd STEM standards</div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">All Grade Levels</div>
+          <div style="font-size:11px;color:#8A96A8">Suitable for Grades 4 through 10</div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Hands-On Learning</div>
+          <div style="font-size:11px;color:#8A96A8">Build and compete with real robots</div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Competition Ready</div>
+          <div style="font-size:11px;color:#8A96A8">Prep students for robotics competitions</div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Bring Robotics to Your School →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT ══════ -->
+<section id="contact" style="padding:100px 8%;background:#EAEAE4">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px" class="rv">
+    <div>
+      <span class="tag" style="margin-bottom:16px;display:inline-flex">Contact Us</span>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.5rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px">
+        LET'S BUILD THE<br><span style="color:#1E6BFF">FUTURE TOGETHER</span>
+      </h2>
+    </div>
+    <p style="font-size:13px;color:#5A6880;max-width:280px;line-height:1.75">Ready to transform your institution with smart technology? Reach out — we'd love to hear from you.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:32px" class="rv d1">
+    <!-- Contact info -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <!-- Logo -->
+      <div class="card" style="padding:24px;text-align:center">
+        <img src="brand_assets/hitclogo.png" alt="HITC" style="height:52px;width:auto;margin:0 auto 12px;display:block" />
+        <div style="font-size:11px;color:#5A6880;line-height:1.6">Headstart Information Technology<br>&amp; Consultancy Inc.</div>
+        <div style="font-size:10px;color:#8A96A8;margin-top:6px">Tuguegarao City · Cagayan · Philippines</div>
+      </div>
+
+      <div class="card" style="padding:22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Phone</div>
+            <div style="font-size:13px;color:#0A0F1C;font-weight:500">(078) 377-1067</div>
+            <div style="font-size:11px;color:#5A6880">Smart: (0912) 082-7092</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Email</div>
+            <div style="font-size:13px;color:#0A0F1C;font-weight:500">admin@hitc.ph</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Location</div>
+            <div style="font-size:13px;color:#0A0F1C;font-weight:500">Tuguegarao City</div>
+            <div style="font-size:11px;color:#5A6880">Cagayan, Philippines 3500</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="card" style="padding:32px">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:24px">Send Us a Message</h3>
+      <form style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label>Name</label><input type="text" placeholder="Juan dela Cruz" /></div>
+          <div><label>Email</label><input type="email" placeholder="juan@school.edu.ph" /></div>
+        </div>
+        <div><label>Institution</label><input type="text" placeholder="Your school or organization" /></div>
+        <div>
+          <label>Service of Interest</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Intelliteach — EV3 Robotics &amp; LMS</option>
+            <option>Attendance Manager</option>
+            <option>Turnstile System</option>
+            <option>eBroadcasting System</option>
+            <option>SFMS — School Financial Management</option>
+            <option>eCash System</option>
+            <option>iAsk Manager</option>
+          </select>
+        </div>
+        <div><label>Message</label><textarea rows="4" placeholder="Tell us about your institution and what you're looking for..." style="resize:none;line-height:1.65"></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;border-radius:10px;padding:13px">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
+    <div>
+      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block" />
+      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 1996.</p>
+      <a href="mailto:admin@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px" onmouseover="this.style.borderColor='#1E6BFF'" onmouseout="this.style.borderColor='#D8D8D0'">admin@hitc.ph</a>
+    </div>
+    <div style="display:flex;gap:52px">
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="#home" class="nl" style="font-size:12px">Home</a>
+          <a href="#about" class="nl" style="font-size:12px">About</a>
+          <a href="#services" class="nl" style="font-size:12px">Services</a>
+          <a href="#robotics" class="nl" style="font-size:12px">Robotics</a>
+          <a href="#contact" class="nl" style="font-size:12px">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="#services" class="nl" style="font-size:12px">Intelliteach</a>
+          <a href="#services" class="nl" style="font-size:12px">Attendance</a>
+          <a href="#services" class="nl" style="font-size:12px">Turnstile</a>
+          <a href="#services" class="nl" style="font-size:12px">eBroadcasting</a>
+          <a href="#services" class="nl" style="font-size:12px">SFMS · eCash · iAsk</a>
+        </div>
+      </div>
+    </div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})"
+      style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0"
+      onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </div>
+
+  <!-- Giant wordmark -->
+  <div style="overflow:hidden;margin:0 -8%">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+  </div>
+</footer>
+
+<style>
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+
+<script>
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
