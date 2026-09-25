@@ -1764,7 +1764,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         const woodMat = new THREE.MeshStandardMaterial({ color: '#F5A800', roughness: 0.5 });
         const shaft = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.6, 6), woodMat);
         pencil.add(shaft);
-        const cone = mesh(new THREE.CylinderGeometry(0.018, 0.003, 0.07, 6), new THREE.MeshStandardMaterial({ color: '#E8C79A', roughness: 0.8 }));
+        const cone = mesh(new THREE.CylinderGeometry(0.003, 0.018, 0.07, 6), new THREE.MeshStandardMaterial({ color: '#E8C79A', roughness: 0.8 }));
         cone.position.y = 0.335;
         pencil.add(cone);
         const lead = mesh(new THREE.ConeGeometry(0.004, 0.012, 6), new THREE.MeshStandardMaterial({ color: '#333', roughness: 0.4 }));
