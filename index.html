@@ -7,8 +7,13 @@
 <title>HITC, Inc. — Headstart Information Technology & Consultancy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Schoolbell&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin />
+<script>document.documentElement.classList.add('js');</script>
 <script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" } }
+</script>
 <script>
 tailwind.config = {
   theme: { extend: {
@@ -87,7 +92,124 @@ label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:upperca
 .nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
 .nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
-.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}
+
+/* ══════ HERO: the 7 a.m. scan, told in a pop-up book ══════ */
+:root{--ink:#0A0F1C;--desk:#16244F;--paper:#F4F4F0;--hblue:#1E6BFF;--gold:#F5A800;--spring:cubic-bezier(.34,1.56,.64,1)}
+body{overflow-x:clip}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.hero{position:relative;z-index:2;height:100vh;height:100svh;min-height:600px;overflow:hidden;color:var(--paper);isolation:isolate;
+  background:radial-gradient(44% 50% at 64% 50%,rgba(245,168,0,.14),transparent 70%),radial-gradient(36% 40% at 88% 66%,rgba(30,107,255,.2),transparent 70%),radial-gradient(70% 60% at 18% 0%,rgba(40,64,140,.35),transparent 70%),#0C1430}
+.hero__canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.1s ease;touch-action:pan-y}
+.hero.is-ready .hero__canvas{opacity:1}
+.hero__fallback{position:absolute;inset:0;display:none}
+.hero__fallback img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hero__fallback::before,.hero__fallback::after{content:'';position:absolute;inset:0}
+.hero__fallback::before{background:#16244F;mix-blend-mode:multiply;opacity:.6}
+.hero__fallback::after{background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%)}
+.no-webgl .hero__fallback{display:block}
+.no-webgl .hero__canvas,.no-webgl .doodles,.no-webgl .hero__hint{display:none}
+.hero__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(10,15,28,.78) 0%,rgba(10,15,28,.28) 14%,transparent 26%),linear-gradient(90deg,rgba(10,15,28,.9) 0%,rgba(10,15,28,.7) 24%,rgba(10,15,28,.16) 46%,transparent 58%)}
+.hero .wrap{width:100%;max-width:1440px;margin-inline:auto;padding-inline:8%}
+.hero__copy{position:absolute;z-index:3;left:0;right:0;top:calc(50% + 28px);transform:translateY(calc(-50% - var(--lift,0px)));pointer-events:none}
+/* only the copy itself takes the pointer; the rest of the book stays clickable */
+.hero__copy .wrap>*{pointer-events:auto;width:fit-content}
+.hero__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(3.4rem,5.8vw,5.6rem);line-height:.9;letter-spacing:-.02em;max-width:7ch;color:var(--paper)}
+.hero__lede{margin-top:1.4rem;max-width:30rem;font-size:1.0625rem;line-height:1.7;color:rgba(244,244,240,.8)}
+.hero__lede strong{color:var(--paper);font-weight:600}
+.hero__ctas{margin-top:2rem;display:flex;flex-wrap:wrap;gap:12px}
+.hbtn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 1.5rem;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:.9375rem;font-weight:600;text-decoration:none;transition:transform .5s var(--spring),opacity .2s ease;-webkit-tap-highlight-color:transparent}
+.hbtn:hover{transform:translateY(-2px)}
+.hbtn:active{transform:translateY(1px) scale(.97);transition-duration:.12s}
+.hbtn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hbtn--blue{background:var(--hblue);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 12px 26px -12px rgba(30,107,255,.8),0 26px 50px -26px rgba(10,15,28,.6)}
+.hbtn--line{color:var(--paper);box-shadow:0 0 0 1.5px rgba(244,244,240,.42) inset}
+.hbtn--line:hover{box-shadow:0 0 0 1.5px rgba(244,244,240,.9) inset}
+.hand{font-family:'Schoolbell',cursive;font-weight:400}
+/* the story ends by fading to paper everywhere except where the section's phone will be */
+.hero__paper{position:absolute;z-index:5;left:0;top:0;width:0;height:0;border-radius:46px;box-shadow:0 0 0 300vmax var(--paper);opacity:0;pointer-events:none}
+.hero__caption{position:absolute;z-index:4;left:0;right:0;bottom:10%;text-align:center;font-size:clamp(1.6rem,2.8vw,2.3rem);color:var(--paper);opacity:0;pointer-events:none;text-shadow:0 2px 18px rgba(10,15,28,.9),0 0 4px rgba(10,15,28,.8)}
+.hero__hint{position:absolute;z-index:4;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:.5rem;font-size:.9375rem;color:rgba(244,244,240,.72);pointer-events:none;white-space:nowrap}
+.hero__hint svg{width:18px;height:18px}
+
+/* doodle labels pinned to things in the 3D book */
+.doodles{position:absolute;inset:0;z-index:2;pointer-events:none}
+.doodle{position:absolute;left:0;top:0;opacity:0;will-change:transform,opacity;pointer-events:none}
+.doodle__in{display:flex;align-items:flex-end;gap:2px;color:var(--paper);text-shadow:0 0 3px rgba(10,15,28,.95),0 0 12px rgba(10,15,28,.85),0 2px 20px rgba(10,15,28,.7);filter:drop-shadow(0 0 6px rgba(10,15,28,.55));font-family:'Schoolbell',cursive;font-size:1.4rem;line-height:1;white-space:nowrap;transform:translate(var(--dx,-10%),var(--dy,-100%))}
+.doodle__in svg{width:38px;height:30px;flex:none}
+button.doodle{pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
+.doodle.is-hidden{pointer-events:none}
+button.doodle .doodle__word{display:inline-block;padding:4px 6px;border-radius:8px;transition:transform .45s var(--spring)}
+button.doodle:hover .doodle__word{transform:rotate(-4deg) scale(1.08)}
+button.doodle:active .doodle__word{transform:scale(.94)}
+button.doodle:focus-visible{outline:none}
+button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-offset:2px}
+.doodle--note .doodle__in{color:var(--gold);font-size:1.3rem}
+.doodle__in--up{flex-direction:column;align-items:center;gap:0}
+.doodle__in--up svg{width:26px;height:34px;margin-left:18px}
+/* The shared nav has no phone layout: its links pushed the page to ~711px wide, so phones
+   laid the whole page out zoomed out. On small screens keep the logo and the main button. */
+@media (max-width:767px){
+  .nav{padding:0 16px}
+  .nav>div{display:none!important}
+  .nav>.btn-primary{padding:8px 16px!important}
+  /* the services grid (3 columns plus a 2-column featured card) also forced ~711px */
+  #services>.rv.d1{grid-template-columns:1fr!important}
+  #services .scard-featured{grid-column:auto!important}
+}
+@media (max-width:767px){
+  .hero__caption{bottom:auto;top:15%}
+  .doodle__in{font-size:1.15rem}
+  .doodle__in svg{width:28px;height:22px}
+  .doodle[data-desktop]{display:none}
+  .hero__shade{background:linear-gradient(180deg,rgba(10,15,28,.94) 0%,rgba(10,15,28,.8) 40%,rgba(10,15,28,.1) 62%,transparent 72%)}
+  .hero__copy{top:80px;transform:translateY(calc(0px - var(--lift,0px)))}
+  .hero__title{font-size:clamp(2.8rem,13vw,3.8rem)}
+  .hero__lede{font-size:.975rem;margin-top:1rem}
+  .hero__ctas{margin-top:1.3rem}
+  .hbtn{min-height:46px;padding:0 1.2rem}
+}
+
+/* ══════ CAMPUS CONNECT ══════ */
+/* With the scroll story on, this section sits under the pinned hero, so the phone the story
+   lands on turns straight into the phone here instead of a blank screen. */
+#campus-connect{position:relative;z-index:1;background:var(--paper);padding:96px 8% 100px}
+.has-story #campus-connect{margin-top:calc(var(--story-overlap,0px) * -1)}
+.cc{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start;max-width:1440px;margin:0 auto}
+.cc__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.8rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;color:#0A0F1C;margin-top:18px}
+.cc__lede{font-size:1.0625rem;line-height:1.7;color:#3D4A5C;max-width:33rem;margin-top:20px}
+.cc__list{list-style:none;margin:34px 0 38px;display:grid;gap:20px;max-width:33rem}
+.cc__list li{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:start}
+.cc__ico{width:42px;height:42px;border-radius:12px;background:#E7EFFF;color:#1E6BFF;display:grid;place-items:center}
+.cc__ico svg{width:21px;height:21px}
+.cc__list b{display:block;font-weight:600;color:#0A0F1C;font-size:1rem;line-height:1.4}
+.cc__list span{display:block;font-size:.9375rem;color:#5A6880;line-height:1.6;margin-top:2px}
+.cc__slot{display:flex;justify-content:center;margin:0}
+.ccp{position:relative;width:320px;height:690px;flex:none;border-radius:46px;background:#0A0F1C;padding:10px;transform:scale(var(--cc-s,1));transform-origin:50% 0;box-shadow:0 2px 3px rgba(10,15,28,.16),0 24px 40px -18px rgba(22,36,79,.42),0 60px 90px -40px rgba(22,36,79,.46)}
+.ccp__screen{position:relative;width:300px;height:670px;border-radius:36px;overflow:hidden;background:#F3F5F9;color:#0A0F1C;font-family:'Space Grotesk',sans-serif}
+.ccp__screen>*,.ccp__item>*{position:absolute;margin:0;line-height:1;white-space:nowrap}
+.ccp__time{left:26px;top:17px;font-size:15px;font-weight:600}
+.ccp__sys{right:22px;top:17px;width:58px;height:14px}
+.ccp__bar{left:12px;top:48px;width:276px;height:54px;border-radius:16px;background:#1E6BFF}
+.ccp__icon{left:22px;top:57px;width:36px;height:36px}
+.ccp__app{left:70px;top:67px;font-size:16px;font-weight:600;color:#fff}
+.ccp__pill{left:12px;top:114px;width:128px;height:34px;border-radius:17px;background:#1E6BFF;color:#fff;font-size:13px;font-weight:500;line-height:34px;text-align:center}
+.ccp__set{left:168px;top:124px;font-size:13px;font-weight:500;color:#1E6BFF}
+.ccp__meta{left:16px;top:164px;font-size:11px;color:#7A8499}
+.ccp__feed{left:0;top:184px;width:300px;height:448px;list-style:none;padding:0}
+.ccp__item{position:absolute;left:0;width:300px;height:112px}
+.ccp__item::after{content:'';position:absolute;left:16px;right:16px;bottom:0;height:1px;background:#E3E7EF}
+.ccp__item.is-new::before{content:'';position:absolute;left:8px;top:4px;width:284px;height:104px;border-radius:14px;background:#E7EFFF}
+.ccp__dot{left:21px;top:16px;width:12px;height:12px;border:2px solid #1E6BFF;border-radius:50%}
+.ccp__kind{left:40px;top:17px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1E6BFF}
+.ccp__title{left:20px;top:38px;font-size:14px;font-weight:600;color:#0A0F1C}
+.ccp__body{left:20px;top:58px;font-size:12px;line-height:16px;color:#5A6880}
+.ccp__chev{right:18px;top:46px;font-size:20px;color:#9AA3B5}
+@media (max-width:900px){
+  #campus-connect{padding-top:84px}
+  .cc{grid-template-columns:1fr;gap:36px}
+  .cc__slot{order:-1}
+}</style>
 </head>
 <body>
 
@@ -110,108 +232,108 @@ label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:upperca
   </button>
 </nav>
 
-<!-- ══════ HERO ══════ -->
-<section id="home" style="min-height:100vh;padding-top:56px;background:#EAEAE4;position:relative;overflow:hidden">
+<!-- ══════ ICONS ══════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 40 32"><path d="M3 4c6 1 13 5 17 11s6 11 13 13m0 0-7 1m7-1-2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 40 32"><path d="M37 4c-6 1-13 5-17 11S14 26 7 28m0 0 7 1m-7-1 2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-d" viewBox="0 0 32 40"><path d="M9 3c-3 8 2 15 7 20s6 10 6 14m0 0-5-5m5 5 4-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <!-- Campus Connect mark: a C with a graduation cap; the 3D phone draws the same paths -->
+    <symbol id="cc-mark" viewBox="0 0 36 36">
+      <rect width="36" height="36" rx="10" fill="#fff"/>
+      <rect x="3" y="3" width="30" height="30" rx="8" fill="#16244F"/>
+      <path d="M24.8 11.6a9.2 9.2 0 1 0 0 12.8" fill="none" stroke="#1E6BFF" stroke-width="4.4" stroke-linecap="round"/>
+      <path d="M22.1 14.6a5 5 0 1 0 0 6.8" fill="none" stroke="#F5A800" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M13.2 16.4 19 13.6l5.8 2.8-5.8 2.8Z" fill="#fff"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.4-1.5-2.4 1.5-2.4-1.5-2.4 1.5L6 20.5Z"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/></g></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l7 4V6L7 10Z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5M8 14.5l1.2 4.5"/></g></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6.2 15.5c.6-1.4 1.6-2 2.8-2s2.2.6 2.8 2M14.5 10h3M14.5 13h3"/></g></symbol>
+  </defs>
+</svg>
 
-  <!-- Blue glow behind mockup -->
-  <div style="position:absolute;top:-10%;right:-5%;width:60%;height:120%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.12) 0%,transparent 65%);pointer-events:none"></div>
-  <!-- Bottom fade into dark stats bar -->
-  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(10,15,28,.18));pointer-events:none"></div>
+<!-- ══════ HERO: the 7 a.m. scan, told in a pop-up book ══════ -->
+<section id="home" class="hero" aria-labelledby="hero-title">
+  <div class="hero__fallback" aria-hidden="true"><img src="photos/ecash3.jpg" alt="" width="2048" height="1151" /></div>
+  <canvas class="hero__canvas" id="book3d" role="img" aria-label="A pop-up book lies open on a navy school desk. On the left page a parent waves from the door of their house while a sleepy student with an ID on a lanyard waits outside. On the right page is the school gate with an ID-scanning turnstile and the Philippine flag. A parent's phone and a stack of printed books lie beside the book."></canvas>
+  <div class="hero__shade" id="hero-shade"></div>
 
-  <div style="position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:calc(100vh - 56px)">
+  <div class="doodles" id="doodles">
+    <button class="doodle" type="button" data-doodle="student" aria-label="Wake the student">
+      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">5 more minutes…</span></span>
+    </button>
+    <button class="doodle" type="button" data-doodle="reader" aria-label="Scan the student's ID at the gate">
+      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">scan your ID</span></span>
+    </button>
+    <button class="doodle" type="button" data-doodle="phone" aria-label="Light up the parent's phone">
+      <span class="doodle__in" style="--dx:-104%;--dy:-104%"><span class="doodle__word">a parent's phone</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </button>
+    <button class="doodle" type="button" data-doodle="books" data-desktop aria-label="Open the top book">
+      <span class="doodle__in" style="--dx:-104%;--dy:-100%"><span class="doodle__word">we print books</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </button>
+    <span class="doodle doodle--note" data-doodle="timein" aria-hidden="true"><span class="doodle__in" style="--dx:16%;--dy:-60%">time in, 7:02 AM</span></span>
+  </div>
 
-    <!-- Left: headline -->
-    <div>
-      <div style="display:inline-flex;align-items:center;gap:8px;background:#EAF0FF;border:1px solid rgba(30,107,255,.2);border-radius:999px;padding:5px 14px;margin-bottom:28px">
-        <span style="width:6px;height:6px;border-radius:50%;background:#1E6BFF;flex-shrink:0"></span>
-        <span style="font-size:11px;font-weight:600;color:#1E6BFF;letter-spacing:.06em;text-transform:uppercase">Philippines' Leading IT Firm</span>
-      </div>
-
-      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(5rem,10vw,9.5rem);line-height:.92;letter-spacing:-.01em;color:#0A0F1C;text-transform:uppercase;margin-bottom:0">
-        WE<br>INNOVATE
-      </h1>
-      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(5rem,10vw,9.5rem);line-height:.92;letter-spacing:-.01em;color:#F5A800;text-transform:uppercase;margin-bottom:28px">
-        TECHNOLOGIES
-      </h1>
-
-      <p style="font-size:14px;color:#5A6880;line-height:1.75;max-width:420px;margin-bottom:32px">
-        Empowering schools and institutions across the Philippines with robotics education, smart attendance systems, turnstile automation, and intelligent campus management.
+  <div class="hero__copy" id="hero-copy">
+    <div class="wrap">
+      <h1 id="hero-title" class="hero__title">We innovate technologies</h1>
+      <p class="hero__lede">
+        HITC has built school systems in Tuguegarao City since 2006.
+        With <strong>Campus Connect</strong>, a student scans their ID at the gate and a parent sees it on their phone: time in, time out, tuition payments<span class="hidden md:inline"> and everything else about school</span>.
+        We print books, too.
       </p>
-
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:40px">
-        <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-          Explore Services →
-        </button>
-        <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-          ⊙ Our Story
-        </button>
-      </div>
-
-      <!-- Tech tags -->
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-        <span style="font-size:10px;color:#8A96A8;letter-spacing:.04em;text-transform:uppercase;margin-right:4px">Built for</span>
-        <span class="tag">EV3 Robotics</span>
-        <span class="tag">School Automation</span>
-        <span class="tag">Attendance AI</span>
-        <span class="tag">eCash</span>
-      </div>
-    </div>
-
-    <!-- Right: book mockup + floating badges -->
-    <div style="position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0">
-
-      <!-- Floating badges -->
-      <div class="chip rv" style="position:absolute;top:8%;left:0px;animation:float1 4s ease-in-out infinite">
-        <span class="chip-dot" style="background:#FF8C00"></span>
-        Powered by LEGO® EV3
-      </div>
-<div class="chip rv d2" style="position:absolute;bottom:22%;right:8px;animation:float1 5s ease-in-out infinite">
-        <span class="chip-dot" style="background:#1E6BFF"></span>
-        Live Systems
-      </div>
-      <div class="chip rv d3" style="position:absolute;bottom:8%;left:8px;animation:float2 4.8s ease-in-out infinite">
-        <span class="chip-dot" style="background:#F5A800"></span>
-        Made in Philippines
-      </div>
-
-      <!-- Book / device mockup -->
-      <div style="width:280px;height:340px;position:relative;transform:perspective(800px) rotateX(8deg) rotateY(-12deg);transform-style:preserve-3d">
-        <!-- Book cover -->
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1E6BFF,#0A3EBA);border-radius:12px 4px 4px 12px;box-shadow:8px 12px 40px rgba(30,107,255,.25),0 4px 20px rgba(0,0,0,.12)">
-          <!-- Book spine -->
-          <div style="position:absolute;left:0;top:0;bottom:0;width:22px;background:linear-gradient(90deg,#0A3EBA,#1557D4);border-radius:12px 0 0 12px"></div>
-          <!-- Cover content -->
-          <div style="padding:28px 20px 20px 36px;height:100%;display:flex;flex-direction:column;justify-content:space-between">
-            <div>
-              <img src="brand_assets/hitclogo.png" alt="HITC" style="height:28px;width:auto;filter:brightness(0) invert(1);opacity:.9;margin-bottom:16px" />
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:white;line-height:1.1;letter-spacing:.02em;text-transform:uppercase">
-                Intelliteach<br>
-                <span style="color:rgba(255,255,255,.6);font-size:1rem">EV3 Robotics</span>
-              </div>
-            </div>
-            <!-- Screen sim -->
-            <div style="background:rgba(0,0,0,.3);border-radius:8px;padding:12px;margin-top:12px">
-              <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-                <div style="width:6px;height:6px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.8)"></div>
-                <span style="font-size:9px;color:rgba(255,255,255,.6)">Live 1</span>
-              </div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:white">Technologies</div>
-              <div style="font-size:9px;color:rgba(255,255,255,.4);margin-top:2px">HITC, Inc. Platform</div>
-            </div>
-          </div>
-        </div>
-        <!-- Book shadow/depth -->
-        <div style="position:absolute;bottom:-16px;left:10px;right:10px;height:20px;background:rgba(30,107,255,.15);border-radius:50%;filter:blur(10px)"></div>
+      <div class="hero__ctas">
+        <a class="hbtn hbtn--blue" href="#campus-connect">See Campus Connect</a>
+        <a class="hbtn hbtn--line" href="#contact">Talk to us</a>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;z-index:2">
-    <div style="font-size:10px;color:#8A96A8;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">Scroll to explore</div>
-    <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid #C8C8C0;display:flex;align-items:center;justify-content:center;margin:0 auto;cursor:pointer" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})">
-      <span style="font-size:12px;color:#8A96A8">↓</span>
+  <p class="hero__caption hand" id="cap-1" aria-hidden="true">one scan at the gate…</p>
+  <p class="hero__caption hand" id="cap-2" aria-hidden="true">…and a parent knows.</p>
+  <p class="hero__hint" id="hero-hint" aria-hidden="true"><svg><use href="#i-down"/></svg>scroll to walk her to school</p>
+  <div class="hero__paper" id="hero-paper" aria-hidden="true"></div>
+</section>
+
+<!-- ══════ CAMPUS CONNECT ══════ -->
+<section id="campus-connect" aria-labelledby="cc-title">
+  <div class="cc">
+    <div>
+      <span class="tag">New system</span>
+      <h2 id="cc-title" class="cc__title">Campus Connect</h2>
+      <p class="cc__lede">Our main system right now. Students scan their ID at the gate, and parents see it on their phone: time in, time out, tuition payments, and everything else about school.</p>
+      <ul class="cc__list">
+        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><div><b>Time in and time out</b><span>Every scan at the gate shows up on the parent's phone with the exact time.</span></div></li>
+        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-receipt"/></svg></span><div><b>Tuition payments</b><span>Parents can see tuition payments in the same app.</span></div></li>
+        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-megaphone"/></svg></span><div><b>School updates</b><span>Announcements from the school arrive in the same feed.</span></div></li>
+        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-id"/></svg></span><div><b>Add your child's ID</b><span>Enter the ID number, request an activation code, and activate the card.</span></div></li>
+      </ul>
+      <a class="hbtn hbtn--blue" href="#contact">Ask about Campus Connect</a>
     </div>
+
+    <figure class="cc__slot" id="cc-slot">
+      <div class="ccp" id="cc-phone" aria-hidden="true">
+        <div class="ccp__screen">
+          <p class="ccp__time">7:02</p>
+          <svg class="ccp__sys" viewBox="0 0 58 14"><g fill="#0A0F1C"><rect x="0" y="9" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="14" rx="1"/></g><path d="M23 6.5a9 9 0 0 1 12 0M25.5 9.2a5 5 0 0 1 7 0" fill="none" stroke="#0A0F1C" stroke-width="1.8" stroke-linecap="round"/><circle cx="29" cy="12" r="1.5" fill="#0A0F1C"/><rect x="39.5" y="1.5" width="16" height="11" rx="3" fill="none" stroke="#0A0F1C" stroke-width="1.5"/><rect x="41.5" y="3.5" width="10" height="7" rx="1.5" fill="#0A0F1C"/><rect x="56.5" y="5" width="1.5" height="4" rx=".7" fill="#0A0F1C"/></svg>
+          <div class="ccp__bar"></div>
+          <svg class="ccp__icon" viewBox="0 0 36 36"><use href="#cc-mark"/></svg>
+          <p class="ccp__app">Campus Connect</p>
+          <p class="ccp__pill">Add ID Card</p>
+          <p class="ccp__set">Settings</p>
+          <p class="ccp__meta">Showing the latest updates</p>
+          <ul class="ccp__feed">
+            <li class="ccp__item is-new" style="top:0"><i class="ccp__dot"></i><p class="ccp__kind">Time in</p><p class="ccp__title">Maria dela Cruz - Time In</p><p class="ccp__body">Maria dela Cruz arrived on campus at<br><span data-cc-today>Sep 25, 2026</span> 7:02 AM.</p><p class="ccp__chev">›</p></li>
+            <li class="ccp__item" style="top:112px"><i class="ccp__dot"></i><p class="ccp__kind">Tuition</p><p class="ccp__title">Tuition payment posted</p><p class="ccp__body">A tuition payment for Maria dela Cruz<br>was received.</p><p class="ccp__chev">›</p></li>
+            <li class="ccp__item" style="top:224px"><i class="ccp__dot"></i><p class="ccp__kind">Announcement</p><p class="ccp__title">A message from the school</p><p class="ccp__body">School announcements arrive here,<br>in the same feed.</p><p class="ccp__chev">›</p></li>
+            <li class="ccp__item" style="top:336px"><i class="ccp__dot"></i><p class="ccp__kind">Time out</p><p class="ccp__title">Maria dela Cruz - Time Out</p><p class="ccp__body">Maria dela Cruz left the campus at<br><span data-cc-yday>Sep 24, 2026</span> 4:31 PM.</p><p class="ccp__chev">›</p></li>
+          </ul>
+        </div>
+      </div>
+      <figcaption class="sr-only">An example Campus Connect screen for a parent: a time-in alert, a tuition payment, a school announcement and a time-out alert.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -605,6 +727,1570 @@ var obs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
 },{threshold:.08});
 document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Campus Connect: today's date on the example screen, and a phone that fits the first screen -->
+<script>
+(function () {
+  var fmt = function (d) {
+    try { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'Asia/Manila' }); }
+    catch (e) { return d.toDateString().slice(4); }
+  };
+  var now = new Date();
+  window.hitcDates = { today: fmt(now), yday: fmt(new Date(now.getTime() - 864e5)) };
+  document.querySelectorAll('[data-cc-today]').forEach(function (el) { el.textContent = window.hitcDates.today; });
+  document.querySelectorAll('[data-cc-yday]').forEach(function (el) { el.textContent = window.hitcDates.yday; });
+  var slot = document.getElementById('cc-slot');
+  var ph = document.getElementById('cc-phone');
+  window.hitcSizePhone = function () {
+    var s = Math.min(1, (window.innerHeight - 150) / 690, (document.documentElement.clientWidth - 40) / 320);
+    s = Math.max(0.6, s);
+    ph.style.setProperty('--cc-s', s.toFixed(3));
+    slot.style.height = Math.round(690 * s) + 'px';
+  };
+  window.hitcSizePhone();
+  window.addEventListener('resize', window.hitcSizePhone);
+  // If three.js never loads (CDN down), the module never runs: show the photo instead.
+  setTimeout(function () { if (!window.__hitcBook) document.documentElement.classList.add('no-webgl'); }, 6000);
+})();
+</script>
+
+<!-- hero: the 7 a.m. scan, in 3D -->
+<script type="module">
+    import * as THREE from 'three';
+
+    window.__hitcBook = true;
+    const root = document.documentElement;
+    const hero = document.getElementById('home');
+    const canvas = document.getElementById('book3d');
+    const copy = document.getElementById('hero-copy');
+    const paper = document.getElementById('hero-paper');
+    const hint = document.getElementById('hero-hint');
+    const shadeEl = document.getElementById('hero-shade');
+    const caps = [document.getElementById('cap-1'), document.getElementById('cap-2')];
+    const ccSection = document.getElementById('campus-connect');
+    const ccPhone = document.getElementById('cc-phone');
+    const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
+    const fineMq = matchMedia('(hover: hover) and (pointer: fine)');
+    const mobileMq = matchMedia('(max-width: 767px)');
+
+    function webglOK() {
+      try {
+        const c = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')));
+      } catch (e) {
+        return false;
+      }
+    }
+
+    if (!webglOK()) {
+      root.classList.add('no-webgl');
+    } else {
+      start().catch((err) => {
+        console.warn('HITC 3D book could not start:', err);
+        root.classList.add('no-webgl');
+      });
+    }
+
+    async function start() {
+      // Canvas textures use the page fonts, so wait for them (but never longer than 2.5s).
+      await Promise.race([
+        Promise.all([
+          document.fonts.load('900 60px "Barlow Condensed"'),
+          document.fonts.load('600 30px "Space Grotesk"'),
+          document.fonts.load('400 30px "Space Grotesk"'),
+          document.fonts.load('700 30px "Space Grotesk"'),
+          document.fonts.load('40px Schoolbell'),
+        ]),
+        new Promise((r) => setTimeout(r, 2500)),
+      ]);
+
+      const lowPower = (navigator.hardwareConcurrency || 4) <= 4;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.25 : 1.75));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.12;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const NIGHT = new THREE.Color('#0C1430');
+      const scene = new THREE.Scene();
+      scene.background = NIGHT;
+      scene.fog = new THREE.Fog(NIGHT, 8, 17);
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.02, 40);
+
+      /* ---------- little helpers ---------- */
+      const TAU = Math.PI * 2;
+      const HALF = Math.PI / 2;
+      const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      const backOut = (t) => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); };
+      function rng(seed) { return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646; }
+      const rand = rng(7);
+
+      const C = {
+        paper: '#F4F2EA', card: '#FBFAF4', ink: '#0A0F1C', navy: '#1F2E63', blue: '#1E6BFF', gold: '#F5A800',
+        green: '#2E8B57', leaf: '#3F8A55', leafDark: '#2F6F45', grass: '#D5E7C0', skin: '#C98E62', skinS: '#B0774E',
+        hair: '#1B1616', white: '#FFFFFF', shade: '#E2E6EE', roof: '#C65A3E', wall: '#F2D6B6', wallS: '#E0BD98',
+        concrete: '#E4DDCD', cream: '#F3E7C9',
+      };
+
+      function canvasTex(w, h, draw, { srgb = true, repeat = null } = {}) {
+        const c = document.createElement('canvas');
+        c.width = w;
+        c.height = h;
+        const g = c.getContext('2d');
+        draw(g, w, h);
+        const t = new THREE.CanvasTexture(c);
+        if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+        t.anisotropy = 4;
+        if (repeat) {
+          t.wrapS = t.wrapT = THREE.RepeatWrapping;
+          t.repeat.set(repeat[0], repeat[1]);
+        }
+        t.userData.canvas = c;
+        return t;
+      }
+      function mesh(geo, mat, { cast = true, receive = true } = {}) {
+        const m = new THREE.Mesh(geo, mat);
+        m.castShadow = cast;
+        m.receiveShadow = receive;
+        return m;
+      }
+      function rr(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); }
+      function circle(g, x, y, r) { g.beginPath(); g.arc(x, y, r, 0, TAU); g.fill(); }
+      function grain(g, w, h, amt) {
+        const n = Math.round((w * h) / 70);
+        for (let k = 0; k < n; k++) {
+          g.fillStyle = rand() > 0.5 ? `rgba(255,255,255,${amt})` : `rgba(60,44,24,${amt})`;
+          g.fillRect(rand() * w, rand() * h, 1.5, 1.5);
+        }
+      }
+      function roundedRect(w, h, r) {
+        const s = new THREE.Shape();
+        const x = -w / 2, y = -h / 2;
+        s.moveTo(x + r, y);
+        s.lineTo(x + w - r, y);
+        s.quadraticCurveTo(x + w, y, x + w, y + r);
+        s.lineTo(x + w, y + h - r);
+        s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        s.lineTo(x + r, y + h);
+        s.quadraticCurveTo(x, y + h, x, y + h - r);
+        s.lineTo(x, y + r);
+        s.quadraticCurveTo(x, y, x + r, y);
+        return s;
+      }
+
+      // Every pop-up piece is a die-cut card: the art, a white cut edge around it, and paper grain.
+      function cutOut(src, pad) {
+        const w = src.width, h = src.height;
+        const s = document.createElement('canvas');
+        s.width = w; s.height = h;
+        const sg = s.getContext('2d');
+        sg.drawImage(src, 0, 0);
+        sg.globalCompositeOperation = 'source-in';
+        sg.fillStyle = C.card;
+        sg.fillRect(0, 0, w, h);
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const g = c.getContext('2d');
+        for (let a = 0; a < 20; a++) g.drawImage(s, Math.cos((a / 20) * TAU) * pad, Math.sin((a / 20) * TAU) * pad);
+        g.drawImage(src, 0, 0);
+        g.globalCompositeOperation = 'source-atop';
+        grain(g, w, h, 0.05);
+        g.globalCompositeOperation = 'source-over';
+        return c;
+      }
+      function pieceTex(w, h, draw, pad = 7) {
+        const a = document.createElement('canvas');
+        a.width = w; a.height = h;
+        const ag = a.getContext('2d');
+        ag.lineJoin = 'round';
+        ag.lineCap = 'round';
+        draw(ag, w, h);
+        const t = new THREE.CanvasTexture(cutOut(a, pad));
+        t.colorSpace = THREE.SRGBColorSpace;
+        t.anisotropy = 4;
+        return t;
+      }
+      function card(tex, w, h, { cast = true } = {}) {
+        const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tex, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.9 }));
+        m.castShadow = cast;
+        m.receiveShadow = true;
+        m.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tex, alphaTest: 0.5 });
+        return m;
+      }
+
+      /* ---------- illustration bits ---------- */
+      function hills(g, w, h, base, amp, freq, seed, color) {
+        g.fillStyle = color;
+        g.beginPath();
+        g.moveTo(0, h);
+        for (let x = 0; x <= w; x += 10) g.lineTo(x, base - amp * (0.5 + 0.5 * Math.sin(x * freq + seed) * Math.cos(x * freq * 0.37 + seed * 1.7)));
+        g.lineTo(w, h);
+        g.closePath();
+        g.fill();
+      }
+      function cloud(g, x, y, s) {
+        g.fillStyle = 'rgba(255,255,255,0.94)';
+        [[0, 0, 46], [42, -20, 40], [86, 0, 44], [40, 14, 42]].forEach(([dx, dy, r]) => circle(g, x + dx * s, y + dy * s, r * s));
+      }
+      function leaf(g, x, y, a, len) {
+        g.save();
+        g.translate(x, y);
+        g.rotate(a);
+        g.beginPath();
+        g.moveTo(0, 0);
+        g.quadraticCurveTo(len * 0.5, -len * 0.24, len, len * 0.2);
+        g.quadraticCurveTo(len * 0.5, len * 0.1, 0, 0);
+        g.fill();
+        g.restore();
+      }
+      function palm(g, x, y, hgt, lean) {
+        const tx = x + lean * hgt, ty = y - hgt;
+        g.strokeStyle = '#8A6A48';
+        g.lineWidth = 15;
+        g.beginPath();
+        g.moveTo(x, y);
+        g.quadraticCurveTo(x + lean * hgt * 0.15, y - hgt * 0.6, tx, ty);
+        g.stroke();
+        g.fillStyle = C.leaf;
+        for (let k = 0; k < 7; k++) leaf(g, tx, ty, -HALF + (k - 3) * 0.52 + (k > 3 ? 0.2 : 0), hgt * 0.44);
+        g.fillStyle = '#7A5A3A';
+        circle(g, tx - 7, ty + 10, 9);
+        circle(g, tx + 8, ty + 12, 9);
+      }
+      function tree(g, x, y, r) {
+        g.fillStyle = '#7A5A3A';
+        g.fillRect(x - 9, y - r * 0.9, 18, r * 0.9);
+        g.fillStyle = C.leafDark;
+        [[0, -r * 1.5, r], [-r * 0.6, -r * 1.1, r * 0.72], [r * 0.62, -r * 1.12, r * 0.76]].forEach(([dx, dy, rr2]) => circle(g, x + dx, y + dy, rr2));
+        g.fillStyle = C.leaf;
+        circle(g, x - r * 0.25, y - r * 1.7, r * 0.55);
+      }
+      function flower(g, x, y, r, color) {
+        g.fillStyle = color;
+        for (let k = 0; k < 5; k++) { const a = (k / 5) * TAU; circle(g, x + Math.cos(a) * r * 0.62, y + Math.sin(a) * r * 0.62, r * 0.55); }
+        g.fillStyle = C.gold;
+        circle(g, x, y, r * 0.32);
+      }
+      function bush(g, x, y, r) {
+        g.fillStyle = C.leafDark;
+        circle(g, x, y, r);
+        g.fillStyle = C.leaf;
+        circle(g, x - r * 0.35, y - r * 0.3, r * 0.6);
+      }
+
+      /* ---------- textures: pages, desk, book ---------- */
+      function pageTex(draw) {
+        return canvasTex(1000, 1320, (g, w, h) => {
+          g.fillStyle = C.paper;
+          g.fillRect(0, 0, w, h);
+          draw(g, w, h);
+          grain(g, w, h, 0.03);
+        });
+      }
+      // left page: home. canvas x = world x + 1.01, canvas y = world z + 0.66 (x1000)
+      const leftGround = pageTex((g, w, h) => {
+        g.fillStyle = C.grass;
+        rr(g, 40, 180, 920, 1010, 70);
+        g.strokeStyle = C.concrete;
+        g.lineWidth = 118;
+        g.beginPath();
+        g.moveTo(590, 420);
+        g.bezierCurveTo(600, 640, 690, 770, 1010, 790);
+        g.stroke();
+        g.fillStyle = '#D6CDB8';
+        for (let k = 0; k < 7; k++) {
+          const t = k / 6;
+          const x = 590 + (1010 - 590) * t * t * 0.9 + 20 * Math.sin(t * 3);
+          const y = 440 + (790 - 440) * Math.sqrt(t);
+          g.beginPath(); g.ellipse(x, y, 34, 20, 0.3, 0, TAU); g.fill();
+        }
+        [[180, 700], [260, 820], [120, 900], [420, 980], [330, 1080]].forEach(([x, y], i) => flower(g, x, y, 16, i % 2 ? '#D8342F' : '#F08BA0'));
+        const gs = g.createLinearGradient(w - 110, 0, w, 0);
+        gs.addColorStop(0, 'rgba(70,56,34,0)');
+        gs.addColorStop(1, 'rgba(70,56,34,0.24)');
+        g.fillStyle = gs;
+        g.fillRect(w - 110, 0, 110, h);
+        g.fillStyle = '#9A958A';
+        g.font = '600 26px "Space Grotesk", sans-serif';
+        g.fillText('14', 70, h - 46);
+      });
+      // right page: school. canvas x = world x - 0.01
+      const rightGround = pageTex((g, w, h) => {
+        g.fillStyle = C.grass;
+        rr(g, 40, 180, 920, 1010, 70);
+        g.fillStyle = C.concrete;
+        rr(g, 120, 200, 780, 520, 40);
+        g.strokeStyle = C.concrete;
+        g.lineWidth = 118;
+        g.beginPath();
+        g.moveTo(-10, 790);
+        g.bezierCurveTo(200, 790, 380, 760, 560, 640);
+        g.stroke();
+        g.strokeStyle = 'rgba(160,150,130,0.35)';
+        g.lineWidth = 3;
+        for (let y = 240; y < 700; y += 60) { g.beginPath(); g.moveTo(140, y); g.lineTo(880, y); g.stroke(); }
+        [[860, 820], [760, 960], [900, 1060], [640, 1100]].forEach(([x, y], i) => flower(g, x, y, 16, i % 2 ? '#F5C542' : '#D8342F'));
+        const gs = g.createLinearGradient(0, 0, 110, 0);
+        gs.addColorStop(0, 'rgba(70,56,34,0.24)');
+        gs.addColorStop(1, 'rgba(70,56,34,0)');
+        g.fillStyle = gs;
+        g.fillRect(0, 0, 110, h);
+        g.fillStyle = '#9A958A';
+        g.font = '600 26px "Space Grotesk", sans-serif';
+        g.textAlign = 'right';
+        g.fillText('15', w - 70, h - 46);
+      });
+      const edgeTex = canvasTex(64, 128, (g, w, h) => {
+        for (let y = 0; y < h; y += 4) { g.fillStyle = (y / 4) % 2 ? '#F6F3EA' : '#DEDACD'; g.fillRect(0, y, w, 4); }
+      }, { repeat: [8, 1] });
+      const clothTex = canvasTex(256, 256, (g, w, h) => {
+        g.fillStyle = C.navy;
+        g.fillRect(0, 0, w, h);
+        for (let k = 0; k < 256; k += 3) {
+          g.fillStyle = 'rgba(255,255,255,0.035)'; g.fillRect(k, 0, 1, h);
+          g.fillStyle = 'rgba(0,0,0,0.06)'; g.fillRect(0, k, w, 1);
+        }
+      }, { repeat: [3, 3] });
+      // navy-painted school desk, like the ones in their classrooms
+      const deskTex = canvasTex(1024, 1024, (g, w, h) => {
+        const planks = 6, ph = h / planks;
+        for (let r = 0; r < planks; r++) {
+          const tone = 0.9 + rand() * 0.16;
+          g.fillStyle = `rgb(${Math.round(30 * tone)},${Math.round(50 * tone)},${Math.round(104 * tone)})`;
+          g.fillRect(0, r * ph, w, ph);
+          g.strokeStyle = 'rgba(8,14,36,0.22)';
+          g.lineWidth = 1.2;
+          for (let k = 0; k < 10; k++) {
+            g.beginPath();
+            const yy = r * ph + 8 + rand() * (ph - 16);
+            g.moveTo(0, yy);
+            for (let s = 0; s <= w; s += 48) g.lineTo(s, yy + Math.sin(s * 0.013 + k) * 3);
+            g.stroke();
+          }
+          g.fillStyle = 'rgba(6,10,28,0.55)';
+          g.fillRect(0, r * ph, w, 3);
+        }
+        for (let k = 0; k < 90; k++) { // chipped paint
+          g.fillStyle = rand() > 0.5 ? 'rgba(120,96,64,0.35)' : 'rgba(80,110,190,0.18)';
+          g.beginPath(); g.ellipse(rand() * w, rand() * h, 2 + rand() * 7, 1 + rand() * 3, rand() * 3, 0, TAU); g.fill();
+        }
+      }, { repeat: [3, 3] });
+
+      /* ---------- the desk ---------- */
+      const desk = mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshStandardMaterial({ map: deskTex, color: '#9FB0DC', roughness: 0.62 }), { cast: false });
+      desk.rotation.x = -HALF;
+      scene.add(desk);
+
+      /* ---------- the pop-up book ---------- */
+      const book = new THREE.Group();
+      scene.add(book);
+      const PAGE_Y = 0.0765;
+      const boardMat = new THREE.MeshStandardMaterial({ map: clothTex, roughness: 0.85 });
+      [-1, 1].forEach((s) => {
+        const board = mesh(new THREE.BoxGeometry(1.08, 0.026, 1.4), boardMat);
+        board.position.set(s * 0.545, 0.013, 0);
+        book.add(board);
+        const edge = new THREE.MeshStandardMaterial({ map: edgeTex, roughness: 0.9 });
+        const top = new THREE.MeshStandardMaterial({ color: C.paper, roughness: 0.9 });
+        const block = mesh(new THREE.BoxGeometry(1.0, 0.05, 1.32), [edge, edge, top, top, edge, edge]);
+        block.position.set(s * 0.51, 0.026 + 0.025, 0);
+        book.add(block);
+        const page = mesh(new THREE.PlaneGeometry(1.0, 1.32), new THREE.MeshStandardMaterial({ map: s < 0 ? leftGround : rightGround, roughness: 0.92 }), { cast: false });
+        page.rotation.x = -HALF;
+        page.position.set(s * 0.51, PAGE_Y, 0);
+        book.add(page);
+      });
+      const spine = mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.4, 16, 1, false, 0, Math.PI), boardMat);
+      spine.rotation.x = HALF;
+      spine.rotation.y = Math.PI;
+      spine.position.set(0, 0.012, 0);
+      book.add(spine);
+
+      // pop-up pieces stand on the page, hinged at their base so they fold flat and rise
+      const pops = [];
+      function popup(tex, w, h, x, z, delay, lean = 0) {
+        const hinge = new THREE.Group();
+        hinge.position.set(x, PAGE_Y + pops.length * 0.0006, z);
+        const c = card(tex, w, h);
+        c.position.y = h / 2;
+        hinge.add(c);
+        book.add(hinge);
+        pops.push({ hinge, delay, lean });
+        return hinge;
+      }
+
+      /* ----- left page: home ----- */
+      const homeBackTex = pieceTex(1000, 600, (g, w, h) => {
+        const top = new Path2D();
+        top.moveTo(12, h);
+        top.lineTo(12, 210);
+        top.bezierCurveTo(60, 130, 150, 120, 200, 160);
+        top.bezierCurveTo(240, 88, 340, 78, 380, 138);
+        top.bezierCurveTo(430, 110, 490, 118, 520, 170);
+        top.bezierCurveTo(580, 160, 620, 176, 650, 196);
+        top.bezierCurveTo(710, 118, 830, 100, 880, 158);
+        top.bezierCurveTo(930, 128, 984, 160, 988, 220);
+        top.lineTo(988, h);
+        top.closePath();
+        g.save();
+        g.clip(top);
+        const sky = g.createLinearGradient(0, 80, 0, h);
+        sky.addColorStop(0, '#A7CBEC');
+        sky.addColorStop(0.55, '#D8E7F1');
+        sky.addColorStop(1, '#FBE1B0');
+        g.fillStyle = sky;
+        g.fillRect(0, 0, w, h);
+        g.fillStyle = 'rgba(245,168,0,0.24)';
+        circle(g, 770, 410, 150);
+        g.fillStyle = C.gold;
+        circle(g, 770, 410, 90);
+        cloud(g, 170, 220, 1);
+        cloud(g, 520, 260, 0.8);
+        hills(g, w, h, 440, 70, 0.008, 1.2, '#A3CBA0');
+        hills(g, w, h, 510, 60, 0.012, 3.4, '#72B07C');
+        palm(g, 110, 560, 270, -0.12);
+        palm(g, 905, 580, 230, 0.1);
+        g.restore();
+      });
+      const houseTex = pieceTex(660, 540, (g) => {
+        g.fillStyle = C.wall;
+        g.fillRect(80, 250, 500, 290);
+        g.fillStyle = C.wallS;
+        g.fillRect(80, 250, 500, 24);
+        g.fillStyle = C.roof;
+        g.beginPath(); g.moveTo(36, 266); g.lineTo(330, 92); g.lineTo(624, 266); g.closePath(); g.fill();
+        g.save();
+        g.beginPath(); g.moveTo(36, 266); g.lineTo(330, 92); g.lineTo(624, 266); g.closePath(); g.clip();
+        g.strokeStyle = 'rgba(0,0,0,0.13)';
+        g.lineWidth = 5;
+        for (let x = 40; x < 640; x += 28) { g.beginPath(); g.moveTo(x, 90); g.lineTo(x, 270); g.stroke(); }
+        g.restore();
+        g.fillStyle = '#F7F1E3';
+        g.fillRect(36, 262, 588, 10);
+        g.fillStyle = C.wallS;
+        circle(g, 330, 196, 24);
+        g.fillStyle = '#8C3B2E';
+        circle(g, 330, 196, 16);
+        const win = (x, y, ww, hh) => {
+          g.fillStyle = '#F7F1E3'; g.fillRect(x - 8, y - 8, ww + 16, hh + 16);
+          g.fillStyle = '#BFD6EA'; g.fillRect(x, y, ww, hh);
+          g.fillStyle = 'rgba(245,168,0,0.55)'; g.fillRect(x, y, ww * 0.26, hh); g.fillRect(x + ww * 0.74, y, ww * 0.26, hh);
+          g.strokeStyle = '#2E5AA8'; g.lineWidth = 5;
+          for (let k = 1; k < 4; k++) { g.beginPath(); g.moveTo(x + (ww * k) / 4, y); g.lineTo(x + (ww * k) / 4, y + hh); g.stroke(); }
+          g.beginPath(); g.moveTo(x, y + hh / 2); g.lineTo(x + ww, y + hh / 2); g.stroke();
+          g.fillStyle = '#F7F1E3'; g.fillRect(x - 14, y + hh + 6, ww + 28, 12);
+        };
+        win(118, 320, 130, 104);
+        win(272, 320, 104, 104);
+        g.fillStyle = '#F7F1E3';
+        g.fillRect(408, 318, 134, 222);
+        g.fillStyle = '#FFE2A6';
+        g.fillRect(420, 330, 110, 210);
+        g.fillStyle = '#7A4B2E';
+        g.beginPath(); g.moveTo(420, 330); g.lineTo(452, 340); g.lineTo(452, 530); g.lineTo(420, 540); g.closePath(); g.fill();
+        g.fillStyle = C.concrete;
+        g.fillRect(396, 524, 158, 16);
+        g.fillStyle = '#B5603F';
+        rr(g, 92, 486, 46, 50, 8);
+        rr(g, 566, 486, 46, 50, 8);
+        bush(g, 115, 470, 34);
+        bush(g, 589, 470, 34);
+        flower(g, 104, 452, 11, '#D8342F');
+        flower(g, 600, 456, 11, '#F08BA0');
+      });
+      const parentTex = pieceTex(320, 700, (g) => {
+        g.fillStyle = C.skin;
+        g.fillRect(128, 590, 24, 82);
+        g.fillRect(170, 590, 24, 82);
+        g.fillStyle = '#6B4A3A';
+        rr(g, 116, 664, 44, 18, 7);
+        rr(g, 164, 664, 44, 18, 7);
+        g.fillStyle = C.navy;
+        g.beginPath(); g.moveTo(104, 410); g.lineTo(216, 410); g.lineTo(234, 604); g.lineTo(86, 604); g.closePath(); g.fill();
+        g.fillStyle = C.gold;
+        rr(g, 94, 212, 132, 214, 38);
+        g.fillStyle = '#E09A00';
+        rr(g, 94, 212, 34, 214, [38, 0, 0, 38]);
+        g.fillStyle = C.gold;
+        rr(g, 66, 226, 42, 92, 20);
+        g.fillStyle = C.skin;
+        rr(g, 72, 300, 30, 116, 14);
+        circle(g, 87, 420, 17);
+        g.fillStyle = C.skinS;
+        g.fillRect(146, 176, 28, 46);
+        g.fillStyle = '#F7F1E3';
+        g.beginPath(); g.moveTo(128, 214); g.lineTo(160, 250); g.lineTo(192, 214); g.closePath(); g.fill();
+        g.fillStyle = C.skin;
+        g.beginPath(); g.ellipse(160, 126, 64, 70, 0, 0, TAU); g.fill();
+        g.fillStyle = C.hair;
+        circle(g, 196, 50, 34);
+        g.beginPath();
+        g.ellipse(160, 108, 70, 62, 0, Math.PI * 1.02, Math.PI * 1.98);
+        g.closePath();
+        g.fill();
+        g.beginPath(); g.moveTo(92, 110); g.quadraticCurveTo(120, 72, 170, 86); g.quadraticCurveTo(140, 96, 110, 150); g.closePath(); g.fill();
+        g.strokeStyle = C.ink;
+        g.lineWidth = 5;
+        g.beginPath(); g.arc(136, 134, 10, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
+        g.beginPath(); g.arc(184, 134, 10, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
+        g.fillStyle = 'rgba(232,120,110,0.5)';
+        circle(g, 118, 156, 12);
+        circle(g, 202, 156, 12);
+        g.strokeStyle = '#7A3B2E';
+        g.lineWidth = 5;
+        g.beginPath(); g.arc(160, 158, 16, Math.PI * 0.15, Math.PI * 0.85); g.stroke();
+      });
+      const parentArmTex = pieceTex(84, 236, (g) => {
+        g.fillStyle = C.gold;
+        rr(g, 14, 8, 56, 80, 24);
+        g.fillStyle = C.skin;
+        rr(g, 24, 70, 36, 128, 16);
+        circle(g, 42, 204, 22);
+      }, 5);
+      const hedgeTex = pieceTex(900, 140, (g, w, h) => {
+        for (let x = 30; x < w - 20; x += 54) bush(g, x + (rand() - 0.5) * 12, h - 34 - rand() * 12, 38 + rand() * 12);
+        g.fillStyle = C.leafDark;
+        g.fillRect(12, h - 40, w - 24, 40);
+        for (let k = 0; k < 11; k++) flower(g, 50 + k * 80 + rand() * 20, 40 + rand() * 40, 12, k % 3 ? '#D8342F' : '#F08BA0');
+      });
+
+      /* ----- right page: school ----- */
+      const schoolBackTex = pieceTex(1000, 640, (g, w, h) => {
+        const top = new Path2D();
+        top.moveTo(12, h);
+        top.lineTo(12, 250);
+        top.bezierCurveTo(50, 170, 130, 160, 170, 196);
+        top.bezierCurveTo(200, 140, 280, 130, 312, 176);
+        top.lineTo(320, 150);
+        top.lineTo(680, 150);
+        top.lineTo(690, 176);
+        top.bezierCurveTo(720, 128, 810, 132, 836, 186);
+        top.bezierCurveTo(880, 156, 978, 170, 988, 250);
+        top.lineTo(988, h);
+        top.closePath();
+        g.save();
+        g.clip(top);
+        const sky = g.createLinearGradient(0, 100, 0, h);
+        sky.addColorStop(0, '#A7CBEC');
+        sky.addColorStop(1, '#E6EEF2');
+        g.fillStyle = sky;
+        g.fillRect(0, 0, w, h);
+        tree(g, 120, 560, 110);
+        tree(g, 880, 560, 100);
+        g.fillStyle = '#2B6F55';
+        g.beginPath(); g.moveTo(96, 262); g.lineTo(904, 262); g.lineTo(862, 214); g.lineTo(138, 214); g.closePath(); g.fill();
+        g.fillStyle = C.cream;
+        g.fillRect(110, 262, 780, 380);
+        g.fillStyle = C.green;
+        g.fillRect(104, 256, 792, 16);
+        g.fillRect(110, 438, 780, 16);
+        g.fillStyle = '#2B6F55';
+        g.fillRect(430, 150, 140, 70);
+        g.fillStyle = C.cream;
+        g.fillRect(442, 162, 116, 58);
+        const winRow = (y) => {
+          for (let k = 0; k < 9; k++) {
+            const x = 138 + k * 84;
+            if (k === 4) continue;
+            g.fillStyle = '#FFFFFF'; g.fillRect(x - 5, y - 5, 66, 106);
+            g.fillStyle = '#CFE3F1'; g.fillRect(x, y, 56, 96);
+            g.fillStyle = 'rgba(46,90,168,0.35)';
+            for (let s = 8; s < 96; s += 12) g.fillRect(x, y + s, 56, 3);
+          }
+        };
+        winRow(300);
+        winRow(482);
+        g.fillStyle = '#FFFFFF';
+        circle(g, 500, 191, 22);
+        g.strokeStyle = C.ink;
+        g.lineWidth = 4;
+        g.beginPath(); g.moveTo(500, 191); g.lineTo(500, 176); g.moveTo(500, 191); g.lineTo(511, 196); g.stroke();
+        g.fillStyle = '#2B6F55';
+        g.fillRect(446, 478, 108, 164);
+        g.fillStyle = '#CFE3F1';
+        g.fillRect(458, 494, 38, 70);
+        g.fillRect(504, 494, 38, 70);
+        g.fillStyle = C.green;
+        g.fillRect(12, h - 26, w, 26);
+        g.restore();
+      });
+      const flagTex = pieceTex(280, 1200, (g) => {
+        const pole = g.createLinearGradient(38, 0, 56, 0);
+        pole.addColorStop(0, '#E8EBF0');
+        pole.addColorStop(1, '#8E96A3');
+        g.fillStyle = pole;
+        g.fillRect(40, 40, 14, 1130);
+        g.fillStyle = C.gold;
+        circle(g, 47, 34, 15);
+        g.fillStyle = '#C9C1AE';
+        rr(g, 10, 1150, 74, 50, 6);
+        // the Philippine flag: blue over red, a white triangle at the hoist with the sun and three stars
+        g.fillStyle = '#0038A8';
+        g.fillRect(54, 70, 210, 53);
+        g.fillStyle = '#CE1126';
+        g.fillRect(54, 123, 210, 53);
+        g.fillStyle = '#FFFFFF';
+        g.beginPath(); g.moveTo(54, 70); g.lineTo(145, 123); g.lineTo(54, 176); g.closePath(); g.fill();
+        g.fillStyle = '#FCD116';
+        circle(g, 82, 123, 12);
+        g.strokeStyle = '#FCD116';
+        g.lineWidth = 3;
+        for (let k = 0; k < 8; k++) { const a = (k / 8) * TAU; g.beginPath(); g.moveTo(82 + Math.cos(a) * 14, 123 + Math.sin(a) * 14); g.lineTo(82 + Math.cos(a) * 22, 123 + Math.sin(a) * 22); g.stroke(); }
+        [[62, 81], [62, 165], [130, 123]].forEach(([x, y]) => circle(g, x, y, 4.5));
+      });
+      const gateTex = pieceTex(840, 560, (g, w, h) => {
+        const pillar = (x) => {
+          g.fillStyle = C.cream; g.fillRect(x, 150, 120, 380);
+          g.fillStyle = C.green; g.fillRect(x - 10, 134, 140, 26); g.fillRect(x - 10, 522, 140, 38);
+          g.fillStyle = 'rgba(46,139,87,0.2)'; g.fillRect(x + 20, 190, 80, 300);
+        };
+        pillar(40);
+        pillar(680);
+        g.fillStyle = C.green;
+        g.beginPath();
+        g.moveTo(30, 170);
+        g.lineTo(30, 104);
+        g.quadraticCurveTo(420, 8, 810, 104);
+        g.lineTo(810, 170);
+        g.quadraticCurveTo(420, 86, 30, 170);
+        g.closePath();
+        g.fill();
+        g.fillStyle = '#FFFFFF';
+        rr(g, 268, 56, 304, 66, 14);
+        g.fillStyle = C.green;
+        g.font = '900 50px "Barlow Condensed", sans-serif';
+        g.textAlign = 'center';
+        g.textBaseline = 'middle';
+        g.fillText('WELCOME', 420, 91);
+        g.fillStyle = C.gold;
+        circle(g, 100, 114, 16);
+        circle(g, 740, 114, 16);
+      });
+      const turnTex = pieceTex(320, 420, (g) => {
+        g.fillStyle = '#8E96A3';
+        rr(g, 40, 394, 240, 22, 6);
+        const body = g.createLinearGradient(70, 0, 250, 0);
+        body.addColorStop(0, '#EEF1F5');
+        body.addColorStop(1, '#A7B0BD');
+        g.fillStyle = body;
+        rr(g, 70, 148, 180, 252, 14);
+        g.fillStyle = '#C3CAD5';
+        g.beginPath(); g.moveTo(58, 152); g.lineTo(262, 152); g.lineTo(250, 90); g.lineTo(70, 90); g.closePath(); g.fill();
+        g.fillStyle = '#1C2433';
+        rr(g, 102, 98, 116, 44, 9);
+        g.strokeStyle = '#FFFFFF';
+        g.lineWidth = 3;
+        g.strokeRect(122, 108, 30, 22);
+        g.beginPath(); g.arc(164, 119, 8, -0.8, 0.8); g.stroke();
+        g.beginPath(); g.arc(164, 119, 15, -0.8, 0.8); g.stroke();
+        g.fillStyle = '#16244F';
+        g.font = '900 36px "Barlow Condensed", sans-serif';
+        g.textAlign = 'center';
+        g.fillText('HITC', 160, 250);
+        g.fillStyle = C.blue;
+        g.fillRect(118, 262, 84, 6);
+        g.fillStyle = 'rgba(10,15,28,0.18)';
+        for (let y = 300; y < 380; y += 14) g.fillRect(100, y, 120, 4);
+      });
+      const wheelTex = pieceTex(260, 260, (g) => {
+        const steel = g.createLinearGradient(0, 0, 260, 260);
+        steel.addColorStop(0, '#F2F4F7');
+        steel.addColorStop(1, '#9AA3B0');
+        g.fillStyle = steel;
+        for (let k = 0; k < 3; k++) {
+          g.save();
+          g.translate(130, 130);
+          g.rotate((k / 3) * TAU - HALF);
+          rr(g, 0, -10, 118, 20, 10);
+          g.restore();
+        }
+        circle(g, 130, 130, 28);
+        g.fillStyle = '#6E7785';
+        circle(g, 130, 130, 10);
+      }, 5);
+      const plantersTex = pieceTex(900, 130, (g, w, h) => {
+        [[20, 400], [480, 400]].forEach(([x, ww]) => {
+          for (let k = 0; k < 7; k++) {
+            g.fillStyle = C.leaf;
+            leaf(g, x + 30 + k * 56, h - 52, -HALF - 0.5, 60);
+            leaf(g, x + 30 + k * 56, h - 52, -HALF + 0.5, 60);
+          }
+          for (let k = 0; k < 6; k++) flower(g, x + 50 + k * 62, 40 + (k % 2) * 16, 11, '#F5C542');
+          g.fillStyle = C.green; g.fillRect(x, h - 56, ww, 56);
+          g.fillStyle = '#FFFFFF'; g.fillRect(x, h - 56, ww, 9);
+        });
+      });
+
+      // home
+      popup(homeBackTex, 0.94, 0.564, -0.51, -0.5, 0.0);
+      const house = popup(houseTex, 0.62, 0.507, -0.6, -0.26, 0.12);
+      const parent = popup(parentTex, 0.16, 0.35, -0.41, -0.15, 0.3);
+      parent.scale.setScalar(1.28);
+      popup(hedgeTex, 0.9, 0.14, -0.52, 0.5, 0.42);
+      // the parent's waving arm, on a paper brad at the shoulder
+      const parentArm = new THREE.Group();
+      parentArm.position.set(0.03, 0.232, 0.003);
+      {
+        const arm = card(parentArmTex, 0.042, 0.118);
+        arm.position.y = -0.05;
+        parentArm.add(arm);
+      }
+      parent.children[0].add(parentArm);
+      parentArm.position.y -= 0.175;
+      // school
+      popup(schoolBackTex, 0.94, 0.6, 0.51, -0.5, 0.06);
+      popup(flagTex, 0.14, 0.6, 0.18, -0.36, 0.2);
+      popup(gateTex, 0.66, 0.44, 0.58, -0.12, 0.24);
+      const turnstile = popup(turnTex, 0.152, 0.2, 0.5, -0.02, 0.36);
+      popup(plantersTex, 0.9, 0.13, 0.52, 0.52, 0.48);
+      const wheel = new THREE.Group();
+      wheel.position.set(-0.043, 0.016, 0.006);
+      wheel.add(card(wheelTex, 0.124, 0.124));
+      turnstile.children[0].add(wheel);
+      const ledMat = new THREE.MeshBasicMaterial({ color: '#3F8CFF', toneMapped: false });
+      const led = new THREE.Mesh(new THREE.PlaneGeometry(0.014, 0.01), ledMat);
+      led.position.set(0.02, 0.043, 0.004);
+      turnstile.children[0].add(led);
+
+      /* ---------- the student (a paper doll on brads) ---------- */
+      const studentTex = pieceTex(400, 600, (g) => {
+        g.fillStyle = '#1656D6';
+        rr(g, 66, 300, 96, 176, 28);
+        g.fillStyle = C.navy;
+        g.beginPath(); g.moveTo(124, 452); g.lineTo(276, 452); g.lineTo(300, 590); g.lineTo(100, 590); g.closePath(); g.fill();
+        g.strokeStyle = 'rgba(0,0,0,0.25)';
+        g.lineWidth = 3;
+        for (let k = 1; k < 6; k++) { g.beginPath(); g.moveTo(124 + k * 25, 456); g.lineTo(100 + k * 33, 588); g.stroke(); }
+        g.fillStyle = C.white;
+        rr(g, 116, 300, 168, 176, 42);
+        g.fillStyle = C.shade;
+        rr(g, 116, 300, 40, 176, [42, 0, 0, 42]);
+        g.fillStyle = C.white;
+        rr(g, 90, 312, 42, 74, 20);
+        g.fillStyle = C.skin;
+        rr(g, 96, 372, 30, 98, 13);
+        circle(g, 111, 474, 17);
+        g.fillStyle = '#1656D6';
+        g.fillRect(150, 300, 16, 90);
+        g.fillStyle = C.skinS;
+        g.fillRect(184, 276, 32, 36);
+        g.fillStyle = '#FFFFFF';
+        g.strokeStyle = '#B9C2D2';
+        g.lineWidth = 3;
+        g.beginPath(); g.moveTo(160, 300); g.lineTo(200, 338); g.lineTo(186, 300); g.closePath(); g.fill(); g.stroke();
+        g.beginPath(); g.moveTo(240, 300); g.lineTo(200, 338); g.lineTo(214, 300); g.closePath(); g.fill(); g.stroke();
+        // checked neck ribbon, like their uniforms
+        g.fillStyle = '#8D96A8';
+        g.beginPath(); g.moveTo(200, 326); g.lineTo(166, 312); g.lineTo(170, 344); g.closePath(); g.fill();
+        g.beginPath(); g.moveTo(200, 326); g.lineTo(234, 312); g.lineTo(230, 344); g.closePath(); g.fill();
+        g.fillStyle = '#5D6679';
+        circle(g, 200, 327, 8);
+        // ID on a lanyard
+        g.strokeStyle = '#1F5E43';
+        g.lineWidth = 6;
+        g.beginPath(); g.moveTo(178, 300); g.lineTo(196, 372); g.moveTo(222, 300); g.lineTo(204, 372); g.stroke();
+        g.fillStyle = '#FFFFFF';
+        rr(g, 162, 370, 76, 94, 9);
+        g.strokeStyle = '#B9C2D2';
+        g.lineWidth = 2.5;
+        g.beginPath(); g.roundRect(162, 370, 76, 94, 9); g.stroke();
+        g.fillStyle = C.blue;
+        rr(g, 162, 370, 76, 22, [9, 9, 0, 0]);
+        g.fillStyle = '#C9D6EA';
+        g.fillRect(172, 400, 24, 30);
+        g.fillStyle = C.skinS;
+        circle(g, 184, 411, 7);
+        g.fillStyle = '#7A8499';
+        g.fillRect(202, 404, 26, 5);
+        g.fillRect(202, 416, 20, 5);
+        g.fillRect(172, 440, 56, 5);
+        g.fillStyle = C.skin;
+        circle(g, 200, 170, 126);
+        circle(g, 76, 182, 20);
+        circle(g, 324, 182, 20);
+        g.fillStyle = C.hair;
+        g.beginPath(); g.arc(200, 168, 134, Math.PI * 1.02, Math.PI * 1.98); g.closePath(); g.fill();
+        g.beginPath();
+        g.moveTo(68, 160);
+        for (let k = 0; k <= 8; k++) g.quadraticCurveTo(84 + k * 30, 100 + (k % 2) * 30, 96 + k * 30, 128 + (k % 2 ? 0 : 12));
+        g.lineTo(332, 160);
+        g.lineTo(332, 120);
+        g.lineTo(68, 120);
+        g.closePath();
+        g.fill();
+        rr(g, 62, 140, 44, 146, 22);
+        rr(g, 294, 140, 44, 146, 22);
+        g.fillStyle = C.gold;
+        rr(g, 262, 84, 40, 16, 7);
+        g.fillStyle = 'rgba(242,130,120,0.5)';
+        circle(g, 130, 222, 16);
+        circle(g, 270, 222, 16);
+        g.strokeStyle = '#7A3B2E';
+        g.lineWidth = 6;
+        g.beginPath(); g.arc(200, 232, 16, Math.PI * 0.15, Math.PI * 0.85); g.stroke();
+      });
+      const legTex = pieceTex(60, 170, (g) => {
+        g.fillStyle = C.skin; rr(g, 16, 0, 28, 110, 12);
+        g.fillStyle = '#FFFFFF'; rr(g, 14, 94, 32, 44, 8);
+        g.fillStyle = '#16181F'; rr(g, 6, 128, 52, 36, 13);
+        g.fillStyle = 'rgba(255,255,255,0.35)'; rr(g, 14, 134, 16, 6, 3);
+      }, 4);
+      const armTex = pieceTex(70, 210, (g) => {
+        g.fillStyle = C.white; rr(g, 8, 0, 54, 72, 22);
+        g.fillStyle = C.skin; rr(g, 16, 58, 38, 118, 16);
+        circle(g, 35, 182, 21);
+      }, 4);
+      const eyesTex = (open) => canvasTex(200, 80, (g) => {
+        g.fillStyle = '#1B1616';
+        g.strokeStyle = '#1B1616';
+        g.lineWidth = 7;
+        g.lineCap = 'round';
+        if (open) {
+          [58, 142].forEach((x) => { g.beginPath(); g.ellipse(x, 42, 17, 22, 0, 0, TAU); g.fill(); });
+          g.fillStyle = '#FFFFFF';
+          circle(g, 64, 33, 6);
+          circle(g, 148, 33, 6);
+        } else {
+          [58, 142].forEach((x) => { g.beginPath(); g.arc(x, 30, 18, Math.PI * 0.12, Math.PI * 0.88); g.stroke(); });
+        }
+      });
+      const EYES_OPEN = eyesTex(true);
+      const EYES_SHUT = eyesTex(false);
+
+      const student = new THREE.Group();
+      const doll = new THREE.Group();
+      student.add(doll);
+      const LEG = 0.065;
+      const body = card(studentTex, 0.2, 0.3);
+      body.position.y = LEG + 0.15;
+      doll.add(body);
+      const eyeMat = new THREE.MeshBasicMaterial({ map: EYES_SHUT, transparent: true, alphaTest: 0.3, toneMapped: false, color: '#b8a9a0' });
+      const eyes = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.04), eyeMat);
+      eyes.position.set(0, LEG + 0.15 + 0.056, 0.002);
+      doll.add(eyes);
+      const legs = [-1, 1].map((s) => {
+        const pivot = new THREE.Group();
+        pivot.position.set(s * 0.028, LEG + 0.02, -0.002);
+        const l = card(legTex, 0.03, 0.085);
+        l.position.y = -0.0425;
+        pivot.add(l);
+        doll.add(pivot);
+        return pivot;
+      });
+      const arm = new THREE.Group();
+      arm.position.set(0.041, LEG + 0.139, 0.003);
+      {
+        const a = card(armTex, 0.035, 0.105);
+        a.position.y = -0.05;
+        arm.add(a);
+      }
+      doll.add(arm);
+      student.position.set(-0.27, PAGE_Y, 0.1);
+      student.scale.setScalar(1.12);
+      book.add(student);
+      const studentLight = new THREE.PointLight('#FFF1D6', 0.5, 0.9, 1.6);
+      scene.add(studentLight);
+
+      // zzz while she dozes by the door
+      const zTex = canvasTex(128, 128, (g) => { g.fillStyle = '#F4F4F0'; g.font = '96px Schoolbell'; g.textAlign = 'center'; g.fillText('z', 64, 96); });
+      const zs = [0, 1, 2].map(() => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: zTex, transparent: true, depthWrite: false, fog: false })); book.add(s); return s; });
+      // the scan: rings pulse out of the reader, one after another
+      const ringTex = canvasTex(128, 128, (g) => { g.strokeStyle = '#FFFFFF'; g.lineWidth = 9; g.beginPath(); g.arc(64, 64, 52, 0, TAU); g.stroke(); });
+      const rings = [0, 1, 2].map(() => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: ringTex, color: '#2BD67B', transparent: true, depthWrite: false, opacity: 0, fog: false, toneMapped: false })); book.add(s); return s; });
+
+      /* ---------- the paper plane: the SMS, flying home ---------- */
+      const planeGeo = new THREE.BufferGeometry();
+      planeGeo.setAttribute('position', new THREE.Float32BufferAttribute([
+        0, 0, 0.075, -0.042, 0.004, -0.04, 0, -0.004, -0.032,
+        0, 0, 0.075, 0, -0.004, -0.032, 0.042, 0.004, -0.04,
+        0, 0, 0.075, 0, -0.004, -0.032, 0, -0.024, -0.03,
+      ], 3));
+      planeGeo.computeVertexNormals();
+      const paperPlane = mesh(planeGeo, new THREE.MeshStandardMaterial({ color: '#FFFFFF', side: THREE.DoubleSide, roughness: 0.7, flatShading: true }));
+      paperPlane.visible = false;
+      scene.add(paperPlane);
+      const dotTex = canvasTex(32, 32, (g) => { g.fillStyle = '#FFFFFF'; circle(g, 16, 16, 12); });
+      const trail = Array.from({ length: 7 }, () => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: dotTex, transparent: true, depthWrite: false, fog: false, opacity: 0 })); s.scale.setScalar(0.016); scene.add(s); return s; });
+
+      /* ---------- the parent's phone, running Campus Connect ---------- */
+      const BODY_W = 0.352, BODY_H = 0.759, BODY_T = 0.022, SCR_W = 0.33, SCR_H = 0.737;
+      const phone = new THREE.Group();
+      scene.add(phone);
+      {
+        const bodyGeo = new THREE.ExtrudeGeometry(roundedRect(BODY_W - 0.006, BODY_H - 0.006, 0.048), { depth: BODY_T - 0.006, bevelEnabled: true, bevelThickness: 0.003, bevelSize: 0.003, bevelSegments: 2, curveSegments: 10 });
+        bodyGeo.rotateX(-HALF);
+        bodyGeo.translate(0, 0.003, 0);
+        phone.add(mesh(bodyGeo, new THREE.MeshStandardMaterial({ color: '#0A0F1C', roughness: 0.32, metalness: 0.45 })));
+      }
+      const ccMarkPaths = [
+        ['M24.8 11.6a9.2 9.2 0 1 0 0 12.8', '#1E6BFF', 4.4],
+        ['M22.1 14.6a5 5 0 1 0 0 6.8', '#F5A800', 2.4],
+      ].map(([d, c, w]) => ({ p: new Path2D(d), c, w }));
+      const ccCap = new Path2D('M13.2 16.4 19 13.6l5.8 2.8-5.8 2.8Z');
+      function drawMark(g, x, y, s) {
+        g.save();
+        g.translate(x, y);
+        g.scale(s / 36, s / 36);
+        g.fillStyle = '#FFFFFF'; rr(g, 0, 0, 36, 36, 10);
+        g.fillStyle = '#16244F'; rr(g, 3, 3, 30, 30, 8);
+        g.lineCap = 'round';
+        ccMarkPaths.forEach(({ p, c, w }) => { g.strokeStyle = c; g.lineWidth = w; g.stroke(p); });
+        g.fillStyle = '#FFFFFF'; g.fill(ccCap);
+        g.restore();
+      }
+      // The screen is drawn from the same coordinates as the section's HTML phone, so the
+      // phone the story lands on is the phone the section shows.
+      const dates = window.hitcDates || { today: 'Sep 25, 2026', yday: 'Sep 24, 2026' };
+      const phoneTex = canvasTex(600, 1340, (g) => {
+        g.setTransform(2, 0, 0, 2, 0, 0);
+        g.fillStyle = '#F3F5F9'; g.fillRect(0, 0, 300, 670);
+        g.textBaseline = 'top';
+        const font = (wt, px) => `${wt} ${px}px "Space Grotesk", sans-serif`;
+        g.fillStyle = '#0A0F1C'; g.font = font(600, 15); g.fillText('7:02', 26, 17);
+        g.save();
+        g.translate(300 - 22 - 58, 17);
+        g.fillStyle = '#0A0F1C';
+        [[0, 9, 5], [5, 6, 8], [10, 3, 11], [15, 0, 14]].forEach(([x, y, h]) => rr(g, x, y, 3, h, 1));
+        g.strokeStyle = '#0A0F1C'; g.lineWidth = 1.8; g.lineCap = 'round';
+        g.beginPath(); g.arc(29, 12.5, 7.5, Math.PI * 1.22, Math.PI * 1.78); g.stroke();
+        g.beginPath(); g.arc(29, 12.5, 4.2, Math.PI * 1.22, Math.PI * 1.78); g.stroke();
+        circle(g, 29, 12, 1.5);
+        g.lineWidth = 1.5; g.beginPath(); g.roundRect(39.5, 1.5, 16, 11, 3); g.stroke();
+        rr(g, 41.5, 3.5, 10, 7, 1.5);
+        rr(g, 56.5, 5, 1.5, 4, 0.7);
+        g.restore();
+        g.fillStyle = '#1E6BFF'; rr(g, 12, 48, 276, 54, 16);
+        drawMark(g, 22, 57, 36);
+        g.fillStyle = '#FFFFFF'; g.font = font(600, 16); g.fillText('Campus Connect', 70, 67);
+        g.fillStyle = '#1E6BFF'; rr(g, 12, 114, 128, 34, 17);
+        g.fillStyle = '#FFFFFF'; g.font = font(500, 13); g.textAlign = 'center'; g.fillText('Add ID Card', 76, 124); g.textAlign = 'left';
+        g.fillStyle = '#1E6BFF'; g.fillText('Settings', 168, 124);
+        g.fillStyle = '#7A8499'; g.font = font(400, 11); g.fillText('Showing the latest updates', 16, 164);
+        const items = [
+          ['Time in', 'Maria dela Cruz - Time In', ['Maria dela Cruz arrived on campus at', `${dates.today} 7:02 AM.`], true],
+          ['Tuition', 'Tuition payment posted', ['A tuition payment for Maria dela Cruz', 'was received.'], false],
+          ['Announcement', 'A message from the school', ['School announcements arrive here,', 'in the same feed.'], false],
+          ['Time out', 'Maria dela Cruz - Time Out', ['Maria dela Cruz left the campus at', `${dates.yday} 4:31 PM.`], false],
+        ];
+        items.forEach(([kind, title, body, isNew], i) => {
+          const y = 184 + i * 112;
+          if (isNew) { g.fillStyle = '#E7EFFF'; rr(g, 8, y + 4, 284, 104, 14); }
+          g.strokeStyle = '#1E6BFF'; g.lineWidth = 2;
+          g.beginPath(); g.arc(27, y + 22, 5, 0, TAU); g.stroke();
+          g.fillStyle = '#1E6BFF'; g.font = font(700, 10.5);
+          if ('letterSpacing' in g) g.letterSpacing = '0.63px';
+          g.fillText(kind.toUpperCase(), 40, y + 17);
+          if ('letterSpacing' in g) g.letterSpacing = '0px';
+          g.fillStyle = '#0A0F1C'; g.font = font(600, 14); g.fillText(title, 20, y + 38);
+          g.fillStyle = '#5A6880'; g.font = font(400, 12);
+          body.forEach((line, k) => g.fillText(line, 20, y + 60 + k * 16));
+          g.fillStyle = '#9AA3B5'; g.font = font(400, 20); g.fillText('›', 274, y + 46);
+          g.fillStyle = '#E3E7EF'; g.fillRect(16, y + 111, 268, 1);
+        });
+      });
+      const screenMat = new THREE.MeshBasicMaterial({ map: phoneTex, toneMapped: false, fog: false, color: new THREE.Color(0.05, 0.06, 0.08) });
+      {
+        const geo = new THREE.ShapeGeometry(roundedRect(SCR_W, SCR_H, 0.0396), 10);
+        const pos = geo.attributes.position, uv = geo.attributes.uv;
+        for (let i = 0; i < uv.count; i++) uv.setXY(i, pos.getX(i) / SCR_W + 0.5, pos.getY(i) / SCR_H + 0.5);
+        geo.rotateX(-HALF);
+        const scr = new THREE.Mesh(geo, screenMat);
+        scr.position.y = BODY_T + 0.0008;
+        phone.add(scr);
+      }
+      const phoneLight = new THREE.PointLight('#CFE0FF', 0, 1.3, 1.8);
+      scene.add(phoneLight);
+
+      /* ---------- a stack of the books they print ---------- */
+      const stack = new THREE.Group();
+      scene.add(stack);
+      function coverTex(bg, ink, accent) {
+        return canvasTex(512, 700, (g, w, h) => {
+          g.fillStyle = bg; g.fillRect(0, 0, w, h);
+          g.fillStyle = accent; g.fillRect(0, h * 0.62, w, 26);
+          g.fillStyle = 'rgba(255,255,255,0.08)'; g.fillRect(0, 0, 34, h);
+          g.font = '900 120px "Barlow Condensed", sans-serif';
+          g.textBaseline = 'alphabetic';
+          const letters = [['H', ink], ['I', accent], ['T', accent], ['C', ink]];
+          let x = 90;
+          letters.forEach(([ch, col]) => { g.fillStyle = col; g.fillText(ch, x, h * 0.5); x += g.measureText(ch).width + 4; });
+          grain(g, w, h, 0.04);
+        });
+      }
+      const pagesMat = new THREE.MeshStandardMaterial({ map: edgeTex, roughness: 0.9 });
+      const bookSpecs = [
+        { w: 0.74, d: 1.0, t: 0.07, bg: '#1E6BFF', ink: '#F4F4F0', accent: '#0A0F1C', rot: 0.08 },
+        { w: 0.7, d: 0.96, t: 0.06, bg: '#F5A800', ink: '#16244F', accent: '#1E6BFF', rot: -0.1 },
+        { w: 0.72, d: 0.98, t: 0.075, bg: '#16244F', ink: '#F4F4F0', accent: '#5B93FF', rot: 0.04 },
+      ];
+      let sy = 0;
+      let topCover = null;
+      stack.scale.setScalar(0.82);
+      bookSpecs.forEach((b, i) => {
+        const bk = new THREE.Group();
+        const cMat = new THREE.MeshStandardMaterial({ map: coverTex(b.bg, b.ink, b.accent), roughness: 0.7 });
+        const sideMat = new THREE.MeshStandardMaterial({ color: b.bg, roughness: 0.7 });
+        const last = i === bookSpecs.length - 1;
+        const block = mesh(new THREE.BoxGeometry(b.w - 0.02, b.t - 0.012, b.d - 0.02), [pagesMat, sideMat, sideMat, sideMat, pagesMat, pagesMat]);
+        block.position.y = b.t / 2;
+        bk.add(block);
+        const bottom = mesh(new THREE.BoxGeometry(b.w, 0.008, b.d), sideMat);
+        bottom.position.y = 0.004;
+        bk.add(bottom);
+        const hingeG = new THREE.Group();
+        hingeG.position.set(-b.w / 2, b.t - 0.004, 0);
+        const cover = mesh(new THREE.BoxGeometry(b.w, 0.008, b.d), [sideMat, sideMat, cMat, sideMat, sideMat, sideMat]);
+        cover.position.x = b.w / 2;
+        hingeG.add(cover);
+        bk.add(hingeG);
+        bk.position.y = sy;
+        bk.rotation.y = b.rot;
+        sy += b.t;
+        stack.add(bk);
+        if (last) topCover = hingeG;
+      });
+
+      /* ---------- a pencil ---------- */
+      const pencil = new THREE.Group();
+      {
+        const woodMat = new THREE.MeshStandardMaterial({ color: '#F5A800', roughness: 0.5 });
+        const shaft = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.6, 6), woodMat);
+        pencil.add(shaft);
+        const cone = mesh(new THREE.CylinderGeometry(0.018, 0.003, 0.07, 6), new THREE.MeshStandardMaterial({ color: '#E8C79A', roughness: 0.8 }));
+        cone.position.y = 0.335;
+        pencil.add(cone);
+        const lead = mesh(new THREE.ConeGeometry(0.004, 0.012, 6), new THREE.MeshStandardMaterial({ color: '#333', roughness: 0.4 }));
+        lead.position.y = 0.375;
+        pencil.add(lead);
+        const ferrule = mesh(new THREE.CylinderGeometry(0.0195, 0.0195, 0.04, 12), new THREE.MeshStandardMaterial({ color: '#C8CCD3', metalness: 0.7, roughness: 0.3 }));
+        ferrule.position.y = -0.32;
+        pencil.add(ferrule);
+        const eraser = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.04, 12), new THREE.MeshStandardMaterial({ color: '#E77F8A', roughness: 0.8 }));
+        eraser.position.y = -0.36;
+        pencil.add(eraser);
+        pencil.rotation.set(0, 0.5, HALF);
+        pencil.position.set(-0.35, 0.018, 1.02);
+        pencil.rotation.y = 0.12;
+      }
+      scene.add(pencil);
+
+      /* ---------- lights ---------- */
+      const hemi = new THREE.HemisphereLight('#CFE0FF', '#1A2445', 0.62);
+      scene.add(hemi);
+      // morning sun through a classroom window: the only light that casts shadows
+      const sun = new THREE.DirectionalLight('#FFD9A6', 2.3);
+      sun.position.set(-2.6, 3.4, 2.0);
+      sun.target.position.set(0.2, 0, -0.1);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(lowPower ? 768 : 1024, lowPower ? 768 : 1024);
+      sun.shadow.camera.left = -2.6;
+      sun.shadow.camera.right = 2.8;
+      sun.shadow.camera.top = 2.2;
+      sun.shadow.camera.bottom = -2.2;
+      sun.shadow.camera.near = 0.5;
+      sun.shadow.camera.far = 10;
+      sun.shadow.bias = -0.0006;
+      sun.shadow.normalBias = 0.02;
+      scene.add(sun, sun.target);
+      const fill = new THREE.DirectionalLight('#A9C0FF', 0.4);
+      fill.position.set(2.6, 2.2, 3.2);
+      fill.target.position.set(0, 0.2, 0);
+      scene.add(fill, fill.target);
+      const rim = new THREE.DirectionalLight('#FFE4BE', 0.35);
+      rim.position.set(0.4, 2.2, -3.2);
+      scene.add(rim);
+      const readerLight = new THREE.PointLight('#3F8CFF', 0.3, 0.45, 1.8);
+      scene.add(readerLight);
+
+      /* ---------- state ---------- */
+      const REST = new THREE.Vector3(-0.27, PAGE_Y, 0.1);
+      const state = {
+        mode: 'sleep',          // sleep | awake | return
+        awakeUntil: 0,
+        scanAt: -99,            // last tap on the reader
+        phoneAt: -99,           // last tap on the phone
+        coverAt: -99,           // last tap on the books
+        pointer: new THREE.Vector2(0, 0),
+        pointerIn: false,
+        look: new THREE.Vector2(0, 0),
+      };
+      const walkTo = new THREE.CatmullRomCurve3([
+        REST.clone(),
+        new THREE.Vector3(-0.1, PAGE_Y, 0.16),
+        new THREE.Vector3(0.12, PAGE_Y, 0.17),
+        new THREE.Vector3(0.3, PAGE_Y, 0.12),
+        new THREE.Vector3(0.39, PAGE_Y, 0.09),
+      ], false, 'centripetal');
+      const walkIn = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0.39, PAGE_Y, 0.09),
+        new THREE.Vector3(0.52, PAGE_Y, 0.11),
+        new THREE.Vector3(0.66, PAGE_Y, 0.05),
+        new THREE.Vector3(0.7, PAGE_Y, -0.12),
+        new THREE.Vector3(0.64, PAGE_Y, -0.3),
+      ], false, 'centripetal');
+      const pos = REST.clone();
+      const vel = new THREE.Vector3();
+      const target = new THREE.Vector3();
+      const lastPos = REST.clone();
+      let facing = 1;
+      let stride = 0;
+
+      const doodleEls = {};
+      document.querySelectorAll('[data-doodle]').forEach((el) => { doodleEls[el.dataset.doodle] = el; });
+
+      /* ---------- camera framing ---------- */
+      const camA = new THREE.Vector3();
+      const lookA = new THREE.Vector3();
+      const camB = new THREE.Vector3();
+      const phoneTop = new THREE.Vector3();
+      const phoneUp = new THREE.Vector3();
+      const readerPos = new THREE.Vector3();
+      let flight = null;
+      let offX = 0, offY = 0, W = 1, H = 1, landX = 0, landY = 0;
+      let copyBox = { right: 0, bottom: 0 };
+      let portraitView = false;
+      let framed = false;
+      function frame() {
+        W = hero.clientWidth;
+        H = hero.clientHeight;
+        renderer.setSize(W, H, false);
+        camera.aspect = W / H;
+        const portrait = camera.aspect < 0.9;
+        if (portrait) {
+          phone.position.set(0.6, 0, 1.3);
+          phone.rotation.y = -0.16;
+          stack.position.set(-1.2, 0, -1.35);
+          stack.rotation.y = -0.3;
+          const dist = 5.6 + (0.9 - camera.aspect) * 6.2;
+          lookA.set(0.08, 0.1, 0.42);
+          camA.set(lookA.x, lookA.y + dist * 0.74, lookA.z + dist * 0.67);
+          offX = 0;
+          offY = -0.24;
+          scene.fog.near = 11;
+          scene.fog.far = 22;
+        } else {
+          phone.position.set(1.3, 0, 0.92);
+          phone.rotation.y = -0.38;
+          stack.position.set(1.72, 0, -1.3);
+          stack.rotation.y = 0.2;
+          camA.set(0.36, 3.2, 4.6);
+          lookA.set(0.36, 0.14, 0.18);
+          scene.fog.near = 8;
+          scene.fog.far = 17;
+          offX = camera.aspect > 1.25 ? -0.185 : -0.09;
+          offY = -0.04;
+        }
+        scene.updateMatrixWorld(true);
+        turnstile.children[0].localToWorld(readerPos.set(0.02, 0.05, 0.02));
+        phone.localToWorld(phoneTop.set(0, BODY_T, 0));
+        phoneUp.set(0, 0, -1).applyQuaternion(phone.quaternion);
+        flight = new THREE.CatmullRomCurve3([
+          readerPos.clone(),
+          readerPos.clone().add(new THREE.Vector3(0.1, 0.35, 0.05)),
+          new THREE.Vector3(lerp(readerPos.x, phoneTop.x, 0.6), 0.85, lerp(readerPos.z, phoneTop.z, 0.6)),
+          phoneTop.clone().add(new THREE.Vector3(0, 0.25, 0.1)),
+          phoneTop.clone().add(new THREE.Vector3(0, 0.01, 0.12)),
+        ], false, 'centripetal');
+        // Land where the section's phone will be when the story hands off, at the same size.
+        window.hitcSizePhone && window.hitcSizePhone();
+        const sr = ccSection.getBoundingClientRect();
+        const pr = ccPhone.getBoundingClientRect();
+        let lw = pr.width, lh = pr.height, lx = pr.left + pr.width / 2, ly = pr.top - sr.top + pr.height / 2;
+        if (ly + lh / 2 > H - 4 || lw < 40) {
+          const s = Math.min(1, (H * 0.78) / 690);
+          lw = 320 * s; lh = 690 * s; lx = W / 2; ly = H / 2 + 20;
+        }
+        const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+        const d = (BODY_H * H) / (2 * t * lh);
+        camB.copy(phoneTop).add(new THREE.Vector3(0, d, 0));
+        landX = W / 2 - lx;
+        landY = H / 2 - ly;
+        paper.style.width = lw + 'px';
+        paper.style.height = lh + 'px';
+        paper.style.borderRadius = (46 * lw) / 320 + 'px';
+        paper.style.transform = `translate(${(lx - lw / 2).toFixed(1)}px, ${(ly - lh / 2).toFixed(1)}px)`;
+        if (!framed) { camera.position.copy(camA); framed = true; }
+        camera.updateProjectionMatrix();
+        // labels never sit on the copy: measure the text block once per resize
+        const hr = hero.getBoundingClientRect();
+        copyBox = { right: 0, bottom: 0 };
+        copy.querySelectorAll('.wrap > *').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          copyBox.right = Math.max(copyBox.right, r.right - hr.left);
+          copyBox.bottom = Math.max(copyBox.bottom, r.bottom - hr.top);
+        });
+        portraitView = portrait;
+        Object.values(doodleEls).forEach((el) => {
+          const inner = el.firstElementChild;
+          el._w = inner.offsetWidth;
+          el._h = inner.offsetHeight;
+          el._dx = parseFloat(inner.style.getPropertyValue('--dx') || '-10') / 100;
+          el._dy = parseFloat(inner.style.getPropertyValue('--dy') || '-100') / 100;
+        });
+      }
+      frame();
+      let lastSize = '';
+      new ResizeObserver(() => {
+        const size = hero.clientWidth + 'x' + hero.clientHeight;
+        if (size === lastSize) return;
+        lastSize = size;
+        frame();
+        if (root.classList.contains('has-story')) {
+          root.style.setProperty('--story-overlap', hero.offsetHeight + 'px');
+          window.ScrollTrigger && ScrollTrigger.refresh();
+        }
+      }).observe(hero);
+
+      /* ---------- the scroll story ---------- */
+      const story = { t: 0, p: 0 };
+      let trigger = null;
+      function setupStory() {
+        if (trigger) { trigger.kill(); trigger = null; }
+        root.classList.remove('has-story');
+        hero.style.opacity = '';
+        hero.style.visibility = '';
+        if (reduceMq.matches || !window.gsap || !window.ScrollTrigger) return;
+        gsap.registerPlugin(ScrollTrigger);
+        root.classList.add('has-story');
+        root.style.setProperty('--story-overlap', hero.offsetHeight + 'px');
+        trigger = ScrollTrigger.create({
+          trigger: hero,
+          start: 'top top',
+          end: () => '+=' + Math.round(hero.offsetHeight * (mobileMq.matches ? 1.35 : 1.7)),
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => { story.t = self.progress; },
+        });
+      }
+      setupStory();
+      reduceMq.addEventListener('change', () => { setupStory(); story.t = story.p = 0; });
+
+      /* ---------- picking ---------- */
+      const ray = new THREE.Raycaster();
+      const ndc = new THREE.Vector2();
+      const pickables = [
+        { key: 'student', obj: student },
+        { key: 'reader', obj: turnstile },
+        { key: 'phone', obj: phone },
+        { key: 'books', obj: stack },
+      ];
+      function pickAt(clientX, clientY) {
+        const r = canvas.getBoundingClientRect();
+        ndc.set(((clientX - r.left) / r.width) * 2 - 1, -((clientY - r.top) / r.height) * 2 + 1);
+        ray.setFromCamera(ndc, camera);
+        const hits = ray.intersectObjects(pickables.map((p) => p.obj), true);
+        for (const h of hits) {
+          // cards are alpha-cut, so skip hits on their transparent corners
+          const m = h.object.material;
+          if (m && m.map && m.alphaTest && h.uv) {
+            const img = m.map.image;
+            if (img && img.getContext) {
+              const px = img.getContext('2d').getImageData(Math.floor(h.uv.x * (img.width - 1)), Math.floor((1 - h.uv.y) * (img.height - 1)), 1, 1).data;
+              if (px[3] < 128) continue;
+            }
+          }
+          let o = h.object;
+          while (o) {
+            const p = pickables.find((q) => q.obj === o);
+            if (p) return p.key;
+            o = o.parent;
+          }
+        }
+        return null;
+      }
+      const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -PAGE_Y);
+      const hit = new THREE.Vector3();
+      canvas.addEventListener('pointermove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        state.pointer.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+        state.pointerIn = true;
+        if (state.mode === 'awake') state.awakeUntil = Math.max(state.awakeUntil, clock.elapsedTime + 3);
+        if (e.pointerType === 'mouse') canvas.style.cursor = story.p < 0.05 && pickAt(e.clientX, e.clientY) ? 'pointer' : '';
+      });
+      canvas.addEventListener('pointerleave', () => { state.pointerIn = false; canvas.style.cursor = ''; });
+      canvas.addEventListener('click', (e) => { if (story.p < 0.05) act(pickAt(e.clientX, e.clientY)); });
+      // Page-level pointer drives the gentle lean, even over the copy.
+      window.addEventListener('pointermove', (e) => {
+        if (!fineMq.matches) return;
+        state.look.set((e.clientX / window.innerWidth) * 2 - 1, (e.clientY / window.innerHeight) * 2 - 1);
+      }, { passive: true });
+      Object.entries(doodleEls).forEach(([k, el]) => {
+        if (el.tagName === 'BUTTON') el.addEventListener('click', () => act(k));
+      });
+
+      function act(key) {
+        const now = clock.elapsedTime;
+        if (key === 'student') {
+          if (state.mode === 'awake') state.mode = 'return';
+          else { state.mode = 'awake'; state.awakeUntil = now + 7; }
+        } else if (key === 'reader') {
+          if (now - state.scanAt > 2.2) state.scanAt = now;
+        } else if (key === 'phone') {
+          state.phoneAt = now;
+        } else if (key === 'books') {
+          if (now - state.coverAt > 1.8) state.coverAt = now;
+        }
+        updateStudentLabel();
+      }
+      function updateStudentLabel() {
+        const word = doodleEls.student.querySelector('.doodle__word');
+        word.textContent = state.mode === 'awake' ? 'off to school!' : '5 more minutes…';
+        doodleEls.student.setAttribute('aria-label', state.mode === 'awake' ? 'Let the student rest' : 'Wake the student');
+      }
+
+      /* ---------- per-frame ---------- */
+      const clock = new THREE.Clock();
+      const v3 = new THREE.Vector3();
+      const tmp = new THREE.Vector3();
+      const camPos = new THREE.Vector3();
+      const camLook = new THREE.Vector3();
+      const upV = new THREE.Vector3();
+      const Y_UP = new THREE.Vector3(0, 1, 0);
+      const LED_BLUE = new THREE.Color('#3F8CFF');
+      const LED_GREEN = new THREE.Color('#2BD67B');
+      const ANCHORS = {
+        student: () => tmp.copy(student.position).add(v3.set(-0.06, 0.4, 0)),
+        reader: () => tmp.copy(readerPos).add(v3.set(0.05, 0.05, 0)),
+        phone: () => phone.localToWorld(tmp.set(-0.12, BODY_T, -0.34)),
+        books: () => stack.localToWorld(tmp.set(-0.3, 0.22, 0.2)),
+        timein: () => tmp.copy(readerPos).add(v3.set(0, 0.16, 0)),
+      };
+      const LABEL_ORDER = ['timein', 'student', 'reader', 'phone', 'books'];
+      const placed = [];
+      let visible = true;
+      let ready = false;
+      let introAt = -1;
+
+      function tick() {
+        const dt = Math.min(clock.getDelta(), 0.05);
+        const t = clock.elapsedTime;
+        const still = reduceMq.matches;
+        if (introAt < 0) introAt = t + 0.35;
+
+        // story progress eases toward the scroll position, like a soft scrub
+        story.p += (story.t - story.p) * (1 - Math.exp(-dt * 7));
+        if (Math.abs(story.t - story.p) < 0.0004) story.p = story.t;
+        const p = story.p;
+
+        // the pop-ups rise when the page loads, one after another, with a little spring
+        for (const pc of pops) {
+          const k = still ? 1 : clamp((t - introAt - pc.delay) / 0.75, 0, 1);
+          const up = still ? 1 : backOut(k);
+          pc.hinge.rotation.x = -HALF * (1 - up) + pc.lean;
+        }
+        const introStudent = still ? 1 : backOut(clamp((t - introAt - 0.5) / 0.7, 0, 1));
+
+        // ---- the student ----
+        const wake = smooth(0.03, 0.07, p);
+        const w1 = smooth(0.06, 0.3, p);
+        const w2 = smooth(0.36, 0.5, p);
+        const inStory = p > 0.02;
+        if (state.mode === 'awake' && t > state.awakeUntil) { state.mode = 'return'; updateStudentLabel(); }
+        if (state.mode === 'awake') {
+          if (state.pointerIn && fineMq.matches) {
+            ray.setFromCamera(state.pointer, camera);
+            if (ray.ray.intersectPlane(floorPlane, hit)) target.set(clamp(hit.x, -0.9, 0.9), PAGE_Y, clamp(hit.z, 0.0, 0.4));
+          } else {
+            target.set(Math.sin(t * 0.5) * 0.5, PAGE_Y, 0.16 + Math.cos(t * 0.5) * 0.08);
+          }
+        } else {
+          target.copy(REST);
+          if (state.mode === 'return' && pos.distanceTo(REST) < 0.015 && vel.length() < 0.05) { state.mode = 'sleep'; updateStudentLabel(); }
+        }
+        if (still && state.mode !== 'awake') { pos.copy(REST); vel.set(0, 0, 0); }
+        else {
+          vel.addScaledVector(v3.subVectors(target, pos), dt * 10);
+          vel.multiplyScalar(Math.exp(-dt * 4.2));
+          const sp = vel.length();
+          if (sp > 0.55) vel.multiplyScalar(0.55 / sp);
+          pos.addScaledVector(vel, dt);
+        }
+        if (inStory) {
+          if (w2 > 0) walkIn.getPointAt(w2, v3);
+          else walkTo.getPointAt(w1, v3);
+          student.position.lerpVectors(pos, v3, smooth(0.02, 0.06, p));
+        } else {
+          student.position.copy(pos);
+        }
+        const moved = v3.subVectors(student.position, lastPos);
+        const speed = dt > 0 ? moved.length() / dt : 0;
+        lastPos.copy(student.position);
+        if (moved.x > 0.0004) facing = 1;
+        else if (moved.x < -0.0004) facing = -1;
+        stride += speed * dt * 38;
+        const walking = still ? 0 : clamp(speed * 8, 0, 1);
+        legs.forEach((l, i) => { l.rotation.z = Math.sin(stride + i * Math.PI) * 0.5 * walking; });
+        doll.position.y = Math.abs(Math.sin(stride)) * 0.012 * walking;
+        doll.rotation.z = Math.sin(stride) * 0.04 * walking;
+        doll.scale.x += (facing - doll.scale.x) * (1 - Math.exp(-dt * (still ? 60 : 10)));
+        const vanish = smooth(0.47, 0.51, p);
+        doll.scale.y = introStudent * (1 - vanish);
+        student.visible = vanish < 0.999;
+        const awake = state.mode !== 'sleep' || wake > 0.5;
+        const blink = awake && !still && (t % 3.6) < 0.12;
+        eyeMat.map = awake && !blink ? EYES_OPEN : EYES_SHUT;
+        doll.scale.z = 1;
+        body.scale.y = awake || still ? 1 : 1 + Math.sin(t * 1.7) * 0.012;
+        // the scan: her arm reaches out with the ID, then back
+        const tapLocal = t - state.scanAt;
+        const reach = Math.max(smooth(0.29, 0.31, p) * (1 - smooth(0.34, 0.37, p)), tapLocal < 0.9 ? Math.sin(clamp(tapLocal / 0.9, 0, 1) * Math.PI) : 0);
+        arm.rotation.z = Math.sin(stride + Math.PI) * 0.35 * walking + reach * 1.9;
+        studentLight.position.copy(student.position).add(v3.set(0.12, 0.35, 0.3));
+        studentLight.intensity = 0.5 * (1 - vanish);
+
+        // zzz
+        zs.forEach((z, i) => {
+          const k = (t * 0.42 + i / 3) % 1;
+          const show = !awake && !still && p < 0.05;
+          z.visible = show;
+          if (!show) return;
+          z.position.set(student.position.x + 0.1 + k * 0.08, student.position.y + 0.36 + k * 0.22, student.position.z);
+          z.scale.setScalar(0.035 + k * 0.045);
+          z.material.opacity = Math.sin(k * Math.PI) * 0.9;
+        });
+
+        // ---- the gate ----
+        const scanned = Math.max(smooth(0.3, 0.32, p) * (1 - smooth(0.7, 0.8, p)), tapLocal >= 0 && tapLocal < 2.2 ? 1 : 0);
+        ledMat.color.copy(LED_BLUE).lerp(LED_GREEN, scanned);
+        readerLight.color.copy(ledMat.color);
+        readerLight.intensity = 0.3 + 0.5 * scanned;
+        readerLight.position.copy(readerPos).add(v3.set(0, 0.05, 0.08));
+        const wheelTurn = Math.max(smooth(0.34, 0.42, p), clamp((tapLocal - 0.25) / 0.6, 0, 1));
+        wheel.rotation.z = -ease(wheelTurn) * (TAU / 3);
+        rings.forEach((r, i) => {
+          const storyK = (p - 0.3 - i * 0.012) / 0.05;
+          const tapK = (tapLocal - i * 0.14) / 0.6;
+          const k = tapK >= 0 && tapK <= 1 ? tapK : storyK >= 0 && storyK <= 1 && story.t > 0.02 ? storyK : -1;
+          r.visible = k >= 0 && !still;
+          if (!r.visible) return;
+          r.position.copy(readerPos).add(v3.set(0, 0.02, 0.02));
+          r.scale.setScalar(0.03 + k * 0.16);
+          r.material.opacity = (1 - k) * 0.9;
+        });
+
+        // ---- the SMS flies home as a paper plane ----
+        const tapFlight = tapLocal >= 0.3 && tapLocal <= 1.6 ? (tapLocal - 0.3) / 1.3 : -1;
+        const storyFlight = p > 0.35 && p < 0.565 ? smooth(0.35, 0.56, p) : -1;
+        const fk = storyFlight >= 0 ? storyFlight : tapFlight;
+        paperPlane.visible = fk >= 0 && fk < 0.995 && flight !== null;
+        if (paperPlane.visible) {
+          flight.getPointAt(ease(fk), paperPlane.position);
+          flight.getTangentAt(Math.min(ease(fk) + 0.01, 1), tmp);
+          paperPlane.lookAt(v3.copy(paperPlane.position).add(tmp));
+          paperPlane.rotateZ(Math.sin(fk * Math.PI * 2) * 0.4);
+          paperPlane.scale.setScalar(lerp(1, 0.55, smooth(0.85, 1, fk)) * 2.3);
+        }
+        trail.forEach((d, i) => {
+          const k = ease(fk) - (i + 1) * 0.035;
+          d.visible = paperPlane.visible && k > 0 && !still;
+          if (!d.visible) return;
+          flight.getPointAt(k, d.position);
+          d.material.opacity = 0.75 * (1 - i / trail.length) * (1 - smooth(0.9, 1, fk));
+        });
+        // the phone wakes up with the time-in on top
+        const phoneOn = Math.max(
+          smooth(0.54, 0.58, p),
+          tapLocal >= 1.55 && tapLocal < 7 ? smooth(1.55, 1.75, tapLocal) * (1 - smooth(6, 7, tapLocal)) : 0,
+          t - state.phoneAt < 5 ? smooth(0, 0.2, t - state.phoneAt) * (1 - smooth(4, 5, t - state.phoneAt)) : 0,
+        );
+        screenMat.color.setRGB(lerp(0.05, 1, phoneOn), lerp(0.06, 1, phoneOn), lerp(0.08, 1, phoneOn));
+        phoneLight.position.copy(phoneTop).add(v3.set(0, 0.3, 0.1));
+        phoneLight.intensity = 0.9 * phoneOn * (1 - smooth(0.6, 0.8, p));
+
+        // the parent waves her off, and again when the message lands
+        const waving = still ? 0 : Math.max(w1 > 0.01 && w1 < 0.99 ? 1 : 0, state.mode === 'awake' ? 1 : 0, phoneOn > 0.5 && p < 0.7 ? 1 : 0);
+        parentArm.rotation.z += ((waving ? 2.3 + Math.sin(t * 7) * 0.35 : 0.1) - parentArm.rotation.z) * (1 - Math.exp(-dt * 8));
+
+        // the top book's cover lifts and settles
+        const ck = t - state.coverAt;
+        topCover.rotation.z = ck >= 0 && ck < 1.8 ? Math.sin(clamp(ck / 1.8, 0, 1) * Math.PI) * 0.85 * (still ? 0.6 : 1) : 0;
+
+        // ---- camera: lean with the pointer, then swoop from the book to the phone ----
+        const cp = ease(smooth(0.5, 0.93, p));
+        const centre = ease(smooth(0.03, 0.24, p));
+        const lean = still ? 0 : 1 - smooth(0, 0.3, p);
+        state.look.x = clamp(state.look.x, -1, 1);
+        camPos.copy(camA).lerp(lookA, centre * (portraitView ? 0.14 : 0.12));
+        camPos.add(v3.set(state.look.x * 0.22 * lean, -state.look.y * 0.08 * lean, 0));
+        camPos.lerp(camB, cp);
+        camPos.y += Math.sin(cp * Math.PI) * 1.1;
+        camLook.copy(lookA).lerp(phoneTop, smooth(0, 0.55, cp));
+        camera.position.lerp(camPos, still ? 1 : 1 - Math.exp(-dt * 4));
+        if (cp > 0.001) camera.position.copy(camPos);
+        upV.copy(Y_UP).lerp(phoneUp, smooth(0.25, 0.85, cp)).normalize();
+        camera.up.copy(upV);
+        camera.lookAt(camLook);
+        const oc = ease(smooth(0.5, 0.93, p));
+        const ox = offX * W * (1 - centre), oy = offY * H * (1 - centre * (portraitView ? 0.85 : 1));
+        camera.setViewOffset(W, H, lerp(ox, landX, oc), lerp(oy, landY, oc), W, H);
+
+        // html layers that ride along with the story
+        copy.style.opacity = String(1 - smooth(0.01, 0.14, p));
+        copy.style.setProperty('--lift', Math.round(p * 120) + 'px');
+        copy.style.visibility = p > 0.16 ? 'hidden' : '';
+        hint.style.opacity = String(1 - smooth(0, 0.04, p));
+        caps[0].style.opacity = String(smooth(0.14, 0.2, p) * (1 - smooth(0.38, 0.44, p)));
+        caps[1].style.opacity = String(smooth(0.5, 0.56, p) * (1 - smooth(0.7, 0.76, p)));
+        paper.style.opacity = String(smooth(0.8, 0.92, p));
+        // the book steps aside at the very end so the section's phone underneath takes over
+        const gone = smooth(0.97, 0.995, p);
+        hero.style.opacity = gone > 0 ? String(1 - gone) : '';
+        hero.style.pointerEvents = gone > 0.5 ? 'none' : '';
+        hero.style.visibility = gone >= 1 ? 'hidden' : '';
+        shadeEl.style.opacity = String(1 - smooth(0.4, 0.7, p));
+
+        // doodle labels follow what they point at
+        const labelsOn = 1 - smooth(0.0, 0.05, p);
+        const noteOn = Math.max(tapLocal >= 0.1 && tapLocal < 2.6 ? 1 : 0, smooth(0.31, 0.33, p) * (1 - smooth(0.44, 0.47, p)));
+        // labels are placed in priority order; one that would overlap a label already shown waits
+        placed.length = 0;
+        for (const k of LABEL_ORDER) {
+          const el = doodleEls[k];
+          const anchor = ANCHORS[k];
+          if (!el || !anchor) continue;
+          anchor().project(camera);
+          const x = (tmp.x * 0.5 + 0.5) * W;
+          const y = (-tmp.y * 0.5 + 0.5) * H;
+          let o = k === 'timein' ? noteOn : labelsOn;
+          if (k === 'student' && state.mode === 'return') o = 0;
+          if (k === 'reader' && noteOn > 0.5) o = 0;
+          const left = x + (el._dx || 0) * (el._w || 0);
+          const topEdge = y + (el._dy || 0) * (el._h || 0);
+          const w = el._w || 0, h = el._h || 0;
+          if (k !== 'timein' && (portraitView ? topEdge < copyBox.bottom + 12 : left < copyBox.right + 20)) o = 0;
+          if (left < 6 || left + w > W - 6 || topEdge < 62) o = 0;
+          if (o > 0.01) {
+            if (placed.some((r) => left < r[2] && left + w > r[0] && topEdge < r[3] && topEdge + h > r[1])) o = 0;
+            else placed.push([left - 6, topEdge - 4, left + w + 6, topEdge + h + 4]);
+          }
+          el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+          el.style.opacity = String(o);
+          el.classList.toggle('is-hidden', o < 0.5);
+          if (el.tagName === 'BUTTON') el.tabIndex = o < 0.5 ? -1 : 0;
+        }
+
+        renderer.render(scene, camera);
+        if (!ready) {
+          ready = true;
+          hero.classList.add('is-ready');
+        }
+      }
+
+      // Only draw while the hero is on screen and the tab is visible.
+      function run() { renderer.setAnimationLoop(visible && !document.hidden ? tick : null); if (!visible || document.hidden) clock.getDelta(); }
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; run(); }, { rootMargin: '80px' }).observe(hero);
+      document.addEventListener('visibilitychange', run);
+      run();
+    }
 </script>
 </body>
 </html>
