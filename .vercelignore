@@ -1,0 +1,3 @@
+# local files, not part of the live site
+.playwright-cli
+temporary screenshots

@@ -3,89 +3,37 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
-<title>HITC, Inc. — Headstart Information Technology & Consultancy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Schoolbell&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin />
-<script>document.documentElement.classList.add('js');</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" } }
-</script>
-<script>
-tailwind.config = {
-  theme: { extend: {
-    colors: {
-      'hbg':  '#F4F4F0',
-      'hcard':'#EAEAE4',
-      'hup':  '#E0E0D8',
-      'hbl':  '#1E6BFF',
-      'hgd':  '#F5A800',
-      'htx':  '#0A0F1C',
-      'hmt':  '#5A6880',
-      'hborder':'#D8D8D0'
-    },
-    fontFamily: {
-      disp:['"Barlow Condensed"','sans-serif'],
-      body:['"Space Grotesk"','sans-serif']
-    }
-  }}
-}
-</script>
+  <link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
+<title>HITC, Inc. | Headstart Information Technology & Consultancy</title>
+<meta name="description" content="HITC builds school systems from Tuguegarao City. With Campus Connect, students scan their ID at the gate and parents see time in, time out and tuition payments on their phone." />
+<meta property="og:title" content="HITC, Inc.: We Innovate Technologies" />
+<meta property="og:description" content="School systems from Tuguegarao City since 2006: ID gates, Campus Connect for parents, cashless canteens, and printed books." />
+<meta property="og:type" content="website" />
+<link rel="preload" href="/fonts/space-grotesk-400-700.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="css/fonts.css" />
+<script>document.documentElement.classList.add('js'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+<link rel="stylesheet" href="/src/tailwind.css">
+<link rel="stylesheet" href="css/footer.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
 
-/* SCROLL REVEAL */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-
-/* BADGE CHIP */
-.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-
-/* CARDS */
-.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.cardd{background:#0A0F1C;border-radius:16px;overflow:hidden}
-.card-gray{background:#EAEAE4;border-radius:16px;overflow:hidden}
-
 /* BUTTONS */
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background-color .2s,transform .15s}
 .btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s}
-.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
+.btn-primary:active{background:#0F49B8;transform:none}
+.btn-primary:focus-visible{outline:3px solid #1E6BFF;outline-offset:3px}
 
-/* SERVICE CARD */
-.scard{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;transition:transform .2s,box-shadow .2s;cursor:pointer}
-.scard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
-.scard-featured{background:#0A0F1C;border-radius:16px;padding:28px;border:none;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;grid-column:span 2}
 
 /* NAV LINK */
 .nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
 .nl:hover,.nl.active{color:#0A0F1C}
-
-/* TAG */
-.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.tag-gray{background:#E8E8E0;color:#5A6880}
-
-/* STAT */
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
-
-/* INPUT */
-input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FAFAF8;outline:none;transition:border-color .2s}
-input:focus,select:focus,textarea:focus{border-color:#1E6BFF}
-label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#5A6880;display:block;margin-bottom:6px}
-
-/* IMAGE */
-.img-cover{width:100%;height:100%;object-fit:cover;display:block}
-
+.nl:focus-visible{outline:2px solid #1E6BFF;outline-offset:4px;border-radius:4px}
+.nl:active{opacity:.7}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
 .nav-dropdown{position:relative;display:flex;align-items:center}
@@ -110,7 +58,7 @@ body{overflow-x:clip}
 .no-webgl .hero__fallback{display:block}
 .no-webgl .hero__canvas,.no-webgl .doodles,.no-webgl .hero__hint{display:none}
 .hero__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(10,15,28,.78) 0%,rgba(10,15,28,.28) 14%,transparent 26%),linear-gradient(90deg,rgba(10,15,28,.9) 0%,rgba(10,15,28,.7) 24%,rgba(10,15,28,.16) 46%,transparent 58%)}
-.hero .wrap{width:100%;max-width:1440px;margin-inline:auto;padding-inline:8%}
+.hero .wrap{width:100%;max-width:none;margin-inline:auto;padding-inline:8%}
 .hero__copy{position:absolute;z-index:3;left:0;right:0;top:calc(50% + 28px);transform:translateY(calc(-50% - var(--lift,0px)));pointer-events:none}
 /* only the copy itself takes the pointer; the rest of the book stays clickable */
 .hero__copy .wrap>*{pointer-events:auto;width:fit-content}
@@ -139,11 +87,11 @@ body{overflow-x:clip}
 .doodle__in svg{width:38px;height:30px;flex:none}
 button.doodle{pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
 .doodle.is-hidden{pointer-events:none}
-button.doodle .doodle__word{display:inline-block;padding:4px 6px;border-radius:8px;transition:transform .45s var(--spring)}
+button.doodle .doodle__word{display:inline-block;padding:11px 8px;border-radius:10px;transition:transform .45s var(--spring)}
 button.doodle:hover .doodle__word{transform:rotate(-4deg) scale(1.08)}
 button.doodle:active .doodle__word{transform:scale(.94)}
 button.doodle:focus-visible{outline:none}
-button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-offset:2px}
+button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-offset:2px;box-shadow:0 0 0 5px rgba(10,15,28,.92)}
 .doodle--note .doodle__in{color:var(--gold);font-size:1.3rem}
 .doodle__in--up{flex-direction:column;align-items:center;gap:0}
 .doodle__in--up svg{width:26px;height:34px;margin-left:18px}
@@ -153,43 +101,215 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
   .nav{padding:0 16px}
   .nav>div{display:none!important}
   .nav>.btn-primary{padding:8px 16px!important}
-  /* the services grid (3 columns plus a 2-column featured card) also forced ~711px */
-  #services>.rv.d1{grid-template-columns:1fr!important}
-  #services .scard-featured{grid-column:auto!important}
+}
+.nav-dropdown:focus-within .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.skip{position:fixed;left:16px;top:-80px;z-index:200;padding:12px 18px;border-radius:12px;background:#0A0F1C;color:#F4F4F0;font-weight:600;text-decoration:none;transition:transform .3s ease}
+.skip:focus{top:12px}
+.skip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* the phone menu that replaces the hidden nav links */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;color:#0A0F1C;transition:transform .45s var(--spring)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary:hover{transform:scale(1.06)}
+.mnav summary:active{transform:scale(.94)}
+.mnav summary:focus-visible{outline:2px solid #1E6BFF;outline-offset:2px}
+.mnav__panel{position:absolute;right:0;top:calc(100% + 8px);min-width:230px;padding:8px;border-radius:16px;background:#fff;border:1px solid #E0E0D8;box-shadow:0 2px 6px rgba(10,15,28,.08),0 18px 40px -16px rgba(22,36,79,.4);display:grid}
+.mnav__panel a{padding:13px 14px;border-radius:10px;font-size:15px;font-weight:500;color:#0A0F1C;text-decoration:none}
+.mnav__panel a:hover{background:#F4F4F0}
+.mnav__panel a:active{opacity:.7}
+.mnav__panel a:focus-visible{outline:2px solid #1E6BFF;outline-offset:-2px}
+/* nav links keep their look but get a 44px tall hit area for touch screens */
+.nav .nl{padding:12px 0}
+/* phones: the menu hangs from the nav bar's right edge, never off screen */
+@media (max-width:767px){.mnav{position:static}.mnav__panel{right:16px;width:min(300px,calc(100% - 32px));min-width:0}}
+@media (max-width:767px){.mnav{display:block;margin-left:auto;margin-right:8px}}
+@media (max-width:767px),(max-aspect-ratio:9/10){
+  .hero__caption{bottom:auto;top:15%}
+  .hero__shade{background:linear-gradient(180deg,rgba(10,15,28,.94) 0%,rgba(10,15,28,.8) 40%,rgba(10,15,28,.1) 62%,transparent 72%)}
+  .hero__copy{top:80px;transform:translateY(calc(0px - var(--lift,0px)))}
+  .hero__hint{left:8%;transform:none}
 }
 @media (max-width:767px){
-  .hero__caption{bottom:auto;top:15%}
   .doodle__in{font-size:1.15rem}
   .doodle__in svg{width:28px;height:22px}
   .doodle[data-desktop]{display:none}
-  .hero__shade{background:linear-gradient(180deg,rgba(10,15,28,.94) 0%,rgba(10,15,28,.8) 40%,rgba(10,15,28,.1) 62%,transparent 72%)}
-  .hero__copy{top:80px;transform:translateY(calc(0px - var(--lift,0px)))}
   .hero__title{font-size:clamp(2.8rem,13vw,3.8rem)}
   .hero__lede{font-size:.975rem;margin-top:1rem}
   .hero__ctas{margin-top:1.3rem}
   .hbtn{min-height:46px;padding:0 1.2rem}
 }
+/* small and short phones: one row of buttons, clear of the book (V7) */
+@media (max-width:380px){.hbtn{padding:0 .95rem;font-size:.875rem}.hero__ctas{gap:8px}}
+@media (max-width:767px) and (max-height:760px){.hero__copy{top:72px}.hero__lede{font-size:.9rem;line-height:1.6;margin-top:.75rem}.hero__ctas{margin-top:1rem}}
+/* landscape phones: the hero is exactly one screen, with compact copy (V4) */
+@media (max-height:600px){.hero{min-height:0}}
+@media (max-height:500px) and (orientation:landscape){.hero__copy{top:calc(50% + 24px)}.hero__title{font-size:2.4rem}.hero__lede{font-size:.875rem;line-height:1.55;margin-top:.6rem;max-width:26rem}.hero__ctas{margin-top:.8rem}.hbtn{min-height:44px}}
+/* mid-size screens: a narrower lede leaves the book room (V8) */
+@media (min-width:768px) and (max-width:1180px){.hero__lede{max-width:24rem}}
+/* without the scroll story (reduced motion, no GSAP) there is nothing to scroll for (F8) */
+html:not(.has-story) .hero__hint{display:none}
+/* forced colors would drop the paper fade and the phone mock's frame (G3) */
+@media (forced-colors:active){.hero__paper,.ccp,.ccp *{forced-color-adjust:none}}
 
 /* ScrollTrigger's spacer overlaps the section's first screen after the story; let clicks through */
 .pin-spacer{pointer-events:none}
 .pin-spacer>#home{pointer-events:auto}
+/* While pinned, ScrollTrigger writes the hero's height in px and (on touch) doesn't re-measure, so when a phone's
+   browser bar hides the screen grew but the hero didn't, and the next section showed through at the bottom.
+   The hero keeps its 100lvh; the ResizeObserver in the 3D script then refreshes the pin. */
+.pin-spacer>#home{height:100vh!important;height:100lvh!important;max-height:none!important}
 
-/* ══════ CAMPUS CONNECT ══════ */
+/* ══════ STUDENT ID: her ID on its lanyard, and the parent's phone ══════ */
 /* With the scroll story on, this section sits under the pinned hero, so the phone the story
    lands on turns straight into the phone here instead of a blank screen. */
-#campus-connect{position:relative;z-index:1;background:var(--paper);padding:96px 8% 100px}
-.has-story #campus-connect{margin-top:calc(var(--story-overlap,0px) * -1)}
-.cc{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start;max-width:1440px;margin:0 auto}
-.cc__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.8rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;color:#0A0F1C;margin-top:18px}
-.cc__lede{font-size:1.0625rem;line-height:1.7;color:#3D4A5C;max-width:33rem;margin-top:20px}
-.cc__list{list-style:none;margin:34px 0 38px;display:grid;gap:20px;max-width:33rem}
-.cc__list li{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:start}
-.cc__ico{width:42px;height:42px;border-radius:12px;background:#E7EFFF;color:#1E6BFF;display:grid;place-items:center}
-.cc__ico svg{width:21px;height:21px}
-.cc__list b{display:block;font-weight:600;color:#0A0F1C;font-size:1rem;line-height:1.4}
-.cc__list span{display:block;font-size:.9375rem;color:#5A6880;line-height:1.6;margin-top:2px}
+.sid{position:relative;z-index:1;background:var(--paper);padding:96px 8% 100px;touch-action:pan-y pinch-zoom}
+.has-story #student-id{margin-top:calc(var(--story-overlap,0px) * -1)}
+.sid__grid{position:relative;display:grid;grid-template-columns:minmax(0,26rem) minmax(15rem,1fr) auto;gap:clamp(24px,3vw,48px);max-width:1440px;margin:0 auto;align-items:center}
+.sid__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,4.2vw,4.1rem);line-height:.9;letter-spacing:-.01em;color:var(--ink)}
+.sid__lede{margin-top:1rem;font-size:1.0625rem;line-height:1.7;color:#3D4A5C;max-width:27rem}
+.sid__title+.sid__lede{margin-top:1.5rem}
+.sid__flip{margin-top:1.4rem;margin-left:-6px;display:inline-flex;align-items:flex-start;gap:4px;background:none;border:0;padding:10px 6px;cursor:pointer;color:#1452D6;font-size:1.65rem;line-height:1;border-radius:10px;transition:transform .45s var(--spring);-webkit-tap-highlight-color:transparent}
+.sid__flip svg{width:46px;height:36px;flex:none;transform:translateY(-14px) rotate(-38deg)}
+.sid__flip:hover{transform:rotate(-3deg) scale(1.06)}
+.sid__flip:active{transform:scale(.94);transition-duration:.12s}
+.sid__flip:focus-visible{outline:2px solid #1452D6;outline-offset:2px}
+.sid__hang{align-self:stretch;min-height:240px}
+/* the badge's canvas spans the whole section, over the text, but only a press on the card is taken */
+.sid__stage{position:absolute;inset:0;z-index:3;pointer-events:none}
+.sid__stage>canvas{display:block;width:100%;height:100%}
+.lanyard-still{position:absolute;left:50%;top:18%;width:220px;height:auto;transform:translateX(-50%) rotate(-4deg);border-radius:12px;box-shadow:0 2px 4px rgba(10,15,28,.14),0 30px 50px -24px rgba(22,36,79,.5)}
 .cc__slot{display:flex;justify-content:center;margin:0}
-.ccp{position:relative;width:320px;height:690px;flex:none;border-radius:46px;background:#0A0F1C;padding:10px;transform:scale(var(--cc-s,1));transform-origin:50% 0;box-shadow:0 2px 3px rgba(10,15,28,.16),0 24px 40px -18px rgba(22,36,79,.42),0 60px 90px -40px rgba(22,36,79,.46)}
+
+/* ══════ the navy desk under CAMPUS CONNECT and the services stack ══════ */
+.desk{position:relative;isolation:isolate;color:var(--paper);background:radial-gradient(48% 40% at 88% 8%,rgba(30,107,255,.18),transparent 70%),radial-gradient(40% 36% at 6% 60%,rgba(245,168,0,.07),transparent 70%),#0C1430}
+.desk::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ══════ CAMPUS CONNECT ══════ */
+.ccs{padding:clamp(96px,11vw,150px) 8% clamp(56px,6vw,80px)}
+.ccs__in{max-width:1200px;margin:0 auto}
+.ccs__new{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;line-height:1;color:var(--gold)}
+.ccs__new>span{display:inline-block;padding-bottom:2px}
+.ccs__new>span.is-shiny{background-image:linear-gradient(120deg,#F5A800 0%,#F5A800 38%,#FFF6D8 50%,#F5A800 62%,#F5A800 100%);background-size:200% auto;background-position:150% center;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ccs__head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:14px}
+.ccs__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(4.4rem,13.5vw,12.75rem);line-height:.8;letter-spacing:-.015em;color:var(--paper);max-width:5.4ch}
+.split{display:inline}
+.split__word{display:inline-block;white-space:nowrap;overflow:hidden;vertical-align:top;padding-bottom:.04em}
+.split__char{display:inline-block}
+.ccs__tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(1.6rem,2.6vw,2.5rem);line-height:1.04;color:rgba(244,244,240,.6);text-align:right;padding-bottom:.35em}
+.ccs__reveal{margin-top:clamp(56px,7vw,92px);font-weight:500;font-size:clamp(1.55rem,2.9vw,2.7rem);line-height:1.3;letter-spacing:-.018em;color:var(--paper);max-width:25em}
+.reveal__word{display:inline-block}
+.ccs__foot{margin-top:clamp(44px,5vw,64px);display:grid;grid-template-columns:auto minmax(0,24rem) minmax(0,15rem);gap:clamp(24px,4vw,56px);align-items:start}
+.ccs__note{font-size:.9375rem;line-height:1.65;color:rgba(244,244,240,.66);padding-top:14px;border-top:1px solid rgba(244,244,240,.16)}
+.ccs__note b{color:var(--gold);font-weight:600}
+#campus-connect .hbtn:focus-visible{outline-color:var(--gold)}
+/* Magnet: the wrapper leans; the button itself never moves under the pointer (no :active scale) */
+.magnet{display:inline-block;position:relative}
+.magnet .hbtn,.magnet .hbtn:hover,.magnet .hbtn:active{transform:none}
+.magnet .hbtn{transition:background-color .2s ease,box-shadow .2s ease,filter .12s ease}
+.magnet .hbtn:hover{background:#3A80FF}
+.magnet .hbtn:active{filter:brightness(.86)}
+
+/* ══════ SERVICES: index cards stacking onto Campus Connect ══════ */
+.stk{padding:0 8% clamp(72px,8vw,104px);background:radial-gradient(36% 22% at 92% 34%,rgba(30,107,255,.16),transparent 70%),radial-gradient(30% 18% at 4% 70%,rgba(245,168,0,.06),transparent 70%),#0C1430}
+.stk__head{max-width:1200px;margin:0 auto clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:end;border-top:1px solid rgba(244,244,240,.14);padding-top:clamp(44px,5vw,64px)}
+.stk__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.4rem,4.6vw,4.4rem);line-height:.9;letter-spacing:-.01em;color:var(--paper)}
+.stk__lede{font-size:1.0625rem;line-height:1.7;color:rgba(244,244,240,.7);max-width:30rem}
+.stk__deck{max-width:1200px;margin:0 auto;position:relative}
+.stack__slot{position:relative}
+@media (min-width:768px) and (min-height:620px){.stack__slot{position:sticky}}
+@media (max-width:767px),(max-height:619px){.stack__gap,.stack__end{display:none}.stack__slot{margin-bottom:18px!important;top:auto!important}}
+
+.ixc{--stack-dim:0;position:relative;height:clamp(360px,46vh,430px);border-radius:16px;background:#FBFAF4;color:var(--ink);overflow:hidden;transform-origin:50% 0;box-shadow:0 1px 0 rgba(255,255,255,.75) inset,0 -16px 34px -20px rgba(0,0,0,.6),0 34px 60px -34px rgba(3,6,20,.75)}
+.ixc::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:#050918;opacity:var(--stack-dim);pointer-events:none}
+.ixc__strip{position:relative;z-index:2;height:42px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 26px;background:inherit;border-bottom:2px solid var(--rule,#F5A800)}
+.ixc__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.ixc__feed{font-size:1.25rem;color:#1452D6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ixc__body{position:relative;height:calc(100% - 42px);padding:clamp(24px,3vw,40px)}
+.ixc__big{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2rem,3.3vw,3.15rem);line-height:.9;letter-spacing:-.005em;max-width:16ch}
+.ixc__text>p:not(.ixc__big){margin-top:14px;font-size:1rem;line-height:1.62;color:#3D4A5C;max-width:29rem}
+.ixc__link{display:inline-block;margin-top:18px;font-weight:600;font-size:.98rem;color:#1452D6;text-decoration:none;border-bottom:2px solid rgba(20,82,214,.28);padding-bottom:2px;transition:border-color .2s ease,color .2s ease}
+/* the whole card opens its page, strip included (so a stacked strip is a link too) */
+.ixc__link::after{content:'';position:absolute;inset:-42px 0 0 0;z-index:5}
+.ixc:hover .ixc__link{border-color:#1452D6}
+.ixc__link:active{color:#0B3A9E}
+.ixc__link:focus-visible{outline:none}
+.ixc:has(.ixc__link:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+
+/* a notification, the way the app shows it */
+.note{position:absolute;z-index:3;width:290px;padding:15px 18px 15px 42px;border-radius:16px;background:#fff;font-family:'Space Grotesk',sans-serif;box-shadow:0 1px 2px rgba(10,15,28,.14),0 20px 36px -18px rgba(22,36,79,.5)}
+.note::before{content:'';position:absolute;left:18px;top:17px;width:12px;height:12px;border:2px solid #1E6BFF;border-radius:50%}
+.note__kind{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1E6BFF;line-height:1.2}
+.note__title{margin-top:6px;font-size:14px;font-weight:600;line-height:1.3}
+.note__body{margin-top:3px;font-size:12.5px;line-height:1.45;color:#5A6880}
+
+/* Campus Connect: the navy base of the deck */
+.ixc--cc{background:#16244F;color:var(--paper);--rule:rgba(245,168,0,.8)}
+.ixc--cc .ixc__feed{color:#FFD36B}
+.ixc--cc .ixc__body{display:flex;align-items:center;gap:clamp(28px,4vw,56px)}
+.ixc__icon{position:relative;flex:none;width:clamp(130px,15vw,200px);aspect-ratio:1;border-radius:22%;overflow:hidden;transform:rotate(-4deg);box-shadow:0 2px 4px rgba(0,0,0,.25),0 30px 50px -24px rgba(0,0,0,.7)}
+.ixc__icon img{position:absolute;width:149.3%;max-width:none;height:auto;left:-24.4%;top:-12.1%}
+.ixc--cc .ixc__big{max-width:20ch;font-size:clamp(2.4rem,4.4vw,4.2rem)}
+.ixc--cc .ixc__text>p:not(.ixc__big){color:rgba(244,244,240,.72)}
+
+/* Turnstile: ruled card, the time is the picture */
+.ixc--gate{--rule:#1E6BFF}
+.ixc--gate .ixc__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start;background:repeating-linear-gradient(to bottom,transparent 0 35px,rgba(30,107,255,.12) 35px 36px)}
+.ixc__clock{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(7rem,14.5vw,13rem);line-height:.78;letter-spacing:-.035em;color:#1E6BFF;white-space:nowrap}
+.ixc__clock span{font-size:.24em;letter-spacing:.02em;margin-left:.18em;color:var(--ink)}
+.ixc--gate .note{left:clamp(24px,3vw,40px);bottom:clamp(20px,2.6vw,32px);transform:rotate(-2.5deg)}
+
+/* Attendance Manager: graph paper and a page of the register */
+.ixc--reg{--rule:#16244F}
+.ixc--reg .ixc__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:center;background-image:linear-gradient(rgba(30,107,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(30,107,255,.075) 1px,transparent 1px);background-size:22px 22px}
+.reg{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:12px;overflow:hidden;transform:rotate(1.4deg);box-shadow:0 1px 2px rgba(10,15,28,.12),0 22px 40px -22px rgba(22,36,79,.5)}
+.reg th,.reg td{padding:8px 16px;text-align:left;font-size:.95rem;border-bottom:1px solid #E6E9F0}
+.reg thead th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:#5A6880;padding-top:10px;padding-bottom:6px}
+.reg .reg__name th{background:#16244F;color:var(--paper);font-weight:800;font-size:1.1rem;padding:11px 16px}
+.reg tbody th{font-weight:600;color:#5A6880;width:4.6rem}
+.reg td{font-variant-numeric:tabular-nums;font-weight:500}
+.reg tr:last-child>*{border-bottom:0}
+.reg__today>*{background:#E9F0FF}
+.reg .hand{color:#1452D6;font-size:1.1rem}
+
+/* eBroadcasting: the photo takes half the card */
+.ixc--cast{--rule:#F5A800}
+.ixc--cast .ixc__body{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);padding:0}
+.ixc--cast .ixc__text{grid-column:1;grid-row:1;align-self:center;padding:clamp(24px,3vw,40px)}
+.ixc__photo{grid-column:2;grid-row:1;width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block}
+.ixc--cast .ixc__body::before{content:'';position:absolute;z-index:1;top:0;right:0;bottom:0;width:52%;pointer-events:none;background:linear-gradient(to top,rgba(10,15,28,.55),transparent 55%),rgba(30,107,255,.22);mix-blend-mode:multiply}
+.ixc--cast .note{right:clamp(20px,2.6vw,32px);bottom:clamp(20px,2.6vw,32px);transform:rotate(1.5deg)}
+
+/* eCash: a taped snapshot on warm paper */
+.ixc--cash{background:#F3EBD8;--rule:#C98600}
+.ixc--cash .ixc__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4vw,56px);align-items:center}
+.snap{position:relative;margin:0 0 0 6px;background:#fff;padding:12px 12px 38px;transform:rotate(-3deg);box-shadow:0 2px 4px rgba(10,15,28,.12),0 26px 44px -24px rgba(60,40,10,.55)}
+.snap img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:45% 45%}
+.snap::before{content:'';position:absolute;z-index:1;top:-13px;left:50%;width:112px;height:28px;transform:translateX(-50%) rotate(3deg);background:rgba(245,168,0,.5)}
+.ixc--cash .note{left:clamp(150px,22%,260px);bottom:clamp(14px,2vw,24px);transform:rotate(3deg)}
+
+/* SFMS: the receipt is the picture */
+.ixc--fees{--rule:#1E6BFF}
+.ixc--fees .ixc__body{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(28px,4.5vw,64px);align-items:center}
+.slip{position:relative;background:#fff;padding:20px 22px 30px;font-family:'Space Grotesk',sans-serif;transform:rotate(-2.5deg);box-shadow:0 1px 2px rgba(10,15,28,.12),0 24px 40px -22px rgba(22,36,79,.5)}
+.slip::after{content:'';position:absolute;left:0;right:0;bottom:-10px;height:10px;background:radial-gradient(circle at 8px 0,#fff 7.5px,transparent 8px) 0 0/16px 10px}
+.slip__head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;padding-bottom:10px;border-bottom:2px dashed #C9D3E3}
+.slip__who{margin-top:10px;font-weight:600;font-size:.98rem}
+.slip__row{display:flex;justify-content:space-between;gap:12px;margin-top:9px;padding-bottom:6px;font-size:.86rem;color:#5A6880;border-bottom:1px dotted #D3DAE6}
+.slip__row span:last-child{color:var(--ink);font-weight:600;text-align:right}
+.slip__stamp{position:absolute;right:14px;bottom:-6px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;line-height:1;letter-spacing:.08em;color:rgba(201,134,0,.88);border:3px solid currentColor;border-radius:8px;padding:5px 10px 3px;transform:rotate(-11deg)}
+.ixc--fees .ixc__big{max-width:19ch}
+
+/* iAsk: also from HITC, set apart with a dashed edge and a big question mark */
+.ixc--ask{background:#F4F4F0;--rule:rgba(10,15,28,.2)}
+.ixc--ask .ixc__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center}
+.ixc--ask .ixc__body::before{content:'';position:absolute;inset:14px;border:2px dashed rgba(10,15,28,.16);border-radius:12px;pointer-events:none}
+.ixc__ask{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(10rem,24vw,22rem);line-height:.72;text-align:center;color:var(--gold);transform:rotate(9deg);text-shadow:10px 12px 0 rgba(22,36,79,.1)}
+
+@media (max-width:1100px){
+  .ccs__foot{grid-template-columns:auto minmax(0,1fr)}
+  .ccs__foot .ccs__note:last-child{grid-column:2}
+}
+.ccp{position:relative;width:320px;height:690px;flex:none;margin-inline:calc((var(--cc-s,1) - 1) * 160px);border-radius:46px;background:#0A0F1C;padding:10px;transform:scale(var(--cc-s,1));transform-origin:50% 0;box-shadow:0 2px 3px rgba(10,15,28,.16),0 24px 40px -18px rgba(22,36,79,.42),0 60px 90px -40px rgba(22,36,79,.46)}
 .ccp__screen{position:relative;width:300px;height:670px;border-radius:36px;overflow:hidden;background:#F3F5F9;color:#0A0F1C;font-family:'Space Grotesk',sans-serif}
 .ccp__screen>*,.ccp__item>*{position:absolute;margin:0;line-height:1;white-space:nowrap}
 .ccp__time{left:26px;top:17px;font-size:15px;font-weight:600}
@@ -209,31 +329,152 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
 .ccp__title{left:20px;top:38px;font-size:14px;font-weight:600;color:#0A0F1C}
 .ccp__body{left:20px;top:58px;font-size:12px;line-height:16px;color:#5A6880}
 .ccp__chev{right:18px;top:46px;font-size:20px;color:#9AA3B5}
-@media (max-width:900px){
-  #campus-connect{padding-top:84px}
-  .cc{grid-template-columns:1fr;gap:36px}
-  .cc__slot{order:-1}
-}</style>
+@media (max-width:899px){
+  .sid{padding-top:84px}
+  .sid__grid{grid-template-columns:minmax(0,1fr);gap:32px}
+  .sid__hang{display:none}
+  .cc__slot{order:-1;min-width:0}
+  .sid__flip svg{transform:translateY(-4px) rotate(70deg)}
+  .sid__stage{position:relative;inset:auto;height:min(560px,74svh);margin:0 -8.7%;pointer-events:auto;touch-action:pan-y pinch-zoom}
+  .ccs__head{flex-direction:column;align-items:flex-start;gap:18px}
+  .ccs__tag{text-align:left}
+  .ccs__foot{grid-template-columns:minmax(0,1fr)}
+  .ccs__foot .ccs__note:last-child{grid-column:auto}
+  .stk__head{grid-template-columns:minmax(0,1fr);gap:20px}
+}
+@media (max-width:767px){
+  .ixc{height:auto}
+  .ixc__strip{padding:0 18px}
+  .ixc__feed{font-size:1.05rem}
+  .ixc>.ixc__body{display:flex!important;flex-direction:column;align-items:stretch;gap:22px;height:auto;padding:24px 20px 28px!important}
+  .reg th,.reg td{padding:8px 12px;white-space:nowrap;font-size:.9rem}
+  .ixc--cast .ixc__text{padding:0}
+  .ixc__photo{height:200px;border-radius:10px;order:2}
+  .ixc--cast .ixc__body::before{display:none}
+  .note{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto;max-width:300px;transform:none!important}
+  .ixc__clock{font-size:6rem}
+  .ixc__ask{font-size:8rem;text-align:left}
+  .reg{transform:none}
+  .snap{transform:rotate(-2deg);max-width:340px}
+  .slip{transform:none;max-width:340px}
+}
+/* ══════ ABOUT: who HITC is, with the facts filed and stamped ══════ */
+.kick{display:block;font-size:1.5rem;line-height:1.1;color:#1452D6}
+.h2x{margin-top:.7rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.7rem,5.2vw,4.8rem);line-height:.88;letter-spacing:-.012em;color:var(--ink);max-width:12ch}
+.tlink{display:inline-block;font-weight:600;font-size:.98rem;color:#1452D6;text-decoration:none;border-bottom:2px solid rgba(20,82,214,.28);padding-bottom:2px;border-radius:2px;transition:border-color .2s ease,color .2s ease}
+.tlink:hover{border-color:currentColor}
+.tlink:active{color:#0B3A9E}
+.tlink:focus-visible{outline:2px solid var(--hblue);outline-offset:4px}
+.abt{position:relative;z-index:1;padding:clamp(96px,11vw,150px) 8% clamp(104px,11vw,150px);background:var(--paper)}
+.abt__in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(48px,7vw,110px);align-items:center}
+.abt__lede{margin-top:1.4rem;font-size:1.0625rem;line-height:1.7;color:#3D4A5C;max-width:33rem}
+.abt__lede+.abt__lede{margin-top:.8rem}
+/* the three promises, ticked off on ruled lines */
+.ticks{list-style:none;margin-top:1.9rem;max-width:33rem}
+.ticks li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;align-items:center;padding:12px 0;border-top:1.5px solid rgba(30,107,255,.16);font-size:1rem;font-weight:500;line-height:1.5;color:var(--ink)}
+.ticks li:last-child{border-bottom:1.5px solid rgba(30,107,255,.16)}
+.ticks svg{width:32px;height:29px;color:var(--hblue)}
+.abt__ctas{margin-top:2.2rem;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+/* the props: the drawer's index card, a taped snapshot and a rubber stamp */
+.abt__props{position:relative;padding-top:clamp(70px,7vw,96px)}
+.drawer{position:absolute;top:0;left:12%;right:-2%;height:150px;border-radius:16px 16px 0 0;background:#16244F;color:var(--paper);transform:rotate(2.2deg);transform-origin:0 100%;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 -16px 30px -20px rgba(10,15,28,.55)}
+.drawer__strip{display:flex;align-items:center;justify-content:space-between;gap:16px;height:46px;padding:0 22px;border-bottom:2px solid rgba(245,168,0,.8)}
+.drawer__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.drawer__note{font-size:1.2rem;color:#FFD36B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.abt .snap{position:relative;z-index:2;margin:0;padding:12px 12px 46px;background:#fff;transform:rotate(-2deg);box-shadow:0 2px 4px rgba(10,15,28,.12),0 30px 50px -26px rgba(22,36,79,.55)}
+.abt .snap::before{content:'';position:absolute;z-index:1;top:-13px;left:50%;width:112px;height:28px;transform:translateX(-50%) rotate(3deg);background:rgba(245,168,0,.5)}
+.abt .snap img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:45% 40%}
+.abt .snap figcaption{position:absolute;left:14px;bottom:10px;font-size:1.2rem;line-height:1;color:#1452D6}
+.stamp{position:absolute;z-index:3;right:-3%;bottom:-30px;display:grid;justify-items:center;padding:12px 18px 10px;border:3px solid currentColor;border-radius:10px;color:#8F5F00;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.86;text-align:center;transform:rotate(-9deg);mix-blend-mode:multiply}
+.stamp::after{content:'';position:absolute;inset:4px;border:1.5px solid currentColor;border-radius:6px;opacity:.75}
+.stamp b{font-size:3rem;font-weight:900;letter-spacing:.01em}
+.stamp span{margin-top:4px;font-size:1.05rem;font-weight:800;letter-spacing:.14em}
+
+/* ══════ CONTACT: the lines on the desk, and the message card ══════ */
+.reachh{position:relative;z-index:1;padding:clamp(96px,11vw,150px) 8%}
+.reachh__in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(44px,6vw,96px);align-items:start}
+.reachh .kick{color:#FFD36B}
+.reachh .h2x{color:var(--paper);max-width:11ch}
+.reachh__lede{margin-top:1.3rem;font-size:1.0625rem;line-height:1.7;color:rgba(244,244,240,.74);max-width:30rem}
+.reach-lines{margin-top:2.2rem;display:grid;gap:20px;max-width:30rem}
+.reach-lines>div{padding-top:16px;border-top:1px solid rgba(244,244,240,.16)}
+.reach-lines h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;line-height:1;letter-spacing:.04em;text-transform:uppercase;color:var(--paper)}
+.reach-lines p{margin-top:6px;font-size:1rem;line-height:1.55;color:rgba(244,244,240,.66)}
+.reach-lines a{display:inline-block;margin-top:6px;font-size:1.05rem;font-weight:500;line-height:1.5;color:var(--paper);text-decoration:none;border-bottom:1.5px solid rgba(255,211,107,.4);border-radius:2px;transition:border-color .2s ease,color .2s ease}
+.reach-lines a.inl{margin-top:0;font-size:1rem}
+.reach-lines a:hover{border-color:#FFD36B;color:#fff}
+.reach-lines a:active{opacity:.75}
+.reach-lines a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.fcard{position:relative;border-radius:18px;background:#FBFAF4;color:var(--ink);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.75) inset,0 30px 60px -34px rgba(3,6,20,.8),0 70px 120px -70px rgba(3,6,20,.7)}
+.fcard__strip{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:0 26px;border-bottom:2px solid var(--hblue)}
+.fcard__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.fcard__note{font-size:1.25rem;color:#1452D6;white-space:nowrap}
+.fcard form{display:grid;gap:18px;padding:clamp(24px,3.4vw,40px)}
+.fcard__two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.field label{display:block;margin-bottom:6px;font-size:.88rem;font-weight:600;line-height:1.6;color:#3D4A5C}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #D8D8D0;border-radius:10px;background:#fff;font-family:'Space Grotesk',sans-serif;font-size:.98rem;line-height:1.6;color:var(--ink);outline:none;transition:border-color .2s ease,box-shadow .2s ease}
+.field select{line-height:normal;min-height:52px}
+.field input::placeholder,.field textarea::placeholder{color:#757575}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:#B9C2D2}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{border-color:var(--hblue);box-shadow:0 0 0 3px rgba(30,107,255,.18)}
+.field textarea{resize:vertical;min-height:120px}
+.fcard .hbtn{width:100%;border:0;cursor:pointer}
+.fcard__help{font-size:.88rem;line-height:1.6;color:#5A6880}
+@media (max-width:980px){
+  .abt__in,.reachh__in{grid-template-columns:minmax(0,1fr)}
+  .abt__props{max-width:560px;width:100%;justify-self:center}
+}
+@media (max-width:767px){
+  .abt{padding:76px 16px 92px}
+  .reachh{padding:76px 16px 84px}
+  .kick{font-size:1.3rem}
+  .h2x{font-size:clamp(2.5rem,12vw,3.3rem)}
+  .abt__props{padding-top:60px}
+  .drawer{left:5%;right:0;height:120px;transform:rotate(1.6deg)}
+  .drawer__strip{padding:0 16px;height:42px}
+  .drawer__name{font-size:1.05rem}
+  .drawer__note{font-size:1.05rem}
+  .abt .snap{padding:9px 9px 38px;transform:rotate(-1.5deg)}
+  .abt .snap figcaption{font-size:1.05rem;bottom:8px;left:11px}
+  .stamp{right:2px;bottom:-26px;padding:9px 13px 7px}
+  .stamp b{font-size:2.2rem}
+  .stamp span{font-size:.85rem}
+  .fcard__strip{padding:0 18px;min-height:48px}
+  .fcard__name{font-size:1.15rem}
+  .fcard__note{font-size:1.1rem}
+  .fcard form{padding:22px 18px 24px}
+  .fcard__two{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:359px){.fcard__note{display:none}}
+</style>
 </head>
 <body>
+<a class="skip" href="#student-id">Skip to content</a>
 
 <!-- ══════ NAV ══════ -->
 <nav class="nav">
-  <a href="#home" style="display:flex;align-items:center;text-decoration:none">
-    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+  <a href="#top" aria-label="HITC, back to top" style="display:flex;align-items:center;text-decoration:none">
+    <img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
   </a>
 
   <div style="display:flex;align-items:center;gap:28px">
     <a href="#about" class="nl">About</a>
-    <div class="nav-dropdown"><a href="#services" class="nl" style="display:flex;align-items:center;gap:3px">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
-    <a href="#robotics" class="nl">Robotics</a>
+    <div class="nav-dropdown"><a href="#services" class="nl" style="display:flex;align-items:center;gap:3px">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="#campus-connect" class="nl">Campus Connect</a>
     <a href="#contact" class="nl">Contact</a>
   </div>
 
-  <button class="btn-primary" style="padding:9px 20px;font-size:12px"
-    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-    Get Started →
-  </button>
+  <details class="mnav" id="mnav">
+    <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="mnav__panel">
+      <a href="#campus-connect">Campus Connect</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </details>
+
+  <a class="btn-primary" href="#contact" style="padding:9px 20px;font-size:12px;text-decoration:none">Get Started →</a>
 </nav>
 
 <!-- ══════ ICONS ══════ -->
@@ -242,6 +483,7 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
     <symbol id="i-arrow" viewBox="0 0 40 32"><path d="M3 4c6 1 13 5 17 11s6 11 13 13m0 0-7 1m7-1-2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-arrow-r" viewBox="0 0 40 32"><path d="M37 4c-6 1-13 5-17 11S14 26 7 28m0 0 7 1m-7-1 2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-arrow-d" viewBox="0 0 32 40"><path d="M9 3c-3 8 2 15 7 20s6 10 6 14m0 0-5-5m5 5 4-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 40 36"><path d="M5 20c4 2 7 6 10 11C20 18 28 9 36 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <!-- Campus Connect mark: a C with a graduation cap; the 3D phone draws the same paths -->
     <symbol id="cc-mark" viewBox="0 0 36 36">
@@ -258,33 +500,34 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
   </defs>
 </svg>
 
+<main id="main">
 <!-- ══════ HERO: the 7 a.m. scan, told in a pop-up book ══════ -->
 <section id="home" class="hero" aria-labelledby="hero-title">
-  <div class="hero__fallback" aria-hidden="true"><img src="photos/ecash3.jpg" alt="" width="2048" height="1151" /></div>
-  <canvas class="hero__canvas" id="book3d" role="img" aria-label="A pop-up book lies open on a navy school desk. On the left page a parent waves from the door of their house while a sleepy student with an ID on a lanyard waits outside. On the right page is the school gate with an ID-scanning turnstile and the Philippine flag. A parent's phone and a stack of printed books lie beside the book."></canvas>
+  <div class="hero__fallback" aria-hidden="true"><img loading="lazy" src="photos/web/ecash3-1600.webp" alt="" width="1600" height="899" /></div>
+  <canvas class="hero__canvas" id="book3d" role="img" aria-label="A pop-up book lies open on a navy school desk. On the left page a parent stands at the door of their house while a sleepy student with an ID on a lanyard waits outside. On the right page is the school gate with an ID-scanning turnstile and the Philippine flag. A parent's phone and a stack of printed books lie beside the book."></canvas>
   <div class="hero__shade" id="hero-shade"></div>
 
   <div class="doodles" id="doodles">
-    <button class="doodle" type="button" data-doodle="student" aria-label="Wake the student">
-      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">5 more minutes…</span></span>
+    <button class="doodle" type="button" data-doodle="student" tabindex="-1">
+      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">5 more minutes…</span><span class="sr-only" data-sr> (wake the student)</span></span>
     </button>
-    <button class="doodle" type="button" data-doodle="reader" aria-label="Scan the student's ID at the gate">
-      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">scan your ID</span></span>
+    <button class="doodle" type="button" data-doodle="reader" tabindex="-1">
+      <span class="doodle__in" style="--dx:4%;--dy:-104%"><svg aria-hidden="true"><use href="#i-arrow-r"/></svg><span class="doodle__word">scan your ID</span><span class="sr-only"> (scan the student's ID at the gate)</span></span>
     </button>
-    <button class="doodle" type="button" data-doodle="phone" aria-label="Light up the parent's phone">
-      <span class="doodle__in" style="--dx:-104%;--dy:-104%"><span class="doodle__word">a parent's phone</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    <button class="doodle" type="button" data-doodle="phone" tabindex="-1">
+      <span class="doodle__in" style="--dx:-104%;--dy:-104%"><span class="doodle__word">a parent's phone</span><span class="sr-only"> (light up the phone)</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </button>
-    <button class="doodle" type="button" data-doodle="books" data-desktop aria-label="Open the top book">
-      <span class="doodle__in" style="--dx:-104%;--dy:-100%"><span class="doodle__word">we print books</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    <button class="doodle" type="button" data-doodle="books" data-desktop tabindex="-1">
+      <span class="doodle__in" style="--dx:-104%;--dy:-100%"><span class="doodle__word">we print books</span><span class="sr-only"> (open the top book)</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </button>
-    <span class="doodle doodle--note" data-doodle="timein" aria-hidden="true"><span class="doodle__in" style="--dx:16%;--dy:-60%">time in, 7:02 AM</span></span>
+    <span class="doodle doodle--note" data-doodle="timein" aria-hidden="true"><span class="doodle__in" style="--dx:-50%;--dy:40%">time in, 7:02 AM</span></span>
   </div>
 
   <div class="hero__copy" id="hero-copy">
     <div class="wrap">
       <h1 id="hero-title" class="hero__title">We innovate technologies</h1>
       <p class="hero__lede">
-        HITC has built school systems in Tuguegarao City since 2006.
+        HITC has built school systems from Tuguegarao City since 2006.
         With <strong>Campus Connect</strong>, a student scans their ID at the gate and a parent sees it on their phone: time in, time out, tuition payments<span class="hidden md:inline"> and everything else about school</span>.
         We print books, too.
       </p>
@@ -299,24 +542,19 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
   <p class="hero__caption hand" id="cap-2" aria-hidden="true">…and a parent knows.</p>
   <p class="hero__hint" id="hero-hint" aria-hidden="true"><svg><use href="#i-down"/></svg>scroll to walk her to school</p>
   <div class="hero__paper" id="hero-paper" aria-hidden="true"></div>
+  <p class="sr-only" id="hero-live" aria-live="polite"></p>
 </section>
 
-<!-- ══════ CAMPUS CONNECT ══════ -->
-<section id="campus-connect" aria-labelledby="cc-title">
-  <div class="cc">
-    <div>
-      <span class="tag">New system</span>
-      <h2 id="cc-title" class="cc__title">Campus Connect</h2>
-      <p class="cc__lede">Our main system right now. Students scan their ID at the gate, and parents see it on their phone: time in, time out, tuition payments, and everything else about school.</p>
-      <ul class="cc__list">
-        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><div><b>Time in and time out</b><span>Every scan at the gate shows up on the parent's phone with the exact time.</span></div></li>
-        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-receipt"/></svg></span><div><b>Tuition payments</b><span>Parents can see tuition payments in the same app.</span></div></li>
-        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-megaphone"/></svg></span><div><b>School updates</b><span>Announcements from the school arrive in the same feed.</span></div></li>
-        <li><span class="cc__ico"><svg aria-hidden="true"><use href="#i-id"/></svg></span><div><b>Add your child's ID</b><span>Enter the ID number, request an activation code, and activate the card.</span></div></li>
-      </ul>
-      <a class="hbtn hbtn--blue" href="#contact">Ask about Campus Connect</a>
+<!-- ══════ STUDENT ID: her ID on its lanyard, and the parent's phone (takes the hero's hand-off) ══════ -->
+<section id="student-id" class="sid" aria-labelledby="sid-title">
+  <div class="sid__grid">
+    <div class="sid__copy">
+      <h2 id="sid-title" class="sid__title">Tapped in<br>at 7:02.<br>On the phone<br>at 7:02.</h2>
+      <p class="sid__lede">Maria taps her school ID at the gate, and Campus Connect tells her parents the actual time she came in. When she leaves, they get the time out.</p>
+      <p class="sid__lede">Her ID number is also how her family signs in: parents enter it with an activation code, so only authorized users get in.</p>
+      <button class="sid__flip hand" id="sid-flip" type="button" aria-pressed="false" aria-describedby="sid-desc">turn her ID over<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
     </div>
-
+    <div class="sid__hang" id="sid-hang" aria-hidden="true"></div>
     <figure class="cc__slot" id="cc-slot">
       <div class="ccp" id="cc-phone" aria-hidden="true">
         <div class="ccp__screen">
@@ -329,435 +567,373 @@ button.doodle:focus-visible .doodle__word{outline:2px solid var(--gold);outline-
           <p class="ccp__set">Settings</p>
           <p class="ccp__meta">Showing the latest updates</p>
           <ul class="ccp__feed">
-            <li class="ccp__item is-new" style="top:0"><i class="ccp__dot"></i><p class="ccp__kind">Time in</p><p class="ccp__title">Maria dela Cruz - Time In</p><p class="ccp__body">Maria dela Cruz arrived on campus at<br><span data-cc-today>Sep 25, 2026</span> 7:02 AM.</p><p class="ccp__chev">›</p></li>
+            <li class="ccp__item is-new" style="top:0"><i class="ccp__dot"></i><p class="ccp__kind">Time in</p><p class="ccp__title">Maria dela Cruz: Time In</p><p class="ccp__body">Maria dela Cruz arrived on campus at<br><span data-cc-today>Sep 25, 2026</span> 7:02 AM.</p><p class="ccp__chev">›</p></li>
             <li class="ccp__item" style="top:112px"><i class="ccp__dot"></i><p class="ccp__kind">Tuition</p><p class="ccp__title">Tuition payment posted</p><p class="ccp__body">A tuition payment for Maria dela Cruz<br>was received.</p><p class="ccp__chev">›</p></li>
             <li class="ccp__item" style="top:224px"><i class="ccp__dot"></i><p class="ccp__kind">Announcement</p><p class="ccp__title">A message from the school</p><p class="ccp__body">School announcements arrive here,<br>in the same feed.</p><p class="ccp__chev">›</p></li>
-            <li class="ccp__item" style="top:336px"><i class="ccp__dot"></i><p class="ccp__kind">Time out</p><p class="ccp__title">Maria dela Cruz - Time Out</p><p class="ccp__body">Maria dela Cruz left the campus at<br><span data-cc-yday>Sep 24, 2026</span> 4:31 PM.</p><p class="ccp__chev">›</p></li>
+            <li class="ccp__item" style="top:336px"><i class="ccp__dot"></i><p class="ccp__kind">Time out</p><p class="ccp__title">Maria dela Cruz: Time Out</p><p class="ccp__body">Maria dela Cruz left the campus at<br><span data-cc-yday>Sep 24, 2026</span> 4:31 PM.</p><p class="ccp__chev">›</p></li>
           </ul>
         </div>
       </div>
       <figcaption class="sr-only">An example Campus Connect screen for a parent: a time-in alert, a tuition payment, a school announcement and a time-out alert.</figcaption>
     </figure>
   </div>
+  <div class="sid__stage" id="sid-stage">
+    <p class="sr-only" id="sid-desc">Maria dela Cruz's school ID hangs on a green Campus Connect lanyard. Drag it, throw it, or click it to turn it over.</p>
+  </div>
 </section>
 
-<!-- ══════ STATS BAR ══════ -->
-<div id="stats" style="background:#0A0F1C;padding:0 8%">
-  <div style="display:grid;grid-template-columns:repeat(2,1fr)">
-    <div style="text-align:center;padding:28px 0;border-right:1px solid rgba(255,255,255,.08)">
-      <div class="stat-num" style="color:white">7</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;letter-spacing:.04em;text-transform:uppercase">Product Systems</div>
+<!-- ══════ CAMPUS CONNECT ══════ -->
+<section id="campus-connect" class="ccs desk" aria-labelledby="cc-title">
+  <div class="ccs__in">
+    <p class="ccs__new"><span data-shiny>New system</span></p>
+    <div class="ccs__head">
+      <h2 id="cc-title" class="ccs__title" data-split>Campus Connect</h2>
+      <p class="ccs__tag">Real time.<br>Secure.<br>School-linked.</p>
     </div>
-    <div style="text-align:center;padding:28px 0">
-      <div class="stat-num" style="color:#F5A800">100%</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;letter-spacing:.04em;text-transform:uppercase">Filipino Made</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════ ABOUT ══════ -->
-<section id="about" style="padding:100px 8%;background:#F4F4F0">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
-    <div class="rv">
-      <span class="tag" style="margin-bottom:20px;display:inline-flex">About HITC</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.8rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:16px;margin-bottom:20px">
-        DRIVING<br>INNOVATION<br><span style="color:#1E6BFF">ACROSS THE</span><br>PHILIPPINES
-      </h2>
-      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:16px">HITC, Inc. (Headstart Information Technology &amp; Consultancy Inc.) is one of the Philippines' leading IT firms, headquartered in Tuguegarao City, Cagayan.</p>
-      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:28px">We specialize in developing highly diversified automation products for schools, government agencies, and private institutions nationwide — staffed by young, creative, and dedicated professionals.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <span style="font-size:12px;color:#3D4A5C">Cost-effective automation built for every institution's budget</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <span style="font-size:12px;color:#3D4A5C">Serving schools and institutions across the Philippines</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:18px;height:18px;border-radius:50%;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <span style="font-size:12px;color:#3D4A5C">End-to-end support from deployment to ongoing maintenance</span>
-        </div>
-      </div>
-      <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See Our Products →</button>
-    </div>
-
-    <div class="rv d2" style="position:relative">
-      <div style="border-radius:20px;overflow:hidden;height:420px;box-shadow:0 12px 40px rgba(0,0,0,.1)">
-        <img src="https://picsum.photos/seed/school-philippines-classroom/600/420" alt="HITC Schools" style="width:100%;height:100%;object-fit:cover" />
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,28,.5),transparent 50%)"></div>
-        <div style="position:absolute;bottom:20px;left:20px">
-          <img src="brand_assets/hitclogo.png" alt="HITC" style="height:28px;filter:brightness(0) invert(1);opacity:.8" />
-        </div>
-      </div>
-      <!-- Stat card -->
-      <div class="card" style="position:absolute;bottom:-20px;right:-16px;padding:18px 20px;width:170px">
-        <div style="font-size:10px;color:#8A96A8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Client Rating</div>
-        <div class="stat-num" style="font-size:2rem;color:#0A0F1C">4.9<span style="font-size:1rem;color:#F5A800"> ★</span></div>
-        <div style="font-size:10px;color:#8A96A8;margin-top:4px">Tuguegarao City, PH</div>
-      </div>
+    <p class="ccs__reveal" data-reveal>Move beyond traditional SMS. Campus Connect sends parents and guardians real-time notifications from school: the actual time in and time out, announcements and advisories, school fee payments, eCash loads and the student's Statement of Account.</p>
+    <div class="ccs__foot">
+      <div class="magnet" data-magnet><div class="magnet__in"><a class="hbtn hbtn--blue" href="#contact" data-service="Campus Connect">Ask about Campus Connect</a></div></div>
+      <p class="ccs__note">Built for the way schools talk today: push notifications over a stable internet connection, and longer announcements with clearer context and links you can tap.</p>
+      <p class="ccs__note"><b>Coming soon:</b> quarter grades, right in the app.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════ SERVICES ══════ -->
-<section id="services" style="padding:100px 8%;background:#EAEAE4">
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px" class="rv">
+<!-- ══════ SERVICES: HITC's systems stack onto Campus Connect ══════ -->
+<section id="services" class="stk desk" aria-labelledby="stk-title">
+  <div class="stk__head">
+    <h2 id="stk-title" class="stk__title">One school system.<br>One mobile connection.</h2>
+    <p class="stk__lede">Campus Connect is an extension of your school system. It works with the HITC systems a school already runs, and each one sends what parents need to know to the same app.</p>
+  </div>
+
+  <div class="stk__deck" data-stack>
+    <!-- the base of the deck: the app everything lands in -->
+    <article class="ixc ixc--cc" aria-labelledby="ixc-cc">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-cc">Campus Connect</h3><p class="ixc__feed hand">where it all lands</p></header>
+      <div class="ixc__body">
+        <span class="ixc__icon" aria-hidden="true"><img src="brand_assets/campus-connect-deck/campus-connect-app-icon-640.webp" alt="" width="640" height="640" loading="lazy" /></span>
+        <div class="ixc__text">
+          <p class="ixc__big">The app on a parent's phone.</p>
+          <p>Each system below sends its news here: attendance, announcements, eCash and school fees, in one feed for the people a school has authorized.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Turnstile: the giant time is the picture -->
+    <article class="ixc ixc--gate" aria-labelledby="ixc-gate">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-gate">Turnstile System</h3><p class="ixc__feed hand">sends the time in</p></header>
+      <div class="ixc__body">
+        <p class="ixc__clock" aria-hidden="true">7:02<span>AM</span></p>
+        <div class="ixc__text">
+          <p class="ixc__big">The gate knows she's in.</p>
+          <p>RFID school ID gates. A tap of a student's or staff member's ID logs the entry and the exit, on a campus of any size.</p>
+          <a class="ixc__link" href="turnstile.html">See the Turnstile System</a>
+        </div>
+        <div class="note note--tilt"><span class="sr-only">Example notification: </span><p class="note__kind">Time in</p><p class="note__title">Maria dela Cruz: Time In</p><p class="note__body">Arrived on campus at 7:02 AM, main gate.</p></div>
+      </div>
+    </article>
+
+    <!-- Attendance Manager: a page from the register -->
+    <article class="ixc ixc--reg" aria-labelledby="ixc-reg">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-reg">Attendance Manager</h3><p class="ixc__feed hand">sends time in and time out</p></header>
+      <div class="ixc__body">
+        <div class="ixc__text">
+          <p class="ixc__big">Every school day, on the record.</p>
+          <p>Digital attendance tracking for the whole school, with a mobile app on Android and iOS and real-time monitoring.</p>
+          <a class="ixc__link" href="attendance.html">See the Attendance Manager</a>
+        </div>
+        <table class="reg">
+          <caption class="sr-only">An example week of attendance for Maria dela Cruz</caption>
+          <thead><tr class="reg__name"><th scope="colgroup" colspan="3">Maria dela Cruz</th></tr><tr><th scope="col">Day</th><th scope="col">In</th><th scope="col">Out</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Mon</th><td>7:05 AM</td><td>3:10 PM</td></tr>
+            <tr><th scope="row">Tue</th><td>6:58 AM</td><td>3:20 PM</td></tr>
+            <tr><th scope="row">Wed</th><td>7:01 AM</td><td>3:18 PM</td></tr>
+            <tr><th scope="row">Thu</th><td>7:02 AM</td><td>4:31 PM</td></tr>
+            <tr class="reg__today"><th scope="row">Fri</th><td>7:02 AM</td><td><span class="hand">not yet</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- eBroadcasting: the photo fills the card -->
+    <article class="ixc ixc--cast" aria-labelledby="ixc-cast">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-cast">eBroadcasting</h3><p class="ixc__feed hand">sends announcements</p></header>
+      <div class="ixc__body">
+        <img class="ixc__photo" src="photos/web/ebroadcasting2.webp" alt="A school staff member at her desk computer in the school office" width="960" height="540" loading="lazy" />
+        <div class="ixc__text">
+          <p class="ixc__big">One message, every parent.</p>
+          <p>Campus-wide announcements and advisories, sent to the whole school at once. Longer than an SMS, with clearer context and links parents can tap.</p>
+          <a class="ixc__link" href="ebroadcasting.html">See eBroadcasting</a>
+        </div>
+        <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Announcement</p><p class="note__title">A message from the school</p><p class="note__body">School announcements arrive here, with links you can tap.</p></div>
+      </div>
+    </article>
+
+    <!-- eCash: a taped snapshot from a canteen -->
+    <article class="ixc ixc--cash" aria-labelledby="ixc-cash">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-cash">eCash System</h3><p class="ixc__feed hand">sends eCash loads</p></header>
+      <div class="ixc__body">
+        <figure class="snap"><img src="photos/web/ecash-4.webp" alt="Students with their IDs on lanyards at an eCash kiosk in their school" width="1280" height="719" loading="lazy" /></figure>
+        <div class="ixc__text">
+          <p class="ixc__big">Money for lunch, loaded and seen.</p>
+          <p>Cashless payments for school canteens, bookstores and fee collection. Each eCash load reaches the parent's phone.</p>
+          <a class="ixc__link" href="ecash.html">See the eCash System</a>
+        </div>
+        <div class="note note--sticker"><span class="sr-only">Example notification: </span><p class="note__kind">eCash</p><p class="note__title">eCash load posted</p><p class="note__body">Maria dela Cruz's eCash was loaded.</p></div>
+      </div>
+    </article>
+
+    <!-- SFMS: the receipt is the picture -->
+    <article class="ixc ixc--fees" aria-labelledby="ixc-fees">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-fees">SFMS</h3><p class="ixc__feed hand">sends fees, the SOA and the DCR</p></header>
+      <div class="ixc__body">
+        <div class="slip" aria-hidden="true">
+          <p class="slip__head">Statement of Account</p>
+          <p class="slip__who">Maria dela Cruz</p>
+          <p class="slip__row"><span>Tuition and school fees</span><span>posted</span></p>
+          <p class="slip__row"><span>Sent as</span><span>an image</span></p>
+          <p class="slip__row"><span>Sent to</span><span>parent's phone</span></p>
+          <p class="slip__stamp">Received</p>
+        </div>
+        <div class="ixc__text">
+          <p class="ixc__big">Fees, statements and the day's collection.</p>
+          <p>School fee management: tuition tracking and financial reporting in one system. Parents get fee payment notices and the Statement of Account as an image. The Finance Officer gets the Daily Collection Report at the end of each day.</p>
+          <a class="ixc__link" href="sfms.html">See SFMS, School Fee Management</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- iAsk: also from HITC, its own app -->
+    <article class="ixc ixc--ask" aria-labelledby="ixc-ask">
+      <header class="ixc__strip"><h3 class="ixc__name" id="ixc-ask">iAsk eLibrary</h3><p class="ixc__feed hand">also from HITC, its own app</p></header>
+      <div class="ixc__body">
+        <div class="ixc__text">
+          <p class="ixc__big">Questions and answers, in their own app.</p>
+          <p>Interactive communication and Q&amp;A for administrators, faculty and students in one platform, on Android and iOS.</p>
+          <a class="ixc__link" href="iask.html">See iAsk eLibrary</a>
+        </div>
+        <p class="ixc__ask" aria-hidden="true">?</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════ ABOUT: who HITC is, with the facts filed and stamped ══════ -->
+<section id="about" class="abt" aria-labelledby="about-title">
+  <div class="abt__in">
     <div>
-      <span class="tag" style="margin-bottom:16px;display:inline-flex">Our Products</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.5rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px">
-        COMPLETE IT SOLUTIONS<br><span style="color:#1E6BFF">FOR MODERN INSTITUTIONS</span>
-      </h2>
-    </div>
-    <p style="font-size:13px;color:#5A6880;line-height:1.75;max-width:320px">From robotics classrooms to campus-wide automation — a full ecosystem of intelligent management systems.</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="rv d1">
-
-    <!-- Featured: Intelliteach -->
-    <div class="scard-featured" style="position:relative;overflow:hidden;cursor:pointer" onclick="location.href='services.html#intelliteach'">
-      <div style="position:absolute;top:16px;left:16px">
-        <span style="background:#1E6BFF;color:white;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Featured</span>
-      </div>
-      <div style="padding-top:32px">
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:white;text-transform:uppercase;margin-bottom:6px">Intelliteach</h3>
-        <div style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">EV3 Robotics &amp; LMS</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.65;max-width:300px">A dynamic web-based Learning Management System integrating LEGO® MINDSTORMS® EV3 curriculum. Empowers teachers to deliver hands-on robotics education.</p>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:20px">
-        <span class="tag" style="background:rgba(30,107,255,.2);color:#6AAEFF">LEGO EV3</span>
-        <span class="tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)">Online LMS</span>
-        <button style="width:32px;height:32px;border-radius:50%;background:#1E6BFF;border:none;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;margin-left:auto;transition:background .2s" onmouseover="this.style.background='#1559D4'" onmouseout="this.style.background='#1E6BFF'">→</button>
+      <p class="kick hand">from Tuguegarao City, since 2006</p>
+      <h2 id="about-title" class="h2x">Driving innovation across the Philippines</h2>
+      <p class="abt__lede">HITC, Inc. (Headstart Information Technology &amp; Consultancy Inc.) is one of the Philippines' leading IT firms, headquartered in Tuguegarao City, Cagayan.</p>
+      <p class="abt__lede">We specialize in developing highly diversified automation products for schools, government agencies, and private institutions nationwide, staffed by young, creative, and dedicated professionals.</p>
+      <ul class="ticks">
+        <li><svg aria-hidden="true"><use href="#i-tick"/></svg><span>Cost-effective automation built for every institution's budget</span></li>
+        <li><svg aria-hidden="true"><use href="#i-tick"/></svg><span>Serving schools and institutions across the Philippines</span></li>
+        <li><svg aria-hidden="true"><use href="#i-tick"/></svg><span>End-to-end support from deployment to ongoing maintenance</span></li>
+      </ul>
+      <div class="abt__ctas">
+        <a class="hbtn hbtn--blue" href="#services">See our products</a>
+        <a class="tlink" href="about.html">Read our story</a>
       </div>
     </div>
-
-    <!-- Attendance Manager -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#attendance'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-6 4h4"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Attendance Manager</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Smart digital attendance tracking for schools. Real-time monitoring with mobile app support and comprehensive reporting.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">Real-Time</span><span class="tag-gray tag">Mobile App</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-    <!-- Turnstile -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#turnstile'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Turnstile System</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">RFID School ID Gates</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Automated school gate management using RFID-enabled student and staff ID cards. Seamless entry/exit logging for any campus size.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">RFID</span><span class="tag-gray tag">Auto-Log</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-    <!-- eBroadcasting -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#ebroadcasting'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eBroadcasting</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Campus Announcements</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Campus-wide announcement and communication platform. Broadcast messages, alerts, and critical information to your entire institution instantly.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">Broadcast</span><span class="tag-gray tag">Multi-Channel</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-    <!-- SFMS -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#sfms'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">SFMS</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">School Fee Management</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Complete financial management for educational institutions. Tuition tracking, payroll, budgeting, and financial reporting in one unified system.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">Tuition</span><span class="tag-gray tag">Payroll</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-    <!-- eCash -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#ecash'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eCash System</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Cashless Campus</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Cashless payment platform for school canteens, bookstores, and fee collection. Safer, faster, and more transparent digital transactions.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">Cashless</span><span class="tag-gray tag">Digital Wallet</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-    <!-- iAsk eLibrary -->
-    <div class="scard" style="cursor:pointer" onclick="location.href='services.html#iask'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">iAsk eLibrary</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Interactive communication and Q&amp;A management system connecting administrators, faculty, and students in a unified, accessible platform.</p>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag-gray tag">Q&amp;A</span><span class="tag-gray tag">Multi-User</span></div>
-        <button style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">→</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════ ROBOTICS ══════ -->
-<section id="robotics" style="padding:100px 8%;background:#F4F4F0">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-    <!-- Left: photo -->
-    <div class="rv" style="position:relative">
-      <div style="border-radius:20px;overflow:hidden;height:480px;box-shadow:0 12px 40px rgba(0,0,0,.1)">
-        <img src="photos/robot1.jpg" alt="LEGO EV3 Robotics" style="width:100%;height:100%;object-fit:cover" />
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,28,.6),transparent 50%)"></div>
-        <div style="position:absolute;bottom:20px;left:24px;right:24px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:white;letter-spacing:.06em;text-transform:uppercase">LEGO® MINDSTORMS® EV3</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.55);margin-top:2px">Intelliteach Program</div>
-        </div>
-      </div>
-      <!-- Floating card -->
-      <div class="card" style="position:absolute;top:24px;right:-20px;padding:14px 18px;width:160px">
-        <div style="font-size:10px;color:#8A96A8;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase">Grade Levels</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#0A0F1C">4 – 10</div>
-        <div style="font-size:10px;color:#1E6BFF;margin-top:3px;font-weight:600">DepEd Aligned</div>
-      </div>
-    </div>
-
-    <!-- Right: text -->
-    <div class="rv d2">
-      <span class="tag" style="margin-bottom:20px;display:inline-flex">Robotics Program</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px;margin-bottom:20px">
-        TEACHING TOMORROW'S<br>ENGINEERS WITH<br><span style="color:#F5A800">LEGO® EV3</span>
-      </h2>
-      <p style="font-size:13px;color:#5A6880;line-height:1.8;margin-bottom:28px">HITC's Intelliteach robotics program brings hands-on engineering education to Filipino schools. Students build and program real robots using the LEGO® MINDSTORMS® EV3 platform, developing critical thinking, problem-solving, and STEM skills aligned with the national curriculum.</p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px">
-        <div class="card" style="padding:16px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Curriculum-Aligned</div>
-          <div style="font-size:11px;color:#8A96A8">Lessons mapped to DepEd STEM standards</div>
-        </div>
-        <div class="card" style="padding:16px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">All Grade Levels</div>
-          <div style="font-size:11px;color:#8A96A8">Suitable for Grades 4 through 10</div>
-        </div>
-        <div class="card" style="padding:16px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Hands-On Learning</div>
-          <div style="font-size:11px;color:#8A96A8">Build and compete with real robots</div>
-        </div>
-        <div class="card" style="padding:16px">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Competition Ready</div>
-          <div style="font-size:11px;color:#8A96A8">Prep students for robotics competitions</div>
-        </div>
-      </div>
-
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Bring Robotics to Your School →
-      </button>
+    <div class="abt__props" id="stats">
+      <div class="drawer"><p class="drawer__strip"><span class="drawer__name">7 product systems</span><span class="drawer__note hand">all from one office</span></p></div>
+      <figure class="snap"><img src="photos/web/ecash7.webp" alt="Students in white uniforms tap their ID cards at an eCash terminal in their school canteen" width="1280" height="719" loading="lazy" /><figcaption class="hand">at an eCash canteen</figcaption></figure>
+      <p class="stamp"><b>100%</b><span>Filipino made</span></p>
     </div>
   </div>
 </section>
 
-<!-- ══════ CONTACT ══════ -->
-<section id="contact" style="padding:100px 8%;background:#EAEAE4">
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px" class="rv">
+<!-- ══════ CONTACT: the lines, and the message card on the desk ══════ -->
+<section id="contact" class="reachh desk" aria-labelledby="contact-title">
+  <div class="reachh__in">
     <div>
-      <span class="tag" style="margin-bottom:16px;display:inline-flex">Contact Us</span>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,5vw,4.5rem);line-height:.95;text-transform:uppercase;color:#0A0F1C;margin-top:8px">
-        LET'S BUILD THE<br><span style="color:#1E6BFF">FUTURE TOGETHER</span>
-      </h2>
-    </div>
-    <p style="font-size:13px;color:#5A6880;max-width:280px;line-height:1.75">Ready to transform your institution with smart technology? Reach out — we'd love to hear from you.</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:32px" class="rv d1">
-    <!-- Contact info -->
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <!-- Logo -->
-      <div class="card" style="padding:24px;text-align:center">
-        <img src="brand_assets/hitclogo.png" alt="HITC" style="height:52px;width:auto;margin:0 auto 12px;display:block" />
-        <div style="font-size:11px;color:#5A6880;line-height:1.6">Headstart Information Technology<br>&amp; Consultancy Inc.</div>
-        <div style="font-size:10px;color:#8A96A8;margin-top:6px">Tuguegarao City · Cagayan · Philippines</div>
-      </div>
-
-      <div class="card" style="padding:22px;display:flex;flex-direction:column;gap:16px">
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Phone</div>
-            <div style="font-size:13px;color:#0A0F1C;font-weight:500">(078) 377-1337</div>
-            <div style="font-size:11px;color:#5A6880">Smart: (0912) 082-7092</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Email</div>
-            <div style="font-size:13px;color:#0A0F1C;font-weight:500">info@hitc.ph</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <div style="width:32px;height:32px;border-radius:8px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8A96A8;margin-bottom:3px">Location</div>
-            <div style="font-size:13px;color:#0A0F1C;font-weight:500">HITC Bldg., #154 Tuliao St.</div>
-            <div style="font-size:11px;color:#5A6880">Caritan Norte, Tuguegarao City</div>
-            <div style="font-size:11px;color:#5A6880">Cagayan, Philippines 3500</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Form -->
-    <div class="card" style="padding:32px">
-      <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:24px">Send Us a Message</h3>
-      <form style="display:flex;flex-direction:column;gap:14px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div><label>Name</label><input type="text" placeholder="Juan dela Cruz" /></div>
-          <div><label>Email</label><input type="email" placeholder="juan@school.edu.ph" /></div>
-        </div>
-        <div><label>Institution</label><input type="text" placeholder="Your school or organization" /></div>
+      <p class="kick hand">Tuguegarao City, Philippines</p>
+      <h2 id="contact-title" class="h2x">Let's build the future together</h2>
+      <p class="reachh__lede">Ready to transform your institution with smart technology? Reach out. We'd love to hear from you.</p>
+      <div class="reach-lines">
         <div>
-          <label>Service of Interest</label>
-          <select>
-            <option value="">Select a service...</option>
-            <option>Intelliteach — EV3 Robotics &amp; LMS</option>
+          <h3>Phone</h3>
+          <a href="tel:+63783771337">(078) 377-1337</a>
+          <p>Smart: <a class="inl" href="tel:+639120827092">(0912) 082-7092</a></p>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <a href="mailto:info@hitc.ph">info@hitc.ph</a>
+        </div>
+        <div>
+          <h3>Office</h3>
+          <!-- pinned to the HITC Building's own spot at 154 Tuliao St (not the Google listing); change the coordinates here and on contact.html together -->
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=17.6334385,121.7179993" target="_blank" rel="noopener noreferrer">HITC Bldg., #154 Tuliao St., Caritan Norte, Tuguegarao City, Cagayan 3500<span class="sr-only"> (directions, opens Google Maps)</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard__strip"><h3 class="fcard__name">Send us a message</h3><p class="fcard__note hand" aria-hidden="true">to info@hitc.ph</p></div>
+      <form id="home-form" class="mailform">
+        <div class="fcard__two">
+          <div class="field"><label for="hf-name">Name</label><input id="hf-name" name="name" type="text" placeholder="Juan dela Cruz" autocomplete="name" required /></div>
+          <div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" type="email" placeholder="juan@school.edu.ph" autocomplete="email" required /></div>
+        </div>
+        <div class="field"><label for="hf-school">School or institution</label><input id="hf-school" name="school" type="text" placeholder="Your school or organization" autocomplete="organization" /></div>
+        <div class="field">
+          <label for="hf-product">Product of interest</label>
+          <select id="hf-product" name="product">
+            <option value="">Select a product...</option>
+            <option>Campus Connect</option>
             <option>Attendance Manager</option>
             <option>Turnstile System</option>
             <option>eBroadcasting System</option>
-            <option>SFMS — School Fee Management</option>
+            <option>SFMS (School Fee Management)</option>
             <option>eCash System</option>
             <option>iAsk eLibrary</option>
+            <option>Full Suite / Multiple Products</option>
           </select>
         </div>
-        <div><label>Message</label><textarea rows="4" placeholder="Tell us about your institution and what you're looking for..." style="resize:none;line-height:1.65"></textarea></div>
-        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;border-radius:10px;padding:13px">Send Message →</button>
+        <div class="field"><label for="hf-message">Message</label><textarea id="hf-message" name="message" rows="4" placeholder="Tell us about your institution and what you're looking for..." required></textarea></div>
+        <button type="submit" class="hbtn hbtn--blue">Send message</button>
+        <p class="fcard__help" data-form-note aria-live="polite">Sending opens your email app with the message ready to go to info@hitc.ph.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ══════ FOOTER ══════ -->
-<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
-    <div>
-      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block" />
-      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
-      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px" onmouseover="this.style.borderColor='#1E6BFF'" onmouseout="this.style.borderColor='#D8D8D0'">info@hitc.ph</a>
-    </div>
-    <div style="display:flex;gap:52px">
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="#home" class="nl" style="font-size:12px">Home</a>
-          <a href="#about" class="nl" style="font-size:12px">About</a>
-          <a href="#services" class="nl" style="font-size:12px">Services</a>
-          <a href="#robotics" class="nl" style="font-size:12px">Robotics</a>
-          <a href="#contact" class="nl" style="font-size:12px">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="#services" class="nl" style="font-size:12px">Intelliteach</a>
-          <a href="#services" class="nl" style="font-size:12px">Attendance</a>
-          <a href="#services" class="nl" style="font-size:12px">Turnstile</a>
-          <a href="#services" class="nl" style="font-size:12px">eBroadcasting</a>
-          <a href="#services" class="nl" style="font-size:12px">SFMS · eCash · iAsk</a>
-        </div>
-      </div>
-    </div>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})"
-      style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0"
-      onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
-  </div>
+</main>
 
-  <!-- Giant wordmark -->
-  <div style="overflow:hidden;margin:0 -8%">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+<!-- ══════ FOOTER ══════ -->
+<footer class="foot">
+  <div class="foot__top">
+    <div>
+      <img class="foot__logo" src="brand_assets/hitclogo-300.webp" alt="HITC" width="57" height="44" loading="lazy" />
+      <p class="foot__about">Headstart Information Technology &amp; Consultancy Inc., empowering Philippine schools since 2006.</p>
+      <a class="mailto" href="mailto:info@hitc.ph">info@hitc.ph</a>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <p class="foot__head">Navigate</p>
+        <div class="foot__list"><a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="careers.html">Careers</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></div>
+      </div>
+      <div>
+        <p class="foot__head">Products</p>
+        <div class="foot__list"><a href="#campus-connect">Campus Connect</a><a href="turnstile.html">Turnstile</a><a href="attendance.html">Attendance</a><a href="ebroadcasting.html">eBroadcasting</a><a href="ecash.html">eCash</a><a href="sfms.html">SFMS</a><a href="iask.html">iAsk eLibrary</a></div>
+      </div>
+    </div>
+    <a class="totop" href="#top" aria-label="Back to top">↑</a>
   </div>
+  <div class="foot__mark" aria-hidden="true"><span>we innovate technologies</span></div>
 </footer>
 
-<style>
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes float2{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
-.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
-.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
-.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
 
-<script>
-var obs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
-},{threshold:.08});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+<!-- GSAP + ScrollTrigger from npm, as window.gsap / window.ScrollTrigger for the scripts below (module scripts run in this order) -->
+<script type="module">import { gsap } from 'gsap'; import { ScrollTrigger } from 'gsap/ScrollTrigger'; window.gsap = gsap; window.ScrollTrigger = ScrollTrigger;</script>
+
+<!-- the scroll story's pin, made before the 3D scene loads; the module drives what you see -->
+<script type="module">
+(function () {
+  var root = document.documentElement;
+  var hero = document.getElementById('home');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var phoneMq = matchMedia('(max-width: 767px)');
+  var S = window.hitcStory = { t: 0, trigger: null, driven: false, onUpdate: null };
+  function webglOK() {
+    try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); }
+    catch (e) { return false; }
+  }
+  S.teardown = function () {
+    if (S.trigger) { S.trigger.kill(); S.trigger = null; }
+    root.classList.remove('has-story');
+    hero.style.opacity = ''; hero.style.visibility = ''; hero.style.pointerEvents = '';
+    S.t = 0;
+  };
+  S.setup = function () {
+    S.teardown();
+    if (reduce.matches || !window.gsap || !window.ScrollTrigger || root.classList.contains('no-webgl') || !webglOK()) return;
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true }); // a phone's browser bar showing or hiding is not a re-layout
+    if (ScrollTrigger.clearScrollMemory) ScrollTrigger.clearScrollMemory('manual');
+    root.classList.add('has-story');
+    root.style.setProperty('--story-overlap', hero.offsetHeight + 'px');
+    S.trigger = ScrollTrigger.create({
+      trigger: hero,
+      start: 'top top',
+      end: function () { return '+=' + Math.round(hero.offsetHeight * (phoneMq.matches ? 1.35 : 1.7)); },
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onRefresh: function () { root.style.setProperty('--story-overlap', hero.offsetHeight + 'px'); },
+      onUpdate: function (self) {
+        S.t = self.progress;
+        if (S.onUpdate) S.onUpdate();
+        // until the 3D scene takes over, just keep the section clear once the story is scrolled past
+        if (!S.driven) { var past = self.progress >= 0.999; hero.style.visibility = past ? 'hidden' : ''; hero.style.opacity = past ? '0' : ''; }
+      },
+    });
+  };
+  S.setup();
+  reduce.addEventListener('change', function () { S.setup(); });
+  // Links like index.html#services from the other pages: ScrollTrigger's refreshes reset the jump,
+  // so go there once the pin is in place.
+  if (S.trigger && location.hash.length > 1) {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var go = function () {
+      ScrollTrigger.removeEventListener('refresh', go);
+      var el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
+    };
+    ScrollTrigger.addEventListener('refresh', go);
+  }
+})();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <!-- Campus Connect: today's date on the example screen, and a phone that fits the first screen -->
-<script>
+<script type="module">
 (function () {
-  var fmt = function (d) {
-    try { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'Asia/Manila' }); }
-    catch (e) { return d.toDateString().slice(4); }
-  };
-  var now = new Date();
-  window.hitcDates = { today: fmt(now), yday: fmt(new Date(now.getTime() - 864e5)) };
+  // Manila wall-clock time as a Date whose local fields read as Manila (UTC+8, no daylight saving)
+  var nowM = new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
+  var fmt = function (d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); };
+  var weekday = function (d) { while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() - 1); return d; };
+  // the latest school day whose 7:02 AM has already happened, and the school day before it
+  var day = new Date(nowM);
+  if (day.getHours() * 60 + day.getMinutes() < 7 * 60 + 2) day.setDate(day.getDate() - 1);
+  weekday(day);
+  var prev = new Date(day);
+  prev.setDate(prev.getDate() - 1);
+  weekday(prev);
+  window.hitcDates = { today: fmt(day), yday: fmt(prev) };
   document.querySelectorAll('[data-cc-today]').forEach(function (el) { el.textContent = window.hitcDates.today; });
   document.querySelectorAll('[data-cc-yday]').forEach(function (el) { el.textContent = window.hitcDates.yday; });
   var slot = document.getElementById('cc-slot');
   var ph = document.getElementById('cc-phone');
+  // Size by 100svh, which stays put when the browser bars hide; innerHeight doesn't, and a
+  // phone that resized mid-story no longer matched the spot the 3D phone lands on.
+  var probe = document.createElement('div');
+  probe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:100vh;height:100svh;visibility:hidden;pointer-events:none';
+  document.body.appendChild(probe);
   window.hitcSizePhone = function () {
-    var s = Math.min(1, (window.innerHeight - 150) / 690, (document.documentElement.clientWidth - 40) / 320);
+    var visH = probe.offsetHeight || window.innerHeight;
+    var s = Math.min(1, (visH - 150) / 690, (document.documentElement.clientWidth - 40) / 320);
     s = Math.max(0.6, s);
     ph.style.setProperty('--cc-s', s.toFixed(3));
     slot.style.height = Math.round(690 * s) + 'px';
   };
   window.hitcSizePhone();
   window.addEventListener('resize', window.hitcSizePhone);
-  // If three.js never loads (CDN down), the module never runs: show the photo instead.
-  setTimeout(function () { if (!window.__hitcBook) document.documentElement.classList.add('no-webgl'); }, 6000);
+  // If three.js never loads (CDN down), the module never runs: show the photo and drop the pin.
+  setTimeout(function () {
+    if (window.__hitcBook) return;
+    document.documentElement.classList.add('no-webgl');
+    if (window.hitcStory) window.hitcStory.teardown();
+  }, 6000);
+  // the phone menu closes when you pick a link
+  var mnav = document.getElementById('mnav');
+  if (mnav) mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.open = false; }); });
+  // "Ask about Campus Connect" picks it in the form (js/pages.js sends the form, the same way as contact.html's)
+  var form = document.getElementById('home-form');
+  document.querySelectorAll('[data-service]').forEach(function (a) {
+    a.addEventListener('click', function () { if (form) form.elements.namedItem('product').value = a.getAttribute('data-service'); });
+  });
 })();
 </script>
 
@@ -774,7 +950,8 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
     const hint = document.getElementById('hero-hint');
     const shadeEl = document.getElementById('hero-shade');
     const caps = [document.getElementById('cap-1'), document.getElementById('cap-2')];
-    const ccSection = document.getElementById('campus-connect');
+    // the section under the pinned story, holding the phone the story lands on
+    const ccSection = document.getElementById('student-id');
     const ccPhone = document.getElementById('cc-phone');
     const reduceMq = matchMedia('(prefers-reduced-motion: reduce)');
     const fineMq = matchMedia('(hover: hover) and (pointer: fine)');
@@ -789,12 +966,16 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       }
     }
 
-    if (!webglOK()) {
-      root.classList.add('no-webgl');
+    const fail = () => { root.classList.add('no-webgl'); window.hitcStory && window.hitcStory.teardown(); };
+    // a module that arrives after the watchdog gave up keeps the photo, rather than a story mid-page
+    if (root.classList.contains('no-webgl')) {
+      window.hitcStory && window.hitcStory.teardown();
+    } else if (!webglOK()) {
+      fail();
     } else {
       start().catch((err) => {
         console.warn('HITC 3D book could not start:', err);
-        root.classList.add('no-webgl');
+        fail();
       });
     }
 
@@ -818,7 +999,10 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.12;
       renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.shadowMap.type = THREE.PCFShadowMap; // three 0.18x removed PCFSoftShadowMap: PCF with sun.shadow.radius
+      renderer.shadowMap.autoUpdate = false;
+      let needFrame = true;
+      let needShadow = true;
 
       const NIGHT = new THREE.Color('#0C1430');
       const scene = new THREE.Scene();
@@ -869,7 +1053,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       function rr(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); }
       function circle(g, x, y, r) { g.beginPath(); g.arc(x, y, r, 0, TAU); g.fill(); }
       function grain(g, w, h, amt) {
-        const n = Math.round((w * h) / 70);
+        const n = Math.round((w * h) / 140);
         for (let k = 0; k < n; k++) {
           g.fillStyle = rand() > 0.5 ? `rgba(255,255,255,${amt})` : `rgba(60,44,24,${amt})`;
           g.fillRect(rand() * w, rand() * h, 1.5, 1.5);
@@ -1653,7 +1837,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       // The screen is drawn from the same coordinates as the section's HTML phone, so the
       // phone the story lands on is the phone the section shows.
       const dates = window.hitcDates || { today: 'Sep 25, 2026', yday: 'Sep 24, 2026' };
-      const phoneTex = canvasTex(600, 1340, (g) => {
+      const drawPhone = (g) => {
         g.setTransform(2, 0, 0, 2, 0, 0);
         g.fillStyle = '#F3F5F9'; g.fillRect(0, 0, 300, 670);
         g.textBaseline = 'top';
@@ -1679,10 +1863,10 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         g.fillStyle = '#1E6BFF'; g.fillText('Settings', 168, 124);
         g.fillStyle = '#7A8499'; g.font = font(400, 11); g.fillText('Showing the latest updates', 16, 164);
         const items = [
-          ['Time in', 'Maria dela Cruz - Time In', ['Maria dela Cruz arrived on campus at', `${dates.today} 7:02 AM.`], true],
+          ['Time in', 'Maria dela Cruz: Time In', ['Maria dela Cruz arrived on campus at', `${dates.today} 7:02 AM.`], true],
           ['Tuition', 'Tuition payment posted', ['A tuition payment for Maria dela Cruz', 'was received.'], false],
           ['Announcement', 'A message from the school', ['School announcements arrive here,', 'in the same feed.'], false],
-          ['Time out', 'Maria dela Cruz - Time Out', ['Maria dela Cruz left the campus at', `${dates.yday} 4:31 PM.`], false],
+          ['Time out', 'Maria dela Cruz: Time Out', ['Maria dela Cruz left the campus at', `${dates.yday} 4:31 PM.`], false],
         ];
         items.forEach(([kind, title, body, isNew], i) => {
           const y = 184 + i * 112;
@@ -1699,6 +1883,15 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
           g.fillStyle = '#9AA3B5'; g.font = font(400, 20); g.fillText('›', 274, y + 46);
           g.fillStyle = '#E3E7EF'; g.fillRect(16, y + 111, 268, 1);
         });
+      };
+      const phoneTex = canvasTex(600, 1340, drawPhone);
+      document.fonts && document.fonts.ready.then(() => {
+        const g = phoneTex.userData.canvas.getContext('2d');
+        g.setTransform(1, 0, 0, 1, 0, 0);
+        g.clearRect(0, 0, 600, 1340);
+        drawPhone(g);
+        phoneTex.needsUpdate = true;
+        needFrame = true;
       });
       const screenMat = new THREE.MeshBasicMaterial({ map: phoneTex, toneMapped: false, fog: false, color: new THREE.Color(0.05, 0.06, 0.08) });
       {
@@ -1803,6 +1996,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       sun.shadow.camera.far = 10;
       sun.shadow.bias = -0.0006;
       sun.shadow.normalBias = 0.02;
+      sun.shadow.radius = 3;
       scene.add(sun, sun.target);
       const fill = new THREE.DirectionalLight('#A9C0FF', 0.4);
       fill.position.set(2.6, 2.2, 3.2);
@@ -1867,6 +2061,53 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       svhProbe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
       document.body.appendChild(svhProbe);
       let barGap = 0;
+      let holeX = 0, holeY = 0;
+      // Move the scene sideways (or down, on tall screens) so it clears the copy and stays on screen,
+      // and pull the camera back when there isn't room for both.
+      const fitPts = [
+        new THREE.Vector3(-1.09, 0.03, 0.72), new THREE.Vector3(-1.09, 0.68, -0.5),
+        new THREE.Vector3(1.09, 0.68, -0.5), new THREE.Vector3(1.09, 0.03, 0.72),
+      ];
+      const fitTmp = new THREE.Vector3();
+      function fitScene(portrait) {
+        const pts = fitPts.slice();
+        [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([a, b]) => {
+          pts.push(phone.localToWorld(new THREE.Vector3(a * BODY_W / 2, 0, b * BODY_H / 2)));
+          if (!portrait) pts.push(stack.localToWorld(new THREE.Vector3(a * 0.37, 0.22, b * 0.5)));
+        });
+        const base = camA.clone().sub(lookA);
+        const visBottom = H - barGap;
+        let dist = 1;
+        for (let i = 0; i < 14; i++) {
+          camera.position.copy(lookA).addScaledVector(base, dist);
+          camera.up.set(0, 1, 0);
+          camera.lookAt(lookA);
+          camera.setViewOffset(W, H, offX * W, offY * H + barGap / 2, W, H);
+          camera.updateMatrixWorld();
+          let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+          for (const q of pts) {
+            fitTmp.copy(q).project(camera);
+            const x = (fitTmp.x * 0.5 + 0.5) * W, y = (-fitTmp.y * 0.5 + 0.5) * H;
+            minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+          }
+          if (!portrait) {
+            const needL = copyBox.right + 24 - minX, roomR = W - 12 - maxX;
+            const tooTall = minY < 66 || maxY > visBottom - 10;
+            if (needL <= 0 && roomR >= 0 && !tooTall) break;
+            if (!tooTall && needL > 0 && roomR >= needL) { offX -= (needL + 2) / W; continue; }
+            if (!tooTall && needL <= 0 && roomR < 0 && -needL >= -roomR) { offX += (-roomR + 2) / W; continue; }
+            dist *= 1.06;
+          } else {
+            const needT = copyBox.bottom - 24 - minY, roomB = visBottom - 16 - maxY;
+            const tooWide = minX < 4 || maxX > W - 4;
+            if (needT <= 0 && roomB >= 0 && !tooWide) break;
+            if (!tooWide && needT > 0 && roomB >= needT) { offY -= (needT + 2) / H; continue; }
+            if (!tooWide && needT <= 0 && roomB < 0 && -needT >= -roomB) { offY += (-roomB + 2) / H; continue; }
+            dist *= 1.06;
+          }
+        }
+        camA.copy(lookA).addScaledVector(base, dist);
+      }
       function frame() {
         W = hero.clientWidth;
         H = hero.clientHeight;
@@ -1874,6 +2115,15 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         barGap = visH > 100 ? Math.max(0, H - visH) : 0;
         renderer.setSize(W, H, false);
         camera.aspect = W / H;
+        needFrame = needShadow = true;
+        // labels and framing never sit on the copy: measure the text block once per resize
+        const hr = hero.getBoundingClientRect();
+        copyBox = { right: 0, bottom: 0 };
+        copy.querySelectorAll('.wrap > *').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          copyBox.right = Math.max(copyBox.right, r.right - hr.left);
+          copyBox.bottom = Math.max(copyBox.bottom, r.bottom - hr.top);
+        });
         const portrait = camera.aspect < 0.9;
         if (portrait) {
           phone.position.set(0.6, 0, 1.3);
@@ -1900,6 +2150,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
           offY = -0.04;
         }
         scene.updateMatrixWorld(true);
+        fitScene(portrait);
         turnstile.children[0].localToWorld(readerPos.set(0.02, 0.05, 0.02));
         phone.localToWorld(phoneTop.set(0, BODY_T, 0));
         phoneUp.set(0, 0, -1).applyQuaternion(phone.quaternion);
@@ -1927,17 +2178,11 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         paper.style.width = lw + 'px';
         paper.style.height = lh + 'px';
         paper.style.borderRadius = (46 * lw) / 320 + 'px';
-        paper.style.transform = `translate(${(lx - lw / 2).toFixed(1)}px, ${(ly - lh / 2).toFixed(1)}px)`;
+        holeX = lx - lw / 2;
+        holeY = ly - lh / 2;
+        paper.style.transform = `translate(${holeX.toFixed(1)}px, ${holeY.toFixed(1)}px)`;
         if (!framed) { camera.position.copy(camA); framed = true; }
         camera.updateProjectionMatrix();
-        // labels never sit on the copy: measure the text block once per resize
-        const hr = hero.getBoundingClientRect();
-        copyBox = { right: 0, bottom: 0 };
-        copy.querySelectorAll('.wrap > *').forEach((el) => {
-          const r = el.getBoundingClientRect();
-          copyBox.right = Math.max(copyBox.right, r.right - hr.left);
-          copyBox.bottom = Math.max(copyBox.bottom, r.bottom - hr.top);
-        });
         portraitView = portrait;
         Object.values(doodleEls).forEach((el) => {
           const inner = el.firstElementChild;
@@ -1960,30 +2205,15 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         }
       }).observe(hero);
 
-      /* ---------- the scroll story ---------- */
-      const story = { t: 0, p: 0 };
-      let trigger = null;
-      function setupStory() {
-        if (trigger) { trigger.kill(); trigger = null; }
-        root.classList.remove('has-story');
-        hero.style.opacity = '';
-        hero.style.visibility = '';
-        if (reduceMq.matches || !window.gsap || !window.ScrollTrigger) return;
-        gsap.registerPlugin(ScrollTrigger);
-        root.classList.add('has-story');
-        root.style.setProperty('--story-overlap', hero.offsetHeight + 'px');
-        trigger = ScrollTrigger.create({
-          trigger: hero,
-          start: 'top top',
-          end: () => '+=' + Math.round(hero.offsetHeight * (mobileMq.matches ? 1.35 : 1.7)),
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => { story.t = self.progress; },
-        });
-      }
-      setupStory();
-      reduceMq.addEventListener('change', () => { setupStory(); story.t = story.p = 0; });
+      /* ---------- the scroll story (the pin is made early, in the page script) ---------- */
+      const S = window.hitcStory || { t: 0, trigger: null };
+      const story = { p: S.t || 0 };
+      S.driven = true;
+      S.onUpdate = () => run();
+      // Read the reduced-motion query once and then only from its change event: reading
+      // .matches every frame stops Chromium from sending the event at all.
+      let still = reduceMq.matches;
+      reduceMq.addEventListener('change', (e) => { still = e.matches; story.p = S.t; needFrame = needShadow = true; run(); });
 
       /* ---------- picking ---------- */
       const ray = new THREE.Raycaster();
@@ -2038,28 +2268,36 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         if (el.tagName === 'BUTTON') el.addEventListener('click', () => act(k));
       });
 
+      const live = document.getElementById('hero-live');
+      function say(msg) { live.textContent = ''; requestAnimationFrame(() => { live.textContent = msg; }); }
       function act(key) {
+        if (!key) return;
         const now = clock.elapsedTime;
         if (key === 'student') {
-          if (state.mode === 'awake') state.mode = 'return';
-          else { state.mode = 'awake'; state.awakeUntil = now + 7; }
+          if (state.mode === 'awake') { state.mode = 'return'; say('The student goes back to the door.'); }
+          else { state.mode = 'awake'; state.awakeUntil = now + 7; say('The student is awake and walks toward your pointer.'); }
         } else if (key === 'reader') {
           if (now - state.scanAt > 2.2) state.scanAt = now;
+          say('ID scanned at the gate. Time in, 7:02 AM. The alert is on its way to the parent\u2019s phone.');
         } else if (key === 'phone') {
           state.phoneAt = now;
+          say('The parent\u2019s phone shows Campus Connect: time in, tuition payment, a school announcement, time out.');
         } else if (key === 'books') {
           if (now - state.coverAt > 1.8) state.coverAt = now;
+          say('The top book opens.');
         }
+        needFrame = needShadow = true;
         updateStudentLabel();
       }
       function updateStudentLabel() {
-        const word = doodleEls.student.querySelector('.doodle__word');
-        word.textContent = state.mode === 'awake' ? 'off to school!' : '5 more minutes…';
-        doodleEls.student.setAttribute('aria-label', state.mode === 'awake' ? 'Let the student rest' : 'Wake the student');
+        const el = doodleEls.student;
+        el.querySelector('.doodle__word').textContent = state.mode === 'awake' ? 'off to school!' : '5 more minutes…';
+        el.querySelector('[data-sr]').textContent = state.mode === 'awake' ? ' (let the student rest)' : ' (wake the student)';
       }
 
       /* ---------- per-frame ---------- */
-      const clock = new THREE.Clock();
+      // THREE.Clock is deprecated since r183 (console warning): the same getDelta/elapsedTime on performance.now()
+      const clock = { elapsedTime: 0, last: 0, getDelta() { const n = performance.now(); const d = this.last ? (n - this.last) / 1000 : 0; this.last = n; this.elapsedTime += d; return d; } };
       const v3 = new THREE.Vector3();
       const tmp = new THREE.Vector3();
       const camPos = new THREE.Vector3();
@@ -2079,17 +2317,26 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
       const placed = [];
       let visible = true;
       let ready = false;
-      let introAt = -1;
+      // The pop-up intro starts once frames are flowing (three in a row under 50 ms after the first frame), so a
+      // one-off stall while the GPU warms up never makes the first pop-ups jump.
+      let introAt = Infinity;
+      let settled = 0;
 
       function tick() {
-        const dt = Math.min(clock.getDelta(), 0.05);
+        const raw = clock.getDelta();
+        const dt = Math.min(raw, 0.05);
         const t = clock.elapsedTime;
-        const still = reduceMq.matches;
-        if (introAt < 0) introAt = t + 0.35;
+        if (introAt === Infinity && ready) { settled = raw < 0.05 ? settled + 1 : 0; if (settled >= 3) introAt = t + 0.2; }
+        // with reduced motion the scene is still, so only draw when something changed
+        if (still && ready && !needFrame && state.mode === 'sleep' && t - state.scanAt > 7.2 && t - state.phoneAt > 5.2 && t - state.coverAt > 2) return;
+        needFrame = false;
 
-        // story progress eases toward the scroll position, like a soft scrub
-        story.p += (story.t - story.p) * (1 - Math.exp(-dt * 7));
-        if (Math.abs(story.t - story.p) < 0.0004) story.p = story.t;
+        // story progress eases toward the scroll position, like a soft scrub, but never trails
+        // the pin by more than a little: a fast fling used to unpin a half-told story
+        const st = S.t;
+        story.p += (st - story.p) * (1 - Math.exp(-dt * 7));
+        story.p = clamp(story.p, st - 0.04, st + 0.04);
+        if (Math.abs(st - story.p) < 0.0004) story.p = st;
         const p = story.p;
 
         // the pop-ups rise when the page loads, one after another, with a little spring
@@ -2180,7 +2427,7 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         rings.forEach((r, i) => {
           const storyK = (p - 0.3 - i * 0.012) / 0.05;
           const tapK = (tapLocal - i * 0.14) / 0.6;
-          const k = tapK >= 0 && tapK <= 1 ? tapK : storyK >= 0 && storyK <= 1 && story.t > 0.02 ? storyK : -1;
+          const k = tapK >= 0 && tapK <= 1 ? tapK : storyK >= 0 && storyK <= 1 && S.t > 0.02 ? storyK : -1;
           r.visible = k >= 0 && !still;
           if (!r.visible) return;
           r.position.copy(readerPos).add(v3.set(0, 0.02, 0.02));
@@ -2242,7 +2489,11 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         camera.lookAt(camLook);
         const oc = ease(smooth(0.5, 0.93, p));
         const ox = offX * W * (1 - centre), oy = offY * H * (1 - centre * (portraitView ? 0.85 : 1)) + barGap / 2;
-        camera.setViewOffset(W, H, lerp(ox, landX, oc), lerp(oy, landY, oc), W, H);
+        // until the pin ends, the section (and its phone) is still sliding up into place:
+        // the 3D phone and the paper's hole ride along with it
+        const ride = S.trigger ? Math.max(0, S.trigger.end - window.scrollY) * smooth(0.6, 0.93, p) : 0;
+        camera.setViewOffset(W, H, lerp(ox, landX, oc), lerp(oy, landY, oc) - ride, W, H);
+        paper.style.transform = `translate(${holeX.toFixed(1)}px, ${(holeY + ride).toFixed(1)}px)`;
 
         // html layers that ride along with the story
         copy.style.opacity = String(1 - smooth(0.01, 0.14, p));
@@ -2252,8 +2503,9 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
         caps[0].style.opacity = String(smooth(0.14, 0.2, p) * (1 - smooth(0.38, 0.44, p)));
         caps[1].style.opacity = String(smooth(0.5, 0.56, p) * (1 - smooth(0.7, 0.76, p)));
         paper.style.opacity = String(smooth(0.8, 0.92, p));
-        // the book steps aside at the very end so the section's phone underneath takes over
-        const gone = smooth(0.97, 0.995, p);
+        // the book steps aside as soon as the phone has landed (0.93), so the section's copy and ID show
+        // while the pin is still holding; run() stops drawing at the same point so the lanyard can start
+        const gone = smooth(0.93, 0.955, Math.max(p, st));
         hero.style.opacity = gone > 0 ? String(1 - gone) : '';
         hero.style.pointerEvents = gone > 0.5 ? 'none' : '';
         hero.style.visibility = gone >= 1 ? 'hidden' : '';
@@ -2279,8 +2531,10 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
           const w = el._w || 0, h = el._h || 0;
           if (k !== 'timein' && (portraitView ? topEdge < copyBox.bottom + 12 : left < copyBox.right + 20)) o = 0;
           if (left < 6 || left + w > W - 6 || topEdge < 62) o = 0;
+          const focused = el === document.activeElement && p < 0.05;
+          if (focused) o = 1;
           if (o > 0.01) {
-            if (placed.some((r) => left < r[2] && left + w > r[0] && topEdge < r[3] && topEdge + h > r[1])) o = 0;
+            if (!focused && placed.some((r) => left < r[2] && left + w > r[0] && topEdge < r[3] && topEdge + h > r[1])) o = 0;
             else placed.push([left - 6, topEdge - 4, left + w + 6, topEdge + h + 4]);
           }
           el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
@@ -2289,19 +2543,38 @@ document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
           if (el.tagName === 'BUTTON') el.tabIndex = o < 0.5 ? -1 : 0;
         }
 
+        const casting = !ready || t - introAt < 2.4 || walking > 0.01 || speed > 0.0005 || waving || (tapLocal >= 0 && tapLocal < 1.3) || (ck >= 0 && ck < 1.9) || (p < 0.6 && Math.abs(p - lastShadowP) > 0.0002);
+        if (casting || needShadow) { renderer.shadowMap.needsUpdate = true; lastShadowP = p; needShadow = false; }
         renderer.render(scene, camera);
         if (!ready) {
           ready = true;
           hero.classList.add('is-ready');
         }
+        if (st >= 0.955 && story.p >= 0.955) run();
       }
+      let lastShadowP = -1;
 
-      // Only draw while the hero is on screen and the tab is visible.
-      function run() { renderer.setAnimationLoop(visible && !document.hidden ? tick : null); if (!visible || document.hidden) clock.getDelta(); }
+      // Only draw while the hero is on screen, the tab is visible and the story isn't over.
+      function run() {
+        const done = S.t >= 0.955 && story.p >= 0.955; // the book is fully gone by then (see "gone")
+        const on = visible && !document.hidden && !done;
+        renderer.setAnimationLoop(on ? tick : null);
+        // the lanyard below waits while the book draws, so two WebGL scenes never both run
+        if (S.rendering !== on) { S.rendering = on; window.dispatchEvent(new Event('hitc:hero')); }
+        if (!on) clock.getDelta();
+      }
+      // compile every shader before the first frame, in the background where the GPU driver allows it, so the
+      // first frame isn't one long stall (on a phone it held up the page's first paint of text)
+      await renderer.compileAsync(scene, camera).catch(() => {});
+      // and let the lanyard below finish its one-off set-up first (js/fx.js), so it never freezes the intro
+      await Promise.race([window.hitcLanyardBuilt, new Promise((r) => setTimeout(r, 2000))]);
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; run(); }, { rootMargin: '80px' }).observe(hero);
       document.addEventListener('visibilitychange', run);
       run();
     }
 </script>
+<!-- Lenis, the student ID lanyard, and the Campus Connect and services motion -->
+<script type="module" src="js/fx.js"></script>
+<script type="module" src="js/pages.js"></script>
 </body>
 </html>

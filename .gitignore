@@ -1,4 +1,11 @@
 .vercel
-.env.local
+.env
+.env.*
 node_modules/
+dist/
 temporary screenshots/
+.playwright-cli/
+
+# the build only needs src/tailwind.css
+src/*
+!src/tailwind.css

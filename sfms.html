@@ -1,225 +1,194 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
-<title>SFMS — HITC, Inc.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{colors:{'hbg':'#F4F4F0','hcard':'#EAEAE4','hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C','hmt':'#5A6880'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
-.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
-.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);padding:24px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
-.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
-.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
-.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
-.nl:hover,.nl.active{color:#0A0F1C}
-.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.tag-gray{background:#E8E8E0;color:#5A6880}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
-input,textarea,select{width:100%;padding:10px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FFFFFF;outline:none;transition:border-color .2s}
-input:focus,textarea:focus,select:focus{border-color:#1E6BFF}
-label{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8A96A8;margin-bottom:6px}
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
-.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
-.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
-.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+<link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
+<title>SFMS | HITC, Inc.</title>
+<meta name="description" content="HITC's SFMS: enrollment, assessment, student ledger, billing, cashiering and accounting for Philippine schools, in one system." />
+<link rel="preload" href="/fonts/space-grotesk-400-700.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/pages.css" />
+<script type="module" src="js/smooth.js"></script>
+<script type="module" src="js/pages.js"></script>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
 
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
-    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
-  </a>
-  <div style="display:flex;align-items:center;gap:28px">
+<!-- ══════ NAV: the home page's, with a phone menu ══════ -->
+<nav class="nav" aria-label="Main">
+  <a class="nav__logo" href="index.html" aria-label="HITC home"><img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" /></a>
+  <div class="nav__links">
     <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px;color:#0A0F1C">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
-    <a href="robotics.html" class="nl">Robotics</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" aria-current="true">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html" aria-current="page">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="index.html#campus-connect" class="nl">Campus Connect</a>
     <a href="contact.html" class="nl">Contact</a>
   </div>
-  <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
+  <details class="mnav" id="mnav">
+    <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="mnav__panel">
+      <a href="index.html#campus-connect">Campus Connect</a>
+      <a href="about.html">About</a>
+      <a href="services.html" aria-current="true">Services</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </details>
+  <a href="contact.html" class="btn-primary">Get Started →</a>
 </nav>
 
-<!-- HERO -->
-<section style="padding:100px 8% 64px;background:#EAEAE4;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-20%;right:-5%;width:50%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.07) 0%,transparent 65%);pointer-events:none"></div>
-  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
-    <a href="index.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">HITC</a>
-    <span style="color:#C8C8C0">›</span>
-    <a href="services.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">Services</a>
-    <span style="color:#C8C8C0">›</span>
-    <span style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.04em;text-transform:uppercase">SFMS</span>
-  </div>
-  <div class="rv d1" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px">
-    <span style="background:#0A0F1C;color:rgba(255,255,255,.5);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Product 05</span>
-  </div>
-  <h1 class="rv d2" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,88px);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">
-    SFMS<br><span style="color:#1E6BFF">Student Information & Financial System</span>
-  </h1>
-  <p class="rv d3" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:520px;margin-bottom:32px">A complete student information and financial management system for Philippine schools — covering enrollment, assessment, student ledger, billing, cashiering, and accounting in one integrated platform.</p>
-  <div class="rv d4" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px">
-    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>Enrollment</span><span class="chip"><span class="chip-dot" style="background:#22C55E"></span>Student Ledger</span><span class="chip"><span class="chip-dot" style="background:#F5A800"></span>Cashiering</span>
-  </div>
-  <div class="rv d5" style="display:flex;gap:12px;flex-wrap:wrap">
-    <a href="contact.html" class="btn-primary">Request a Demo →</a>
-    <a href="services.html" class="btn-outline">← All Products</a>
-  </div>
-</section>
+<!-- ══════ ICONS ══════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 40 32"><path d="M3 4c6 1 13 5 17 11s6 11 13 13m0 0-7 1m7-1-2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 40 32"><path d="M37 4c-6 1-13 5-17 11S14 26 7 28m0 0 7 1m-7-1 2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 40 36"><path d="M5 20c4 2 7 6 10 11C20 18 28 9 36 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="cc-mark" viewBox="0 0 36 36">
+      <rect width="36" height="36" rx="10" fill="#fff"/>
+      <rect x="3" y="3" width="30" height="30" rx="8" fill="#16244F"/>
+      <path d="M24.8 11.6a9.2 9.2 0 1 0 0 12.8" fill="none" stroke="#1E6BFF" stroke-width="4.4" stroke-linecap="round"/>
+      <path d="M22.1 14.6a5 5 0 1 0 0 6.8" fill="none" stroke="#F5A800" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M13.2 16.4 19 13.6l5.8 2.8-5.8 2.8Z" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
 
-<!-- PRODUCT VISUAL -->
-<div style="background:#EAEAE4;padding:0 8% 52px">
-  <div class="rv" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12);max-width:640px">
-    <img src="https://www.hitc.ph/assets/imgs/sfmsbanner.png" alt="SFMS" style="width:100%;display:block" />
-  </div>
-</div>
-
-<!-- FEATURES -->
-<section style="padding:80px 8%;background:#F4F4F0">
-  <div class="rv" style="margin-bottom:48px">
-    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Features</div>
-    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">What SFMS Does</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-
-    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Tuition & Fee Management</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Track tuition payments, installment plans, and outstanding balances per student. Send automated reminders for overdue accounts.</p>
-      </div>
+<main id="main">
+<!-- ══════ HERO: the SFMS index card, out of the deck ══════ -->
+<header class="ph" style="--glow:rgba(30,107,255,.22)">
+  <article class="pc pc--fees" aria-labelledby="pc-title" style="--t:clamp(6rem,12.5vw,11.5rem);--tm:clamp(5rem,26vw,7rem)">
+    <div class="pc__strip">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="services.html">Services</a><span aria-hidden="true">/</span><span aria-current="page">SFMS</span></nav>
+      <p class="pc__feed hand">sends fees, the SOA and the DCR</p>
     </div>
-    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Student Enrollment</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Manage student enrollment records and admission data — from new enrollees to returning students, all in one system.</p>
-      </div>
-    </div>
-    <div class="rv d3 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-6 4h4"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Assessment & Student Ledger</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Assess fees per student and maintain individual student account ledgers — every charge, payment, and balance tracked automatically.</p>
-      </div>
-    </div>
-    <div class="rv d4 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Billing, Cashiering & Accounting</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Process billing, manage cashiering operations, and generate financial reports — a complete accounting solution for school finance departments.</p>
-      </div>
-    </div>
-    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">eCash Integration</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Works seamlessly with the HITC eCash System — all cashless transactions flow directly into SFMS records.</p>
-      </div>
-    </div>
-    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Audit Trail</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Every transaction is logged with user and timestamp. Full audit trail for transparency and accountability.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="padding:72px 8%;background:#0A0F1C" class="rv">
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px">
-    <div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Get SFMS</div>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:white;letter-spacing:-.01em;line-height:1">Ready to Bring SFMS<br>to Your School?</h2>
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="contact.html" class="btn-primary">Contact Sales →</a>
-      <a href="services.html" class="btn-outline" style="color:white;border-color:rgba(255,255,255,.2)">View All Products</a>
-    </div>
-  </div>
-</section>
-
-<!-- PREV / NEXT NAV -->
-<div style="background:#EAEAE4;padding:28px 8%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #D8D8D0">
-  <a href="ebroadcasting.html" class="btn-outline" style="font-size:12px">← eBroadcasting</a>
-  <a href="ecash.html" class="btn-primary" style="font-size:12px">eCash →</a>
-</div>
-
-
-<!-- FOOTER -->
-<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
-    <div>
-      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
-      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
-      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">info@hitc.ph</a>
-    </div>
-    <div style="display:flex;gap:52px">
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="index.html" class="nl" style="font-size:12px">Home</a>
-          <a href="about.html" class="nl" style="font-size:12px">About</a>
-          <a href="services.html" class="nl" style="font-size:12px">Services</a>
-          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
-          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
+    <div class="pc__body">
+      <div class="pc__copy">
+        <p class="pc__kicker hand">student information and financial system</p>
+        <h1 class="pc__title" id="pc-title">SFMS</h1>
+        <p class="pc__lede">Student information and financial management for Philippine schools: enrollment, assessment, the student ledger, billing, cashiering and accounting, in one integrated platform.</p>
+        <div class="pc__ctas">
+          <a class="hbtn hbtn--blue" href="contact.html">Request a demo</a>
+          <a class="tlink" href="services.html">See all products</a>
         </div>
       </div>
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="robotics.html" class="nl" style="font-size:12px">Intelliteach</a>
-          <a href="attendance.html" class="nl" style="font-size:12px">Attendance</a>
-          <a href="turnstile.html" class="nl" style="font-size:12px">Turnstile</a>
-          <a href="ebroadcasting.html" class="nl" style="font-size:12px">eBroadcasting</a>
-          <a href="sfms.html" class="nl" style="font-size:12px">SFMS</a>
-          <a href="ecash.html" class="nl" style="font-size:12px">eCash</a>
-          <a href="iask.html" class="nl" style="font-size:12px">iAsk</a>
+
+      <div class="pc__prop">
+        <div class="feebox is-printed" data-fees>
+          <div class="printer">
+            <div class="printer__slot" aria-hidden="true"></div>
+            <div class="printer__out">
+              <p class="printer__wait hand" aria-hidden="true">the receipt prints here</p>
+              <div class="slip">
+                <p class="slip__head">Payment receipt</p>
+                <p class="slip__who">Maria dela Cruz</p>
+                <p class="slip__row"><span>Tuition and school fees</span><span>posted</span></p>
+                <p class="slip__row"><span>Statement of Account</span><span>as an image</span></p>
+                <p class="slip__row"><span>Sent to</span><span>parent's phone</span></p>
+                <p class="slip__row"><span>Daily Collection Report</span><span>added</span></p>
+                <p class="slip__stamp" aria-hidden="true">Received</p>
+              </div>
+            </div>
+            <div class="slide">
+              <span class="slide__fill" aria-hidden="true"></span>
+              <span class="slide__label" aria-hidden="true">Slide to post the payment</span>
+              <span class="slide__done" aria-hidden="true">Payment posted</span>
+              <span class="slide__grip" role="slider" tabindex="0" aria-label="Slide to post the payment" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-describedby="slide-help"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+            <p class="slide__help" id="slide-help">Drag the handle to the end, or press End.</p>
+          </div>
+          <div class="notes">
+            <div class="note pop is-on"><span class="sr-only">Example notification: </span><p class="note__kind">Payments</p><p class="note__title">School fee payment posted</p><p class="note__body">A payment for Maria dela Cruz was received. Her SOA is attached.</p></div>
+            <div class="note pop is-on"><span class="sr-only">Example notification: </span><p class="note__kind">Finance Officer</p><p class="note__title">Daily Collection Report</p><p class="note__body">Today's collection, sent at the end of the day.</p></div>
+          </div>
+          <p class="sr-only" aria-live="polite" data-fees-live></p>
         </div>
       </div>
     </div>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </article>
+</header>
+
+<!-- ══════ WHAT IT DOES: a ledger sheet ══════ -->
+<section class="spec" aria-labelledby="spec-title">
+  <div class="spec__sheet paper--ledger">
+    <div class="spec__head">
+      <h2 class="h2" id="spec-title">What SFMS does</h2>
+      <p class="lede">From the day a student enrolls to the day's last payment at the cashier, the school's money and records live in one system.</p>
+    </div>
+    <dl class="spec__list">
+      <div class="spec__row"><dt>Tuition and fee management</dt><dd>Track tuition payments, installment plans and outstanding balances per student, and send automated reminders for overdue accounts.</dd></div>
+      <div class="spec__row"><dt>Student enrollment</dt><dd>Manage enrollment records and admission data, from new enrollees to returning students, in one system.</dd></div>
+      <div class="spec__row"><dt>Assessment and student ledger</dt><dd>Assess fees per student and keep an account ledger for each one: every charge, payment and balance tracked automatically.</dd><p class="spec__note hand" style="right:-4px;top:-18px;--r:-4deg" aria-hidden="true">every peso, per student</p></div>
+      <div class="spec__row"><dt>Billing, cashiering and accounting</dt><dd>Process billing, run the cashier and generate financial reports: a complete accounting solution for school finance departments.</dd></div>
+      <div class="spec__row"><dt>eCash integration</dt><dd>Works with the HITC eCash System, so cashless transactions flow straight into SFMS records.</dd></div>
+      <div class="spec__row"><dt>Audit trail</dt><dd>Every transaction is logged with the user and a timestamp, for full transparency and accountability.</dd></div>
+    </dl>
   </div>
-  <div style="overflow:hidden;margin:0 -8%">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+</section>
+
+<!-- ══════ WHERE IT LANDS: Campus Connect ══════ -->
+<section class="ccb desk" aria-labelledby="ccb-title">
+  <div class="ccb__in">
+    <div class="ccb__copy">
+      <span class="ccb__icon" aria-hidden="true"><img src="brand_assets/campus-connect-deck/campus-connect-app-icon-640.webp" alt="" width="640" height="640" loading="lazy" /></span>
+      <p class="ccb__kicker hand">where the payment lands</p>
+      <h2 class="h2" id="ccb-title">Fees, statements and the day's collection.</h2>
+      <p class="lede">SFMS works with Campus Connect, HITC's app for parents and guardians. Parents get school fee payment notices and the student's Statement of Account. The Finance Officer gets the Daily Collection Report at the end of each day.</p>
+      <a class="tlink tlink--gold ccb__go" href="index.html#campus-connect">See Campus Connect</a>
+    </div>
+    <div class="ccb__feed">
+      <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Payments</p><p class="note__title">Tuition payment posted</p><p class="note__body">A tuition payment for Maria dela Cruz was received.</p></div>
+      <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Statement of Account</p><p class="note__title">Maria dela Cruz: SOA</p><p class="note__body">Her Statement of Account, sent as an image.</p></div>
+      <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Finance Officer</p><p class="note__title">Daily Collection Report</p><p class="note__body">Sent at the end of each day.</p></div>
+    </div>
   </div>
+</section>
+
+<!-- ══════ END: a demo, then the next cards in the drawer ══════ -->
+<section class="end desk" aria-labelledby="end-title">
+  <div class="end__in">
+    <h2 class="h2" id="end-title">Bring SFMS to your school.</h2>
+    <div class="end__side">
+      <p class="lede">Tell us how your school handles enrollment and fees today, and ask for a demo.</p>
+      <div class="end__ctas">
+        <a class="hbtn hbtn--blue" href="contact.html">Request a demo</a>
+        <a class="hbtn hbtn--line" href="services.html">See all products</a>
+      </div>
+    </div>
+  </div>
+  <nav class="hop" aria-label="More HITC systems">
+    <a class="hop__card hop__card--prev" href="ecash.html" style="--rule:#C98600">
+      <span class="hop__strip"><span class="hop__name">eCash System</span><span class="hop__feed hand">sends eCash loads</span></span>
+      <span class="hop__dir">Back to the eCash System</span>
+    </a>
+    <a class="hop__card hop__card--next" href="iask.html" style="--rule:rgba(10,15,28,.2)">
+      <span class="hop__strip"><span class="hop__feed hand">also from HITC, its own app</span><span class="hop__name">iAsk eLibrary</span></span>
+      <span class="hop__dir">Next: iAsk eLibrary</span>
+    </a>
+  </nav>
+</section>
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="foot">
+  <div class="foot__top">
+    <div>
+      <img class="foot__logo" src="brand_assets/hitclogo-300.webp" alt="HITC" width="57" height="44" loading="lazy" />
+      <p class="foot__about">Headstart Information Technology &amp; Consultancy Inc., empowering Philippine schools since 2006.</p>
+      <a class="mailto" href="mailto:info@hitc.ph">info@hitc.ph</a>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <p class="foot__head">Navigate</p>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl">Services</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
+      </div>
+      <div>
+        <p class="foot__head">Products</p>
+        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl" aria-current="page">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
+      </div>
+    </div>
+    <a class="totop" href="#top" aria-label="Back to top">↑</a>
+  </div>
+  <div class="foot__mark" aria-hidden="true"><span>we innovate technologies</span></div>
 </footer>
-<script>
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
-</script>
 </body>
 </html>

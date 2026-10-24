@@ -1,225 +1,233 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
-<title>Turnstile System — HITC, Inc.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{colors:{'hbg':'#F4F4F0','hcard':'#EAEAE4','hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C','hmt':'#5A6880'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
-.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
-.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);padding:24px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
-.btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
-.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
-.nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
-.nl:hover,.nl.active{color:#0A0F1C}
-.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.tag-gray{background:#E8E8E0;color:#5A6880}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
-input,textarea,select{width:100%;padding:10px 14px;border:1.5px solid #D8D8D0;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#0A0F1C;background:#FFFFFF;outline:none;transition:border-color .2s}
-input:focus,textarea:focus,select:focus{border-color:#1E6BFF}
-label{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8A96A8;margin-bottom:6px}
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
-.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
-.nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
-.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+<link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
+<title>Turnstile System | HITC, Inc.</title>
+<meta name="description" content="HITC's Turnstile System: RFID school ID gates that log every entry and exit, and send the actual time in and time out to parents through Campus Connect." />
+<link rel="preload" href="/fonts/space-grotesk-400-700.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="css/pages.css" />
+<script type="module" src="js/smooth.js"></script>
+<script type="module" src="js/pages.js"></script>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
 
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
-    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
-  </a>
-  <div style="display:flex;align-items:center;gap:28px">
+<!-- ══════ NAV: the home page's, with a phone menu ══════ -->
+<nav class="nav" aria-label="Main">
+  <a class="nav__logo" href="index.html" aria-label="HITC home"><img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" /></a>
+  <div class="nav__links">
     <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px;color:#0A0F1C">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
-    <a href="robotics.html" class="nl">Robotics</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" aria-current="true">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html" aria-current="page">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="index.html#campus-connect" class="nl">Campus Connect</a>
     <a href="contact.html" class="nl">Contact</a>
   </div>
-  <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
+  <details class="mnav" id="mnav">
+    <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="mnav__panel">
+      <a href="index.html#campus-connect">Campus Connect</a>
+      <a href="about.html">About</a>
+      <a href="services.html" aria-current="true">Services</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </details>
+  <a href="contact.html" class="btn-primary">Get Started →</a>
 </nav>
 
-<!-- HERO -->
-<section style="padding:100px 8% 64px;background:#EAEAE4;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-20%;right:-5%;width:50%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.07) 0%,transparent 65%);pointer-events:none"></div>
-  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
-    <a href="index.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">HITC</a>
-    <span style="color:#C8C8C0">›</span>
-    <a href="services.html" style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none">Services</a>
-    <span style="color:#C8C8C0">›</span>
-    <span style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Turnstile System</span>
-  </div>
-  <div class="rv d1" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:16px">
-    <span style="background:#0A0F1C;color:rgba(255,255,255,.5);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Product 03</span>
-  </div>
-  <h1 class="rv d2" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,88px);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">
-    Turnstile System<br><span style="color:#1E6BFF">RFID School ID Gates</span>
-  </h1>
-  <p class="rv d3" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:520px;margin-bottom:32px">Automated school gate management using RFID-enabled student and staff ID cards. Seamless entry/exit logging for any campus size — from a single gate to multi-campus deployments.</p>
-  <div class="rv d4" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px">
-    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>RFID Technology</span><span class="chip"><span class="chip-dot" style="background:#22C55E"></span>Auto Entry Log</span><span class="chip"><span class="chip-dot" style="background:#F5A800"></span>Parent Alerts</span>
-  </div>
-  <div class="rv d5" style="display:flex;gap:12px;flex-wrap:wrap">
-    <a href="contact.html" class="btn-primary">Request a Demo →</a>
-    <a href="services.html" class="btn-outline">← All Products</a>
-  </div>
-</section>
+<!-- ══════ ICONS ══════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 40 32"><path d="M3 4c6 1 13 5 17 11s6 11 13 13m0 0-7 1m7-1-2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 40 32"><path d="M37 4c-6 1-13 5-17 11S14 26 7 28m0 0 7 1m-7-1 2-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 40 36"><path d="M5 20c4 2 7 6 10 11C20 18 28 9 36 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="cc-mark" viewBox="0 0 36 36">
+      <rect width="36" height="36" rx="10" fill="#fff"/>
+      <rect x="3" y="3" width="30" height="30" rx="8" fill="#16244F"/>
+      <path d="M24.8 11.6a9.2 9.2 0 1 0 0 12.8" fill="none" stroke="#1E6BFF" stroke-width="4.4" stroke-linecap="round"/>
+      <path d="M22.1 14.6a5 5 0 1 0 0 6.8" fill="none" stroke="#F5A800" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M13.2 16.4 19 13.6l5.8 2.8-5.8 2.8Z" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
 
-<!-- VIDEO DEMO -->
-<div style="background:#EAEAE4;padding:0 8% 52px">
-  <div class="rv" style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.15);position:relative;padding-top:56.25%;max-width:800px">
-    <iframe src="https://www.youtube.com/embed/xRv0bAX-S1E" title="HITC Turnstile System Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
-  </div>
-</div>
-
-<!-- FEATURES -->
-<section style="padding:80px 8%;background:#F4F4F0">
-  <div class="rv" style="margin-bottom:48px">
-    <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Features</div>
-    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">What Turnstile System Does</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-
-    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">RFID ID Card Entry</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Students and staff tap their school ID to pass through. No manual logging — every entry and exit is recorded instantly.</p>
-      </div>
+<main id="main">
+<!-- ══════ HERO: the Turnstile index card, out of the deck ══════ -->
+<header class="ph" style="--glow:rgba(30,107,255,.26)">
+  <article class="pc pc--gate" aria-labelledby="pc-title">
+    <div class="pc__strip">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="services.html">Services</a><span aria-hidden="true">/</span><span aria-current="page">Turnstile System</span></nav>
+      <p class="pc__feed hand">sends the time in and out</p>
     </div>
-    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Parent SMS Alerts</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Parents receive an automatic SMS or notification when their child enters or exits campus.</p>
-      </div>
-    </div>
-    <div class="rv d3 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Time-Stamped Logs</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Every gate event is logged with a precise timestamp. Review full entry/exit history per student or staff member.</p>
-      </div>
-    </div>
-    <div class="rv d4 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Multi-Gate Support</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Deploy multiple turnstile units across different campus entrances — all managed from a single admin panel.</p>
-      </div>
-    </div>
-    <div class="rv d1 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Attendance Integration</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Gate entry data automatically feeds into the Attendance Manager — no double entry required.</p>
-      </div>
-    </div>
-    <div class="rv d2 card" style="display:flex;flex-direction:column;gap:12px">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem;color:#0A0F1C;margin-bottom:5px">Admin Dashboard</div>
-        <p style="font-size:12px;color:#6B7A8D;line-height:1.7">Monitor campus foot traffic in real time. Generate daily or weekly gate activity reports with one click.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="padding:72px 8%;background:#0A0F1C" class="rv">
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px">
-    <div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Get Turnstile System</div>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:white;letter-spacing:-.01em;line-height:1">Ready to Bring Turnstile System<br>to Your School?</h2>
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="contact.html" class="btn-primary">Contact Sales →</a>
-      <a href="services.html" class="btn-outline" style="color:white;border-color:rgba(255,255,255,.2)">View All Products</a>
-    </div>
-  </div>
-</section>
-
-<!-- PREV / NEXT NAV -->
-<div style="background:#EAEAE4;padding:28px 8%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #D8D8D0">
-  <a href="attendance.html" class="btn-outline" style="font-size:12px">← Attendance</a>
-  <a href="ebroadcasting.html" class="btn-primary" style="font-size:12px">eBroadcasting →</a>
-</div>
-
-
-<!-- FOOTER -->
-<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
-    <div>
-      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
-      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
-      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">info@hitc.ph</a>
-    </div>
-    <div style="display:flex;gap:52px">
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="index.html" class="nl" style="font-size:12px">Home</a>
-          <a href="about.html" class="nl" style="font-size:12px">About</a>
-          <a href="services.html" class="nl" style="font-size:12px">Services</a>
-          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
-          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
+    <div class="pc__body">
+      <div class="pc__copy">
+        <p class="pc__kicker hand">RFID school ID gates</p>
+        <h1 class="pc__title" id="pc-title">Turnstile System</h1>
+        <p class="pc__lede">Automated gate management with RFID student and staff ID cards. Every entry and exit is logged, on a campus of any size: from a single gate to multi-campus deployments.</p>
+        <div class="pc__ctas">
+          <a class="hbtn hbtn--blue" href="contact.html">Request a demo</a>
+          <a class="tlink" href="services.html">See all products</a>
         </div>
       </div>
-      <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="robotics.html" class="nl" style="font-size:12px">Intelliteach</a>
-          <a href="attendance.html" class="nl" style="font-size:12px">Attendance</a>
-          <a href="turnstile.html" class="nl" style="font-size:12px">Turnstile</a>
-          <a href="ebroadcasting.html" class="nl" style="font-size:12px">eBroadcasting</a>
-          <a href="sfms.html" class="nl" style="font-size:12px">SFMS</a>
-          <a href="ecash.html" class="nl" style="font-size:12px">eCash</a>
-          <a href="iask.html" class="nl" style="font-size:12px">iAsk</a>
+
+      <div class="pc__prop">
+        <div class="gatebox" data-gate>
+          <div class="gatebox__stage">
+            <!-- the gate, drawn for this page (a copy is in the Assets folder) -->
+            <svg class="gate" viewBox="0 0 560 470" aria-hidden="true">
+              <ellipse cx="300" cy="452" rx="250" ry="14" fill="#16244F" opacity=".12"/>
+              <rect x="118" y="246" width="98" height="204" rx="14" fill="#0E1838" opacity=".18" transform="translate(7 8)"/>
+              <rect x="118" y="246" width="98" height="204" rx="14" fill="#16244F"/>
+              <rect x="118" y="246" width="98" height="26" rx="13" fill="#2A3D7A"/>
+              <rect x="130" y="300" width="74" height="6" rx="3" fill="#2A3D7A"/>
+              <rect x="130" y="314" width="52" height="6" rx="3" fill="#2A3D7A"/>
+              <rect x="124" y="174" width="86" height="72" rx="12" fill="#1E6BFF"/>
+              <rect x="124" y="174" width="86" height="72" rx="12" fill="none" stroke="#0F49B8" stroke-width="3"/>
+              <g fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M164 199a12 12 0 0 1 0 22"/><path d="M173 191a24 24 0 0 1 0 38"/><path d="M182 183a36 36 0 0 1 0 54"/></g>
+              <circle cx="151" cy="210" r="5" fill="#fff"/>
+              <circle class="gate__ping" cx="167" cy="210" r="44" fill="none" stroke="#1E6BFF" stroke-width="4"/>
+              <rect x="210" y="284" width="30" height="36" rx="8" fill="#2A3D7A"/>
+              <g class="gate__arms">
+                <rect x="232" y="296" width="178" height="12" rx="6" fill="#C9D3E3"/>
+                <rect x="232" y="296" width="100" height="12" rx="6" fill="#AEB9CC" transform="rotate(118 236 302)"/>
+                <circle cx="236" cy="302" r="17" fill="#8D96A8"/>
+                <circle cx="236" cy="302" r="6" fill="#5F6B80"/>
+              </g>
+              <rect x="410" y="246" width="78" height="204" rx="14" fill="#0E1838" opacity=".18" transform="translate(7 8)"/>
+              <rect x="410" y="246" width="78" height="204" rx="14" fill="#16244F"/>
+              <rect x="410" y="246" width="78" height="26" rx="13" fill="#2A3D7A"/>
+              <circle cx="436" cy="259" r="6" fill="#E5484D"/>
+              <circle cx="462" cy="259" r="6" fill="#33405F"/>
+              <circle class="gate__go" cx="462" cy="259" r="6" fill="#3CCB7F"/>
+              <circle class="gate__go" cx="462" cy="259" r="11" fill="#3CCB7F" opacity=".25"/>
+            </svg>
+
+            <div class="board" aria-hidden="true">
+              <span class="board__label hand">main gate</span>
+              <span class="flap">TAP YOUR ID</span>
+            </div>
+
+            <button class="idtap" type="button">
+              <span class="idtap__swing">
+                <span class="idtap__strap"></span>
+                <span class="idcard">
+                  <span class="idcard__top"><svg aria-hidden="true"><use href="#cc-mark"/></svg>Student ID</span>
+                  <span class="idcard__body"><span class="idcard__photo"></span><span><span class="idcard__name">Maria dela Cruz</span><span class="idcard__no">2026 0142</span></span></span>
+                  <span class="idcard__bars"></span>
+                </span>
+              </span>
+              <span class="sr-only">Tap Maria's school ID on the gate's reader</span>
+            </button>
+
+            <p class="hint" aria-hidden="true"><svg><use href="#i-arrow-r"/></svg>tap her ID</p>
+
+            <div class="note pop" style="--r:-2.5deg"><span class="sr-only">Example notification: </span><p class="note__kind">Time in</p><p class="note__title">Maria dela Cruz: Time In</p><p class="note__body">Arrived on campus at 7:02 AM, main gate.</p></div>
+            <div class="note pop" style="--r:2deg"><span class="sr-only">Example notification: </span><p class="note__kind">Time out</p><p class="note__title">Maria dela Cruz: Time Out</p><p class="note__body">Left the campus at 4:31 PM, main gate.</p></div>
+            <p class="sr-only" aria-live="polite" data-gate-live></p>
+          </div>
         </div>
       </div>
     </div>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+  </article>
+</header>
+
+<!-- ══════ WHAT IT DOES: ruled paper ══════ -->
+<section class="spec" aria-labelledby="spec-title">
+  <div class="spec__sheet paper--ruled">
+    <div class="spec__head">
+      <h2 class="h2" id="spec-title">What the Turnstile System does</h2>
+      <p class="lede">Students and staff tap their school ID to pass. The gate keeps the log, so nobody at the gate keeps a paper list.</p>
+    </div>
+    <dl class="spec__list">
+      <div class="spec__row"><dt>RFID ID card entry</dt><dd>Students and staff tap their school ID to pass through. No manual logging: every entry and exit is recorded instantly.</dd></div>
+      <div class="spec__row"><dt>Time-stamped logs</dt><dd>Every gate event is logged with a precise timestamp. Review the full entry and exit history of any student or staff member.</dd></div>
+      <div class="spec__row"><dt>Parent alerts, by SMS or app</dt><dd>Parents get an automatic alert when their child enters or exits the campus: by SMS, with no app needed, or in the <a class="tlink" href="index.html#campus-connect">Campus Connect</a> app.</dd></div>
+      <div class="spec__row"><dt>Multi-gate support</dt><dd>Deploy turnstile units at different campus entrances, all managed from a single admin panel.</dd></div>
+      <div class="spec__row"><dt>Attendance integration</dt><dd>Gate entry data feeds straight into the Attendance Manager, so nothing is entered twice.</dd><p class="spec__note hand" style="right:-6px;top:-16px;--r:-5deg" aria-hidden="true">no double entry</p></div>
+      <div class="spec__row"><dt>Admin dashboard</dt><dd>Monitor campus foot traffic in real time, and generate daily or weekly gate activity reports with one click.</dd></div>
+    </dl>
   </div>
-  <div style="overflow:hidden;margin:0 -8%">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
+</section>
+
+<!-- ══════ THE DEMO ══════ -->
+<section class="media" aria-labelledby="media-title">
+  <div class="media__in">
+    <div class="media__copy">
+      <h2 class="h2" id="media-title">See a gate at work</h2>
+      <p class="lede">A short demo of the HITC Turnstile System: the ID tap, the gate and the log.</p>
+      <span class="hand">plays right here</span>
+    </div>
+    <div class="screen">
+      <div class="screen__in"><button class="yt" type="button" data-yt="xRv0bAX-S1E" data-title="HITC Turnstile System demo" aria-label="Play video: HITC Turnstile System demo"><img src="photos/web/yt-turnstile.webp" alt="" width="1024" height="576" loading="lazy" /><span class="yt__play" aria-hidden="true"></span></button></div>
+    </div>
   </div>
+</section>
+
+<!-- ══════ WHERE IT LANDS: Campus Connect ══════ -->
+<section class="ccb desk" aria-labelledby="ccb-title">
+  <div class="ccb__in">
+    <div class="ccb__copy">
+      <span class="ccb__icon" aria-hidden="true"><img src="brand_assets/campus-connect-deck/campus-connect-app-icon-640.webp" alt="" width="640" height="640" loading="lazy" /></span>
+      <p class="ccb__kicker hand">where the time lands</p>
+      <h2 class="h2" id="ccb-title">Time in and time out, on a parent's phone.</h2>
+      <p class="lede">The Turnstile System works with Campus Connect, HITC's app for parents and guardians. A tap at the gate sends the actual time in, and the time out when she leaves.</p>
+      <a class="tlink tlink--gold ccb__go" href="index.html#campus-connect">See Campus Connect</a>
+    </div>
+    <div class="ccb__feed">
+      <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Time in</p><p class="note__title">Maria dela Cruz: Time In</p><p class="note__body">Maria dela Cruz arrived on campus at 7:02 AM.</p></div>
+      <div class="note"><span class="sr-only">Example notification: </span><p class="note__kind">Time out</p><p class="note__title">Maria dela Cruz: Time Out</p><p class="note__body">Maria dela Cruz left the campus at 4:31 PM.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ END: a demo, then the next cards in the drawer ══════ -->
+<section class="end desk" aria-labelledby="end-title">
+  <div class="end__in">
+    <h2 class="h2" id="end-title">Bring the Turnstile System to your school.</h2>
+    <div class="end__side">
+      <p class="lede">Tell us about your campus and its gates, and ask for a demo.</p>
+      <div class="end__ctas">
+        <a class="hbtn hbtn--blue" href="contact.html">Request a demo</a>
+        <a class="hbtn hbtn--line" href="services.html">See all products</a>
+      </div>
+    </div>
+  </div>
+  <nav class="hop" aria-label="More HITC systems">
+    <a class="hop__card hop__card--prev" href="index.html#campus-connect" style="--rule:rgba(245,168,0,.8)">
+      <span class="hop__strip"><span class="hop__name">Campus Connect</span><span class="hop__feed hand">where it all lands</span></span>
+      <span class="hop__dir">Back to Campus Connect</span>
+    </a>
+    <a class="hop__card hop__card--next" href="attendance.html" style="--rule:#16244F">
+      <span class="hop__strip"><span class="hop__feed hand">sends time in and time out</span><span class="hop__name">Attendance Manager</span></span>
+      <span class="hop__dir">Next: Attendance Manager</span>
+    </a>
+  </nav>
+</section>
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="foot">
+  <div class="foot__top">
+    <div>
+      <img class="foot__logo" src="brand_assets/hitclogo-300.webp" alt="HITC" width="57" height="44" loading="lazy" />
+      <p class="foot__about">Headstart Information Technology &amp; Consultancy Inc., empowering Philippine schools since 2006.</p>
+      <a class="mailto" href="mailto:info@hitc.ph">info@hitc.ph</a>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <p class="foot__head">Navigate</p>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl">Services</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
+      </div>
+      <div>
+        <p class="foot__head">Products</p>
+        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl" aria-current="page">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
+      </div>
+    </div>
+    <a class="totop" href="#top" aria-label="Back to top">↑</a>
+  </div>
+  <div class="foot__mark" aria-hidden="true"><span>we innovate technologies</span></div>
 </footer>
-<script>
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
-</script>
 </body>
 </html>

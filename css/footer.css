@@ -1,0 +1,37 @@
+/* The footer every page shares (the home page and services.html link this file; pages.css imports it). */
+.foot{position:relative;z-index:1;padding:clamp(56px,6vw,84px) 8% 0;background:#F4F4F0;color:#0A0F1C;border-top:1px solid #D8D8D0;overflow:hidden;font-family:'Space Grotesk',sans-serif}
+.foot__top{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:36px clamp(32px,5vw,72px);align-items:start}
+.foot__logo{display:block;height:44px;width:auto;margin-bottom:16px;mix-blend-mode:multiply}
+.foot__about{font-size:.95rem;line-height:1.7;color:#3D4A5C;max-width:21rem;margin-bottom:14px}
+.mailto{display:inline-block;font-weight:600;font-size:1rem;color:#1452D6;text-decoration:none;border-bottom:2px solid rgba(20,82,214,.28);padding-bottom:2px;border-radius:2px;transition:border-color .2s ease,color .2s ease}
+.mailto:hover{border-color:currentColor}
+.mailto:active{color:#0B3A9E}
+.mailto:focus-visible{outline:2px solid #1E6BFF;outline-offset:4px}
+.foot__cols{display:grid;grid-template-columns:repeat(2,minmax(150px,auto));gap:clamp(32px,4.5vw,64px)}
+/* each column is headed like an index card's strip: the name, then a gold rule */
+.foot__head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;line-height:1;letter-spacing:.05em;text-transform:uppercase;color:#0A0F1C;padding-bottom:10px;margin-bottom:8px;border-bottom:2px solid #F5A800}
+.foot__list{display:flex;flex-direction:column}
+.foot__list a{display:block;width:fit-content;padding:5px 0;font-size:.95rem;font-weight:500;line-height:1.4;color:#3D4A5C;text-decoration:none;border-radius:3px;transition:color .2s ease}
+.foot__list a:hover,.foot__list a[aria-current]{color:#1452D6}
+.foot__list a:active{opacity:.7}
+.foot__list a:focus-visible{outline:2px solid #1E6BFF;outline-offset:3px}
+.totop{width:44px;height:44px;border-radius:50%;background:#0A0F1C;color:#fff;display:grid;place-items:center;font-size:17px;text-decoration:none;flex-shrink:0;transition:background-color .2s ease,transform .35s cubic-bezier(.34,1.56,.64,1)}
+.totop:hover{background:#1E6BFF;transform:translateY(-2px)}
+.totop:active{transform:scale(.92)}
+.totop:focus-visible{outline:2px solid #1E6BFF;outline-offset:3px}
+/* the wordmark, tucked into the bottom edge, with HITC's own tagline written over it */
+.foot__mark{position:relative;max-width:1200px;margin:clamp(40px,5vw,64px) auto 0;height:clamp(72px,13vw,168px);overflow:hidden}
+/* the wordmark is decoration, drawn by CSS so it isn't read or contrast-checked as text */
+.foot__mark::before{content:'HITC';display:block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(120px,22vw,284px);line-height:.8;letter-spacing:-.02em;color:#16244F;opacity:.09;margin-left:-.04em}
+.foot__mark span{position:absolute;left:clamp(40px,9vw,120px);top:clamp(14px,3vw,40px);font-family:'Schoolbell',cursive;font-size:clamp(1.3rem,2.2vw,1.8rem);line-height:1;color:#1452D6;transform:rotate(-4deg);white-space:nowrap}
+@media (max-width:767px){
+  .foot{padding:56px 16px 0}
+  .foot__top{grid-template-columns:minmax(0,1fr) auto}
+  .foot__cols{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+  .totop{grid-column:2;grid-row:1}
+  /* touch rows at least 40px tall */
+  .foot__list a{padding:10px 0;font-size:1rem}
+  .foot__mark{margin-top:36px;height:clamp(64px,24vw,104px)}
+  .foot__mark::before{font-size:clamp(110px,40vw,170px)}
+  .foot__mark span{left:20px;top:12px;font-size:1.25rem}
+}

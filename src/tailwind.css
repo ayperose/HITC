@@ -1,0 +1,27 @@
+/* Tailwind 4, built by the Vite plugin. */
+@import "tailwindcss";
+/* Keep local tooling out of the build. */
+@source not "../temporary screenshots";
+
+/* from index.html */
+@theme {
+  --color-hbg: #F4F4F0;
+  --color-hcard: #EAEAE4;
+  --color-hup: #E0E0D8;
+  --color-hbl: #1E6BFF;
+  --color-hgd: #F5A800;
+  --color-htx: #0A0F1C;
+  --color-hmt: #5A6880;
+  --color-hborder: #D8D8D0;
+  --font-disp: "Barlow Condensed", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+}
+/* Tailwind 3 compatibility, so the page looks exactly as it did on the v3 CDN (tailwindcss.com/docs/upgrade-guide) */
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button { border-color: #e5e7eb; }
+  input::placeholder, textarea::placeholder { opacity: 1; color: #9ca3af; }
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+}
+/* v3's CDN added its preflight after the page's own styles, so its body{line-height:inherit} beat the
+   page's body{line-height:1.6}: the site was laid out at html's 1.5. Keep that. */
+html body { line-height: inherit; }

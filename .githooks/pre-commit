@@ -1,0 +1,10 @@
+#!/bin/sh
+# Stops a commit that stages a secret.
+# Uses gitleaks from PATH, else the local install. Missing gitleaks stops the commit too: it never passes silently.
+GL=$(command -v gitleaks 2>/dev/null)
+[ -z "$GL" ] && [ -x "$HOME/.local/bin/gitleaks.exe" ] && GL="$HOME/.local/bin/gitleaks.exe"
+if [ -z "$GL" ]; then
+  echo "gitleaks NOT FOUND (expected on PATH or in ~/.local/bin): the secret scan could not run, so the commit was stopped"
+  exit 1
+fi
+"$GL" git --pre-commit --staged --redact --no-banner || { echo "gitleaks: a possible secret is staged, so the commit was stopped"; exit 1; }

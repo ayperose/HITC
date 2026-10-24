@@ -1,0 +1,23 @@
+// Cloudflare Workers: the site is static, so the Worker only serves the built pages in dist/. This file
+// must stay: without it `wrangler deploy` tries to set the project up by itself, reads vite.config.js
+// with a parser that can't handle `import.meta`, and fails with "Error parsing file: .../vite.config.js".
+//
+// The "build" block matters just as much: Workers Builds only runs `npm install` then the deploy
+// command (`npx wrangler deploy`) — it does NOT run a separate build step first. Without this block,
+// wrangler looks for "assets.directory" and fails with 'The directory specified by the "assets.directory"
+// field ... does not exist: .../dist' because dist/ was never built. `build.command` makes wrangler run
+// it itself, as a "[custom build]" step, before it checks for dist/.
+{
+  // Lowercase letters, digits and dashes only:
+  // Cloudflare fails the whole deploy on a capital letter ("Expected \"name\" to be ... lowercase").
+  "name": "hitc",
+  "compatibility_date": "2026-09-26",
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    // a missing path gets public/404.html (copied to dist/404.html by the build) with a 404 status
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

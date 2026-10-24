@@ -3,290 +3,486 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/brand_assets/hitclogo.png">
-<title>Services — HITC, Inc.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{colors:{'hbg':'#F4F4F0','hcard':'#EAEAE4','hbl':'#1E6BFF','hgd':'#F5A800','htx':'#0A0F1C','hmt':'#5A6880'},fontFamily:{disp:['"Barlow Condensed"','sans-serif'],body:['"Space Grotesk"','sans-serif']}}}}
-</script>
+  <link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
+<title>Services | HITC, Inc.</title>
+<meta name="description" content="HITC's seven school systems: Campus Connect for parents, Turnstile ID gates, the Attendance Manager, eBroadcasting, eCash, SFMS and iAsk eLibrary, built in Tuguegarao City since 2006." />
+<link rel="preload" href="/fonts/space-grotesk-400-700.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="css/fonts.css" />
+<link rel="stylesheet" href="/src/tailwind.css">
+<link rel="stylesheet" href="css/footer.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{background:#F4F4F0;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.6}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(234,234,228,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #D0D0C8;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
-.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
-.chip{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;border:1px solid #D8D8D0;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:500;color:#0A0F1C;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.chip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.card{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1E6BFF;color:white;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.01em;transition:background .2s,transform .15s;text-decoration:none}
 .btn-primary:hover{background:#1559D4;transform:translateY(-1px)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:transparent;color:#0A0F1C;border:1.5px solid #C0C0B8;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
-.btn-outline:hover{border-color:#0A0F1C;background:rgba(0,0,0,.03)}
-.scard{background:#FFFFFF;border-radius:16px;border:1px solid #E0E0D8;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;transition:transform .2s,box-shadow .2s;cursor:pointer}
-.scard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
-.scard-featured{background:#0A0F1C;border-radius:16px;padding:32px;border:none;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;transition:transform .2s,box-shadow .2s;cursor:pointer}
-.scard-featured:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
 .nl{font-size:13px;color:#5A6880;text-decoration:none;font-weight:500;transition:color .2s}
 .nl:hover,.nl.active{color:#0A0F1C}
-.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:#1E6BFF;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.tag-gray{background:#E8E8E0;color:#5A6880}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;line-height:1}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:#C8C8C0;border-radius:2px}
 .nav-dropdown{position:relative;display:flex;align-items:center}
 .nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#FFFFFF;border:1px solid #E0E0D8;border-radius:14px;padding:6px;min-width:210px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}.nav-dropdown-panel::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
 .nav-dropdown-panel a{display:block;padding:7px 12px;border-radius:8px;font-size:12px;color:#3A4560;text-decoration:none;font-weight:500;transition:background .12s,color .12s;white-space:nowrap;font-family:'Space Grotesk',sans-serif}
-.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}</style>
+.nav-dropdown-panel a:hover{background:#F4F4F0;color:#0A0F1C}
+/* ══════ OUR COMPLETE SUITE: every product in its own form (2026-10-24) ══════ */
+:root{--spring:cubic-bezier(.34,1.56,.64,1)}
+.hand{font-family:'Schoolbell',cursive;font-weight:400}
+.suite{padding:clamp(72px,8vw,110px) 8% clamp(80px,9vw,120px);background:#F4F4F0}
+.suite__head{max-width:1200px;margin:0 auto clamp(32px,4vw,48px);display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.suite__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,5vw,4.6rem);line-height:.9;letter-spacing:-.01em;color:#0A0F1C}
+.btn-primary:focus-visible{outline:3px solid #1E6BFF;outline-offset:3px}
+.btn-primary:active{background:#0F49B8;transform:none}
+.suite__grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:minmax(260px,auto);gap:18px}
+
+.su{position:relative;isolation:isolate;overflow:hidden;display:grid;border-radius:18px;text-decoration:none;color:#0A0F1C;background:#FBFAF4;box-shadow:0 1px 2px rgba(10,15,28,.08),0 20px 40px -30px rgba(22,36,79,.5);transition:box-shadow .35s ease}
+.su:hover{box-shadow:0 1px 2px rgba(10,15,28,.1),0 34px 60px -32px rgba(22,36,79,.62)}
+.su:focus-visible{outline:3px solid #1E6BFF;outline-offset:4px}
+.su__copy{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(24px,2.6vw,36px)}
+.su__kicker{font-size:1.3rem;line-height:1;color:#1452D6}
+.su__name{margin-top:10px;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2rem,3vw,2.9rem);line-height:.9;letter-spacing:-.005em}
+.su__text{margin-top:12px;font-size:.98rem;line-height:1.62;color:#3D4A5C;max-width:30rem}
+.su__go{margin-top:auto;padding-top:18px;font-weight:600;font-size:.95rem;color:#1452D6;white-space:nowrap}
+.su__go::after{content:'';display:block;height:2px;margin-top:3px;background:currentColor;opacity:.3;transform-origin:0 50%;transition:opacity .2s ease}
+.su:hover .su__go::after{opacity:1}
+.su:active .su__go{opacity:.75}
+
+/* a notification, the way the app shows it */
+.note{position:relative;z-index:3;padding:14px 18px 14px 42px;border-radius:16px;background:#fff;color:#0A0F1C;font-family:'Space Grotesk',sans-serif;box-shadow:0 1px 2px rgba(10,15,28,.14),0 20px 36px -18px rgba(5,9,24,.55);transition:transform .5s var(--spring)}
+.note::before{content:'';position:absolute;left:18px;top:16px;width:12px;height:12px;border:2px solid #1E6BFF;border-radius:50%}
+.note__kind{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1E6BFF;line-height:1.2}
+.note__title{margin-top:6px;font-size:14px;font-weight:600;line-height:1.3}
+.note__body{margin-top:3px;font-size:12.5px;line-height:1.45;color:#5A6880}
+
+/* Campus Connect: navy, the app icon, and its notifications fanned out */
+.su--cc{grid-column:1/8;grid-row:span 2;background:#16244F;color:#F4F4F0;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);align-items:center}
+.su--cc::before{content:'';position:absolute;inset:0;z-index:0;background:radial-gradient(60% 50% at 85% 20%,rgba(30,107,255,.35),transparent 70%),radial-gradient(40% 40% at 10% 100%,rgba(245,168,0,.12),transparent 70%)}
+.su--cc .su__go{margin-top:6px}
+.su__icon{position:relative;width:96px;aspect-ratio:1;border-radius:22%;overflow:hidden;transform:rotate(-4deg);box-shadow:0 2px 4px rgba(0,0,0,.25),0 24px 40px -20px rgba(0,0,0,.7)}
+.su__icon img{position:absolute;width:149.3%;max-width:none;height:auto;left:-24.4%;top:-12.1%}
+.su__new{margin-top:26px;font-size:1.35rem;line-height:1;color:#FFD36B}
+.su--cc .su__name{font-size:clamp(2.8rem,5vw,4.8rem);line-height:.86}
+.su--cc .su__copy{align-self:center}
+.su--cc .su__text{color:rgba(244,244,240,.76)}
+.su--cc .su__go{color:#FFD36B}
+.su__feed{position:relative;z-index:2;display:grid;gap:14px;padding:32px 32px 32px 0}
+.su__feed .note:nth-child(1){transform:rotate(-2.5deg) translateX(-14px)}
+.su__feed .note:nth-child(2){transform:rotate(1.5deg) translateX(16px)}
+.su__feed .note:nth-child(3){transform:rotate(-1deg) translateX(-2px)}
+.su--cc:hover .su__feed .note:nth-child(1){transform:rotate(-1deg) translateX(-20px)}
+.su--cc:hover .su__feed .note:nth-child(2){transform:rotate(0deg) translateX(24px)}
+
+/* Turnstile: a paper-cut gate with an ID mid-tap */
+.su--gate{grid-column:8/13;grid-template-columns:minmax(0,1fr);align-items:start;background:repeating-linear-gradient(to bottom,#FBFAF4 0 35px,rgba(30,107,255,.11) 35px 36px)}
+.gate{position:absolute;z-index:1;right:-6px;bottom:4px;width:46%;max-width:270px;height:auto;overflow:visible}
+.su--gate .su__text{max-width:56%}
+.gate__id{transform:rotate(-14deg);transform-origin:104px 40px;transform-box:view-box;transition:transform .6s var(--spring)}
+.su--gate:hover .gate__id{transform:rotate(-4deg) translate(-6px,24px)}
+.gate__arms{transform-origin:126px 146px;transform-box:view-box;transition:transform .7s var(--spring)}
+.su--gate:hover .gate__arms{transform:rotate(-24deg)}
+
+/* Attendance Manager: a month of ticks on graph paper */
+.su--att{grid-column:8/13;grid-template-columns:minmax(0,1fr) auto;align-items:center;background-color:#FBFAF4;background-image:linear-gradient(rgba(30,107,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(30,107,255,.07) 1px,transparent 1px);background-size:22px 22px}
+.month{display:grid;grid-template-columns:repeat(5,26px);gap:7px;margin-right:clamp(22px,2.6vw,36px);padding:14px 14px 16px;background:#fff;border-radius:12px;transform:rotate(2.5deg);box-shadow:0 1px 2px rgba(10,15,28,.12),0 20px 34px -20px rgba(22,36,79,.5);transition:transform .5s var(--spring)}
+.su--att:hover .month{transform:rotate(0deg) scale(1.04)}
+.month span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-align:center;color:#5A6880}
+.month i,.month b{width:26px;height:26px;border-radius:6px}
+.month i{background:#E6EEFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%231E6BFF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/15px no-repeat}
+.month i.off{background:#EEF0F4}
+.month i.now{background-color:#1E6BFF;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");box-shadow:0 0 0 3px rgba(30,107,255,.25)}
+.month b{border:1.5px dashed #C9D3E3}
+
+/* eBroadcasting: the office photo fills a tall tile */
+.su--cast{grid-column:1/6;grid-row:span 2;min-height:540px;background:#0A0F1C;color:#F4F4F0;align-content:end}
+.su--cast .su__photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.su--cast:hover .su__photo{transform:scale(1.04)}
+.su--cast::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,15,28,.94) 0%,rgba(10,15,28,.55) 34%,rgba(10,15,28,0) 58%)}
+.su--cast::after{content:'';position:absolute;inset:0;z-index:1;background:#1E6BFF;mix-blend-mode:multiply;opacity:.12;pointer-events:none}
+.su--cast .su__photo{filter:brightness(1.18) saturate(.95)}
+.su--cast .su__kicker{color:#FFD36B}
+.su--cast .su__text{color:rgba(244,244,240,.8)}
+.su--cast .su__go{color:#fff}
+.su__bubble{position:absolute;z-index:3;top:28px;right:24px;width:270px;transform:rotate(2.5deg)}
+.su--cast:hover .su__bubble{transform:rotate(0deg) translateY(-4px)}
+
+/* SFMS: an adding-machine tape */
+.su--fees{grid-column:6/13;grid-template-columns:minmax(0,1fr) minmax(0,.62fr)}
+.tape{position:relative;align-self:start;margin:-4px clamp(24px,3vw,40px) 30px 0;padding:22px 22px 26px;background:#fff;font-size:.92rem;transform:rotate(1.5deg);box-shadow:0 1px 2px rgba(10,15,28,.12),0 22px 36px -22px rgba(22,36,79,.5);transition:transform .5s var(--spring)}
+.su--fees:hover .tape{transform:rotate(0deg) translateY(10px)}
+.tape::after{content:'';position:absolute;left:0;right:0;bottom:-10px;height:10px;background:radial-gradient(circle at 8px 0,#fff 7.5px,transparent 8px) 0 0/16px 10px}
+.tape p{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dotted #D3DAE6;color:#3D4A5C}
+.tape p::after{content:'';flex:none;width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%231E6BFF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.tape .tape__total{margin-top:6px;padding-top:12px;border-bottom:0;border-top:3px double #0A0F1C;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;color:#0A0F1C}
+.tape .tape__total::after{display:none}
+
+/* eCash: a canteen photo beside a gold panel */
+.su--cash{grid-column:6/13;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);background:#F5A800}
+.su--cash .su__photo{grid-column:1;grid-row:1;width:100%;height:100%;min-height:260px;object-fit:cover;object-position:50% 40%;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.su--cash:hover .su__photo{transform:scale(1.05)}
+.su--cash::before{content:'';position:absolute;z-index:1;left:0;top:0;bottom:0;width:48.8%;pointer-events:none;background:linear-gradient(to top,rgba(10,15,28,.4),transparent 55%)}
+.su--cash .su__copy{grid-column:2;grid-row:1}
+.su--cash .su__kicker,.su--cash .su__go{color:#0A0F1C}
+.su--cash .su__text{color:rgba(10,15,28,.78)}
+
+/* iAsk: questions and answers, set apart with a dashed edge */
+.su--ask{grid-column:1/13;grid-template-columns:auto minmax(0,1fr);align-items:center;background:#F4F4F0;border:2px dashed rgba(10,15,28,.2);box-shadow:none}
+.su--ask:hover{box-shadow:none;border-color:rgba(10,15,28,.45)}
+.qa{display:flex;align-items:flex-start;gap:16px;padding:28px 8px 40px clamp(24px,3vw,44px)}
+.qa span{position:relative;display:grid;place-items:center;width:118px;height:102px;border-radius:24px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:4.6rem;line-height:1;transition:transform .5s var(--spring)}
+.qa span::after{content:'';position:absolute;bottom:-14px;width:28px;height:28px;background:inherit;clip-path:polygon(0 0,100% 0,0 100%)}
+.qa__q{background:#16244F;color:#F4F4F0;transform:rotate(-5deg)}
+.qa__q::after{left:22px}
+.qa__a{background:#F5A800;color:#0A0F1C;transform:rotate(4deg) translateY(22px)}
+.qa__a::after{right:22px;clip-path:polygon(0 0,100% 0,100% 100%)}
+.su--ask:hover .qa__q{transform:rotate(-9deg) translateY(-4px)}
+.su--ask:hover .qa__a{transform:rotate(7deg) translateY(16px)}
+.su--ask .su__text{max-width:40rem}
+
+/* the phone menu (the nav's links don't fit a phone) */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;color:#0A0F1C;transition:transform .45s var(--spring)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary:hover{transform:scale(1.06)}
+.mnav summary:active{transform:scale(.94)}
+.mnav summary:focus-visible{outline:2px solid #1E6BFF;outline-offset:2px}
+.mnav__panel{position:absolute;right:0;top:calc(100% + 8px);min-width:230px;padding:8px;border-radius:16px;background:#fff;border:1px solid #E0E0D8;box-shadow:0 2px 6px rgba(10,15,28,.08),0 18px 40px -16px rgba(22,36,79,.4);display:grid}
+.mnav__panel a{padding:13px 14px;border-radius:10px;font-size:15px;font-weight:500;color:#0A0F1C;text-decoration:none}
+.mnav__panel a:hover{background:#F4F4F0}
+.mnav__panel a:active{opacity:.7}
+.mnav__panel a:focus-visible{outline:2px solid #1E6BFF;outline-offset:-2px}
+/* nav links keep their look but get a 44px tall hit area for touch screens */
+.nav .nl{padding:12px 0}
+/* phones: the menu hangs from the nav bar's right edge, never off screen */
+@media (max-width:767px){.mnav{position:static}.mnav__panel{right:16px;width:min(300px,calc(100% - 32px));min-width:0}}
+
+@media (max-width:1100px){
+  .su--cc,.su--cast{grid-column:1/-1;grid-row:auto}
+  .su--cast{min-height:460px}
+  .su--gate,.su--att,.su--fees,.su--cash{grid-column:span 6}
+  .su--fees,.su--cash{grid-template-columns:minmax(0,1fr)}
+  .su--fees .tape{margin:0 clamp(24px,3vw,40px) 34px}
+  .su--cash .su__photo{height:220px;min-height:0}
+  .su--cash::before{display:none}
+  .su--cash .su__copy{grid-column:1;grid-row:2}
+}
+@media (max-width:767px){
+  .nav{padding:0 16px}
+  .nav>div{display:none!important}
+  .nav>.btn-primary{padding:8px 16px!important}
+  .mnav{display:block;margin-left:auto;margin-right:8px}
+  .suite__grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .su,.su--cc,.su--cast,.su--gate,.su--att,.su--fees,.su--cash,.su--ask{grid-column:1/-1;grid-row:auto;grid-template-columns:minmax(0,1fr)}
+  .su__feed{padding:0 24px 28px}
+  .su__feed .note{transform:none!important}
+  .gate{position:static;width:100%;max-width:none;padding:0 24px 24px}
+  .su--gate .su__text{max-width:none}
+  .month{margin:0 24px 28px;justify-self:start}
+  .qa{padding:28px 24px 8px}
+  .su--cast{min-height:520px}
+  .su__bubble{width:240px;right:16px;top:20px}
+}/* ══════ HERO and END on the navy desk, like the other pages ══════ */
+.skip{position:fixed;left:16px;top:-80px;z-index:200;padding:12px 18px;border-radius:12px;background:#0A0F1C;color:#F4F4F0;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.skip:focus-visible{outline:3px solid #F5A800;outline-offset:2px}
+.desk{position:relative;isolation:isolate;color:#F4F4F0;background:radial-gradient(48% 40% at 88% 8%,rgba(30,107,255,.18),transparent 70%),radial-gradient(40% 36% at 6% 60%,rgba(245,168,0,.07),transparent 70%),#0C1430}
+.desk::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hbtn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 1.5rem;border-radius:999px;font-size:.9375rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .5s var(--spring),background-color .2s ease,box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
+.hbtn:hover{transform:translateY(-2px)}
+.hbtn:active{transform:translateY(1px) scale(.97);transition-duration:.12s}
+.hbtn:focus-visible{outline:3px solid #F5A800;outline-offset:3px}
+.hbtn--blue{background:#1E6BFF;color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 12px 26px -12px rgba(30,107,255,.8),0 26px 50px -26px rgba(10,15,28,.6)}
+.hbtn--blue:hover{background:#3A80FF}
+.hbtn--line{color:#F4F4F0;box-shadow:0 0 0 1.5px rgba(244,244,240,.42) inset}
+.hbtn--line:hover{box-shadow:0 0 0 1.5px rgba(244,244,240,.9) inset}
+.hbtn--ink{color:#0A0F1C;box-shadow:0 0 0 1.5px rgba(10,15,28,.28) inset}
+.hbtn--ink:hover{box-shadow:0 0 0 1.5px #0A0F1C inset}
+.hbtn--ink:focus-visible{outline-color:#1E6BFF}
+.svh{padding:calc(56px + clamp(48px,6vw,88px)) 8% clamp(84px,9vw,124px)}
+.svh__in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center}
+.svh__kicker{font-size:1.5rem;line-height:1.1;color:#FFD36B}
+.svh__title{margin-top:.7rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(3.2rem,5.6vw,5.4rem);line-height:.86;letter-spacing:-.015em;color:#F4F4F0}
+.svh__lede{margin-top:1.4rem;font-size:1.0625rem;line-height:1.7;color:rgba(244,244,240,.74);max-width:31rem}
+.svh__ctas{margin-top:2rem;display:flex;flex-wrap:wrap;gap:12px}
+/* the drawer: one index card per system, stacked the way the home page's deck settles */
+.drawer{position:relative;padding:52px 0 64px}
+.drawer__count{position:absolute;top:0;left:9%;font-size:1.5rem;line-height:1;color:#FFD36B;transform:rotate(-3deg)}
+.drawer__tabs{list-style:none}
+.drawer__tabs li{display:flex;justify-content:center}
+.drawer__tabs li:nth-child(1){--w:82%}.drawer__tabs li:nth-child(2){--w:85%}.drawer__tabs li:nth-child(3){--w:88%}.drawer__tabs li:nth-child(4){--w:91%}.drawer__tabs li:nth-child(5){--w:94%}.drawer__tabs li:nth-child(6){--w:97%}.drawer__tabs li:nth-child(7){--w:100%}
+.tab{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;width:var(--w,100%);height:52px;margin-top:-6px;padding:0 22px;border-radius:14px 14px 0 0;background:#FBFAF4;color:#0A0F1C;text-decoration:none;border-bottom:2px solid var(--rule,#F5A800);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 -14px 26px -18px rgba(0,0,0,.7);transition:transform .45s var(--spring)}
+.drawer__tabs li:first-child .tab{margin-top:0}
+.drawer__tabs li:last-child .tab{border-radius:14px;height:58px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 30px 50px -26px rgba(3,6,20,.85)}
+.tab:hover{transform:translateY(-5px)}
+.tab:active{transform:translateY(1px);transition-duration:.12s}
+.tab:focus-visible{z-index:2;outline:3px solid #F5A800;outline-offset:2px}
+.tab__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.tab__feed{font-size:1.15rem;color:#1452D6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tab--cc{background:#16244F;color:#F4F4F0;--rule:rgba(245,168,0,.8)}
+.tab--cc .tab__feed{color:#FFD36B}
+.tab--gate,.tab--fees{--rule:#1E6BFF}
+.tab--reg{background:#F1F3F8;--rule:#16244F}
+.tab--cast{--rule:#F5A800}
+.tab--cash{background:#F3EBD8;--rule:#C98600}
+.tab--ask{background:#F4F4F0;--rule:rgba(10,15,28,.2)}
+.stamp{position:absolute;z-index:3;right:-3%;bottom:-6px;display:grid;justify-items:center;padding:12px 18px 10px;border:3px solid currentColor;border-radius:10px;color:#F5A800;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.86;text-align:center;transform:rotate(-9deg);pointer-events:none;background:rgba(12,20,48,.82);box-shadow:0 18px 30px -18px rgba(0,0,0,.8)}
+.stamp::after{content:'';position:absolute;inset:4px;border:1.5px solid currentColor;border-radius:6px;opacity:.75}
+.stamp b{font-size:2.8rem;font-weight:900;letter-spacing:.01em}
+.stamp span{margin-top:4px;font-size:1rem;font-weight:800;letter-spacing:.14em}
+.svend{padding:clamp(80px,9vw,120px) 8%}
+.svend__in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px 64px;align-items:end}
+.svend__title{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.4rem,5vw,4.6rem);line-height:.9;letter-spacing:-.01em;color:#F4F4F0;max-width:15ch}
+.svend__lede{font-size:1.0625rem;line-height:1.7;color:rgba(244,244,240,.74);max-width:30rem}
+.svend .svh__ctas{margin-top:1.5rem}
+@media (max-width:980px){
+  .svh__in,.svend__in{grid-template-columns:minmax(0,1fr)}
+  .drawer{max-width:560px;width:100%;justify-self:center}
+}
+@media (max-width:767px){
+  .svh{padding:calc(56px + 40px) 16px 76px}
+  .svh__kicker{font-size:1.3rem}
+  .svh__title{font-size:clamp(2.9rem,13vw,3.8rem)}
+  .drawer{padding-top:46px}
+  .drawer__count{font-size:1.3rem;left:4%}
+  .drawer__tabs li:nth-child(1){--w:88%}.drawer__tabs li:nth-child(2){--w:90%}.drawer__tabs li:nth-child(3){--w:92%}.drawer__tabs li:nth-child(4){--w:94%}.drawer__tabs li:nth-child(5){--w:96%}.drawer__tabs li:nth-child(6){--w:98%}
+  .tab{height:50px;padding:0 14px;gap:10px}
+  .tab__name{font-size:1.02rem}
+  .tab__feed{font-size:1.02rem}
+  .stamp{right:0;bottom:-4px;padding:9px 13px 7px}
+  .stamp b{font-size:2.1rem}
+  .stamp span{font-size:.8rem}
+  .svend{padding:72px 16px}
+}
+@media (max-width:359px){.tab__feed{display:none}}
+</style>
+<script type="module" src="js/smooth.js"></script>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
-    <img src="brand_assets/hitclogo.png" alt="HITC" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
+    <img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:multiply" />
   </a>
   <div style="display:flex;align-items:center;gap:28px">
     <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px;color:#0A0F1C">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="robotics.html">Intelliteach</a><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
-    <a href="robotics.html" class="nl">Robotics</a>
+    <div class="nav-dropdown"><a href="index.html#services" class="nl" style="display:flex;align-items:center;gap:3px;color:#0A0F1C">Services <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
+    <a href="index.html#campus-connect" class="nl">Campus Connect</a>
     <a href="contact.html" class="nl">Contact</a>
   </div>
+  <details class="mnav" id="mnav">
+    <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="mnav__panel">
+      <a href="index.html#campus-connect">Campus Connect</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </details>
   <a href="contact.html" class="btn-primary" style="padding:9px 20px;font-size:12px">Get Started →</a>
 </nav>
 
-<!-- HERO -->
-<section style="padding:100px 8% 64px;background:#EAEAE4;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-20%;right:-5%;width:50%;height:140%;background:radial-gradient(ellipse at 60% 40%,rgba(30,107,255,.07) 0%,transparent 65%);pointer-events:none"></div>
-  <div class="rv" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px">
-    <span style="font-size:11px;color:#8A96A8;font-weight:500;letter-spacing:.04em;text-transform:uppercase">HITC</span>
-    <span style="color:#C8C8C0">›</span>
-    <span style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Services</span>
-  </div>
-  <h1 class="rv d1" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,88px);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:#0A0F1C;margin-bottom:16px">
-    7 Products.<br><span style="color:#1E6BFF">One Ecosystem.</span>
-  </h1>
-  <p class="rv d2" style="font-size:14px;color:#5A6880;line-height:1.75;max-width:480px;margin-bottom:32px">
-    From LEGO® EV3 robotics classrooms to campus-wide gate systems, financial management, and cashless payments — HITC delivers a full ecosystem of intelligent products for Philippine schools.
-  </p>
-  <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:8px">
-    <span class="chip"><span class="chip-dot" style="background:#1E6BFF"></span>7 Product Systems</span>
-    <span class="chip"><span class="chip-dot" style="background:#22C55E"></span>Philippine Built</span>
-    <span class="chip"><span class="chip-dot" style="background:#F5A800"></span>End-to-End Support</span>
-  </div>
-</section>
-
-<!-- STATS BAR -->
-<div style="background:#0A0F1C;padding:28px 8%">
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;text-align:center">
+<main id="main">
+<!-- HERO: the seven systems, filed as index cards in one drawer -->
+<header class="svh desk" aria-labelledby="svh-title">
+  <div class="svh__in">
     <div>
-      <div class="stat-num" style="color:#1E6BFF">7</div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">Product Systems</div>
+      <p class="svh__kicker hand">seven systems, one school</p>
+      <h1 class="svh__title" id="svh-title">7 products.<br>One ecosystem.</h1>
+      <p class="svh__lede">From campus-wide gate systems to financial management and cashless payments, HITC delivers a full ecosystem of intelligent products for Philippine schools, supported end to end, from deployment to ongoing maintenance.</p>
+      <div class="svh__ctas">
+        <a class="hbtn hbtn--blue" href="contact.html">Request a demo</a>
+        <a class="hbtn hbtn--line" href="index.html#campus-connect">See Campus Connect</a>
+      </div>
     </div>
-    <div style="border-left:1px solid rgba(255,255,255,.08)">
-      <div class="stat-num" style="color:white">100%</div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px">Filipino Made</div>
+    <div class="drawer">
+      <p class="drawer__count hand">7 product systems</p>
+      <ul class="drawer__tabs" aria-label="The seven HITC systems">
+        <li><a class="tab tab--cc" href="index.html#campus-connect"><span class="tab__name">Campus Connect</span><span class="tab__feed hand">where it all lands</span></a></li>
+        <li><a class="tab tab--gate" href="turnstile.html"><span class="tab__name">Turnstile System</span><span class="tab__feed hand">sends the time in</span></a></li>
+        <li><a class="tab tab--reg" href="attendance.html"><span class="tab__name">Attendance Manager</span><span class="tab__feed hand">time in and time out</span></a></li>
+        <li><a class="tab tab--cast" href="ebroadcasting.html"><span class="tab__name">eBroadcasting</span><span class="tab__feed hand">sends announcements</span></a></li>
+        <li><a class="tab tab--cash" href="ecash.html"><span class="tab__name">eCash System</span><span class="tab__feed hand">sends eCash loads</span></a></li>
+        <li><a class="tab tab--fees" href="sfms.html"><span class="tab__name">SFMS</span><span class="tab__feed hand">fees, the SOA and the DCR</span></a></li>
+        <li><a class="tab tab--ask" href="iask.html"><span class="tab__name">iAsk eLibrary</span><span class="tab__feed hand">its own app</span></a></li>
+      </ul>
+      <p class="stamp"><b>100%</b><span>Filipino made</span></p>
     </div>
   </div>
-</div>
+</header>
 
-<!-- SERVICES GRID -->
-<section style="padding:72px 8%;background:#F4F4F0">
-  <div class="rv" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px">
-    <div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:8px">All Products</div>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:900;text-transform:uppercase;color:#0A0F1C;letter-spacing:-.01em">Our Complete Suite</h2>
-    </div>
-    <a href="contact.html" class="btn-outline">Request a Demo →</a>
+<!-- SERVICES: the whole suite, each product in its own form -->
+<section class="suite" aria-labelledby="suite-title">
+  <div class="suite__head">
+    <h2 id="suite-title" class="suite__title">Our Complete Suite</h2>
+    <a href="contact.html" class="hbtn hbtn--ink">Request a demo</a>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+  <div class="suite__grid">
 
-    <!-- 01: Intelliteach (featured, spans 2 cols) -->
-    <div id="intelliteach" class="scard-featured rv d1" style="grid-column:span 2" onclick="location.href='robotics.html'">
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
-          <span style="background:#1E6BFF;color:white;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px">Featured</span>
-          <span style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1)">Product 01</span>
-        </div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:white;text-transform:uppercase;margin-bottom:6px">Intelliteach</h3>
-        <div style="font-size:11px;color:#1E6BFF;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">EV3 Robotics &amp; LMS</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;max-width:400px">A dynamic web-based Learning Management System integrating LEGO® MINDSTORMS® EV3 curriculum. Empowers teachers to deliver hands-on robotics education across Grades 4–10.</p>
+    <!-- Campus Connect: the notifications are the picture -->
+    <a class="su su--cc" href="index.html#campus-connect">
+      <div class="su__copy">
+        <span class="su__icon" aria-hidden="true"><img src="brand_assets/campus-connect-deck/campus-connect-app-icon-640.webp" alt="" width="640" height="640" /></span>
+        <p class="su__new hand">our newest system</p>
+        <h3 class="su__name">Campus Connect</h3>
+        <p class="su__text">A secure school app for parents and guardians: the actual time in and time out, announcements, school fee payments and eCash loads, as they happen.</p>
+        <span class="su__go">See Campus Connect</span>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:24px">
-        <span class="tag" style="background:rgba(30,107,255,.2);color:#6AAEFF">LEGO EV3</span>
-        <span class="tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)">Online LMS</span>
-        <span class="tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)">Grade 4–10</span>
-        <div style="margin-left:auto;width:34px;height:34px;border-radius:50%;background:#1E6BFF;display:flex;align-items:center;justify-content:center;color:white;font-size:14px">→</div>
+      <div class="su__feed" aria-hidden="true">
+        <div class="note"><p class="note__kind">Time in</p><p class="note__title">Maria dela Cruz: Time In</p><p class="note__body">Arrived on campus at 7:02 AM.</p></div>
+        <div class="note"><p class="note__kind">Announcement</p><p class="note__title">A message from the school</p><p class="note__body">With clearer context and links you can tap.</p></div>
+        <div class="note"><p class="note__kind">eCash</p><p class="note__title">eCash load posted</p><p class="note__body">Maria dela Cruz's eCash was loaded.</p></div>
       </div>
-    </div>
+    </a>
 
-    <!-- 02: Attendance Manager -->
-    <div id="attendance" class="scard rv d2" onclick="location.href='attendance.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-6 4h4"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 02</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Attendance Manager</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Smart digital attendance tracking for schools. Real-time monitoring with mobile app support and comprehensive reporting.</p>
+    <!-- Turnstile: a paper-cut gate, an ID mid-tap -->
+    <a class="su su--gate" id="turnstile" href="turnstile.html">
+      <div class="su__copy">
+        <p class="su__kicker hand">RFID school ID gates</p>
+        <h3 class="su__name">Turnstile System</h3>
+        <p class="su__text">Automated gate management using RFID student and staff IDs. Every entry and exit is logged, on a campus of any size.</p>
+        <span class="su__go">See the Turnstile System</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">Real-Time</span><span class="tag tag-gray">Mobile App</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
-      </div>
-    </div>
+      <svg class="gate" viewBox="0 0 320 240" aria-hidden="true">
+        <ellipse cx="164" cy="224" rx="142" ry="10" fill="#16244F" opacity=".12"/>
+        <rect x="48" y="104" width="78" height="118" rx="12" fill="#0E1838" transform="translate(5 6)" opacity=".18"/>
+        <rect x="48" y="104" width="78" height="118" rx="12" fill="#16244F"/>
+        <rect x="48" y="104" width="78" height="20" rx="10" fill="#2A3D7A"/>
+        <rect x="60" y="78" width="54" height="38" rx="9" fill="#1E6BFF"/>
+        <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M80 91a8 8 0 0 1 0 12"/><path d="M86 86a15 15 0 0 1 0 22"/><path d="M92 81a22 22 0 0 1 0 32"/></g>
+        <circle cx="74" cy="97" r="3" fill="#fff"/>
+        <g class="gate__arms">
+          <rect x="124" y="140" width="98" height="9" rx="4.5" fill="#C9D3E3"/>
+          <rect x="120" y="152" width="70" height="9" rx="4.5" fill="#AEB9CC" transform="rotate(32 124 156)"/>
+          <circle cx="126" cy="146" r="11" fill="#8D96A8"/>
+        </g>
+        <rect x="222" y="104" width="62" height="118" rx="12" fill="#0E1838" transform="translate(5 6)" opacity=".18"/>
+        <rect x="222" y="104" width="62" height="118" rx="12" fill="#16244F"/>
+        <rect x="222" y="104" width="62" height="20" rx="10" fill="#2A3D7A"/>
+        <circle cx="253" cy="114" r="5" fill="#3CCB7F"/>
+        <g class="gate__id" transform="rotate(-14 104 40)">
+          <path d="M104 -6v26" stroke="#1F5E43" stroke-width="5"/>
+          <rect x="76" y="16" width="56" height="72" rx="7" fill="#fff" stroke="#B9C2D2" stroke-width="2"/>
+          <path d="M76 23a7 7 0 0 1 7-7h42a7 7 0 0 1 7 7v10H76Z" fill="#1E6BFF"/>
+          <rect x="84" y="40" width="18" height="22" rx="3" fill="#C9D6EA"/>
+          <circle cx="93" cy="49" r="5" fill="#C98E62"/>
+          <rect x="107" y="42" width="18" height="4" rx="2" fill="#7A8499"/>
+          <rect x="107" y="51" width="13" height="4" rx="2" fill="#7A8499"/>
+          <rect x="84" y="70" width="40" height="5" rx="2.5" fill="#7A8499"/>
+        </g>
+      </svg>
+    </a>
 
-    <!-- 03: Turnstile -->
-    <div id="turnstile" class="scard rv d1" onclick="location.href='turnstile.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 03</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">Turnstile System</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">RFID School ID Gates</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Automated school gate management using RFID-enabled student and staff ID cards. Seamless entry/exit logging for any campus size.</p>
+    <!-- Attendance Manager: a month of ticks -->
+    <a class="su su--att" id="attendance" href="attendance.html">
+      <div class="su__copy">
+        <p class="su__kicker hand">on Android and iOS</p>
+        <h3 class="su__name">Attendance Manager</h3>
+        <p class="su__text">Smart digital attendance tracking, with real-time monitoring and full reporting.</p>
+        <span class="su__go">See the Attendance Manager</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">RFID</span><span class="tag tag-gray">Auto-Log</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
+      <div class="month" aria-hidden="true">
+        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span>
+        <i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i class="off"></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i class="now"></i><b></b><b></b>
       </div>
-    </div>
+    </a>
 
-    <!-- 04: eBroadcasting -->
-    <div id="ebroadcasting" class="scard rv d2" onclick="location.href='ebroadcasting.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 04</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eBroadcasting</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Campus Announcements</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Campus-wide announcement platform. Broadcast messages, alerts, and critical information to your entire institution instantly.</p>
+    <!-- eBroadcasting: the office, with a message going out -->
+    <a class="su su--cast" id="ebroadcasting" href="ebroadcasting.html">
+      <img class="su__photo" src="photos/web/ebroadcasting1.webp" alt="School office staff at their desk computers" width="960" height="540" loading="lazy" />
+      <div class="note su__bubble" aria-hidden="true"><p class="note__kind">Announcement</p><p class="note__title">To every parent, at once</p><p class="note__body">Messages, alerts and critical information.</p></div>
+      <div class="su__copy">
+        <p class="su__kicker hand">campus announcements</p>
+        <h3 class="su__name">eBroadcasting</h3>
+        <p class="su__text">A campus-wide announcement platform. Broadcast messages, alerts and critical information to your entire institution instantly.</p>
+        <span class="su__go">See eBroadcasting</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">Broadcast</span><span class="tag tag-gray">Multi-Channel</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
-      </div>
-    </div>
+    </a>
 
-    <!-- 05: SFMS -->
-    <div id="sfms" class="scard rv d3" onclick="location.href='sfms.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/><path d="M7 8h3m-3 4h5"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 05</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">SFMS</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">School Fee Management</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Complete financial management for educational institutions. Tuition tracking, payroll, budgeting, and financial reporting in one unified system.</p>
+    <!-- SFMS: an adding-machine tape -->
+    <a class="su su--fees" id="sfms" href="sfms.html">
+      <div class="su__copy">
+        <p class="su__kicker hand">school fee management</p>
+        <h3 class="su__name">SFMS</h3>
+        <p class="su__text">Complete financial management for schools: tuition tracking, payroll, budgeting and financial reporting in one unified system.</p>
+        <span class="su__go">See SFMS</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">Tuition</span><span class="tag tag-gray">Payroll</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
+      <div class="tape" aria-hidden="true">
+        <p>Tuition tracking</p>
+        <p>Payroll</p>
+        <p>Budgeting</p>
+        <p>Financial reporting</p>
+        <p class="tape__total">One system</p>
       </div>
-    </div>
+    </a>
 
-    <!-- 06: eCash -->
-    <div id="ecash" class="scard rv d1" onclick="location.href='ecash.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 06</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">eCash System</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Cashless Campus</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Cashless payment platform for school canteens, bookstores, and fee collection. Safer, faster, and more transparent digital transactions.</p>
+    <!-- eCash: a canteen photo and a gold panel -->
+    <a class="su su--cash" id="ecash" href="ecash.html">
+      <img class="su__photo" src="photos/web/ecash5.webp" alt="A canteen staff member and a student at the eCash touchscreen, with classmates lined up behind them" width="1280" height="719" loading="lazy" />
+      <div class="su__copy">
+        <p class="su__kicker hand">a cashless campus</p>
+        <h3 class="su__name">eCash System</h3>
+        <p class="su__text">Cashless payments for school canteens, bookstores and fee collection. Safer, faster and more transparent.</p>
+        <span class="su__go">See the eCash System</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">Cashless</span><span class="tag tag-gray">Digital Wallet</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
-      </div>
-    </div>
+    </a>
 
-    <!-- 07: iAsk -->
-    <div id="iask" class="scard rv d2" onclick="location.href='iask.html'">
-      <div>
-        <div style="width:36px;height:36px;border-radius:10px;background:#EAF0FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1E6BFF" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div style="font-size:9px;font-weight:600;color:#B0BAC8;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Product 07</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:#0A0F1C;margin-bottom:4px">iAsk eLibrary</h3>
-        <div style="font-size:10px;color:#1E6BFF;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px">Android &amp; iOS</div>
-        <p style="font-size:12px;color:#5A6880;line-height:1.65">Interactive communication and Q&amp;A management system connecting administrators, faculty, and students in a unified accessible platform.</p>
+    <!-- iAsk: questions and answers -->
+    <a class="su su--ask" id="iask" href="iask.html">
+      <div class="qa" aria-hidden="true"><span class="qa__q">Q</span><span class="qa__a">A</span></div>
+      <div class="su__copy">
+        <p class="su__kicker hand">on Android and iOS</p>
+        <h3 class="su__name">iAsk eLibrary</h3>
+        <p class="su__text">Interactive communication and Q&amp;A management, connecting administrators, faculty and students in one accessible platform.</p>
+        <span class="su__go">See iAsk eLibrary</span>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
-        <div style="display:flex;gap:5px"><span class="tag tag-gray">Q&amp;A</span><span class="tag tag-gray">Multi-User</span></div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#0A0F1C;color:white;font-size:12px;display:flex;align-items:center;justify-content:center">→</div>
-      </div>
-    </div>
+    </a>
 
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section style="padding:72px 8%;background:#0A0F1C" class="rv">
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px">
+<!-- END: ask for a demo -->
+<section class="svend desk" aria-labelledby="svend-title">
+  <div class="svend__in">
+    <h2 class="svend__title" id="svend-title">Transform your school with HITC technology</h2>
     <div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1E6BFF;margin-bottom:10px">Ready to Start?</div>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,48px);font-weight:900;text-transform:uppercase;color:white;letter-spacing:-.01em;line-height:1">Transform Your School<br>With HITC Technology</h2>
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="contact.html" class="btn-primary">Contact Sales →</a>
-      <a href="robotics.html" class="btn-outline" style="color:white;border-color:rgba(255,255,255,.2)">View Robotics</a>
+      <p class="svend__lede">Tell us about your institution and what it needs, and we'll show you the systems that fit.</p>
+      <div class="svh__ctas">
+        <a class="hbtn hbtn--blue" href="contact.html">Contact sales</a>
+        <a class="hbtn hbtn--line" href="index.html#campus-connect">View Campus Connect</a>
+      </div>
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
-<footer style="padding:52px 8% 0;background:#F4F4F0;border-top:1px solid #D8D8D0">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:32px">
+<footer class="foot">
+  <div class="foot__top">
     <div>
-      <img src="brand_assets/hitclogo.png" alt="HITC" style="height:44px;width:auto;margin-bottom:14px;display:block;mix-blend-mode:multiply" />
-      <p style="font-size:12px;color:#8A96A8;max-width:240px;line-height:1.75;margin-bottom:14px">Headstart Information Technology &amp; Consultancy Inc. — empowering Philippine schools since 2006.</p>
-      <a href="mailto:info@hitc.ph" style="font-size:13px;color:#0A0F1C;text-decoration:none;border-bottom:1px solid #D8D8D0;padding-bottom:1px">info@hitc.ph</a>
+      <img class="foot__logo" src="brand_assets/hitclogo-300.webp" alt="HITC" width="57" height="44" loading="lazy" />
+      <p class="foot__about">Headstart Information Technology &amp; Consultancy Inc., empowering Philippine schools since 2006.</p>
+      <a class="mailto" href="mailto:info@hitc.ph">info@hitc.ph</a>
     </div>
-    <div style="display:flex;gap:52px">
+    <div class="foot__cols">
       <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Navigate</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="index.html" class="nl" style="font-size:12px">Home</a>
-          <a href="about.html" class="nl" style="font-size:12px">About</a>
-          <a href="services.html" class="nl" style="font-size:12px">Services</a>
-          <a href="robotics.html" class="nl" style="font-size:12px">Robotics</a>
-          <a href="contact.html" class="nl" style="font-size:12px">Contact</a>
-        </div>
+        <p class="foot__head">Navigate</p>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl" aria-current="page">Services</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
       </div>
       <div>
-        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A96A8;margin-bottom:14px">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="robotics.html" class="nl" style="font-size:12px">Intelliteach</a>
-          <a href="attendance.html" class="nl" style="font-size:12px">Attendance</a>
-          <a href="turnstile.html" class="nl" style="font-size:12px">Turnstile</a>
-          <a href="ebroadcasting.html" class="nl" style="font-size:12px">eBroadcasting</a>
-          <a href="sfms.html" class="nl" style="font-size:12px">SFMS</a>
-          <a href="ecash.html" class="nl" style="font-size:12px">eCash</a>
-          <a href="iask.html" class="nl" style="font-size:12px">iAsk</a>
-        </div>
+        <p class="foot__head">Products</p>
+        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
       </div>
     </div>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:#0A0F1C;border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0" onmouseover="this.style.background='#1E6BFF'" onmouseout="this.style.background='#0A0F1C'">↑</button>
+    <a class="totop" href="#top" aria-label="Back to top">↑</a>
   </div>
-  <div style="overflow:hidden;margin:0 -8%">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(80px,18vw,200px);line-height:.85;color:#0A0F1C;letter-spacing:-.02em;text-transform:uppercase;padding:0 8%;opacity:.08">HITC</div>
-  </div>
+  <div class="foot__mark" aria-hidden="true"><span>we innovate technologies</span></div>
 </footer>
 
-<script>
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
-</script>
 </body>
 </html>
