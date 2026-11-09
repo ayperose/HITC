@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
 <title>Privacy | HITC, Inc.</title>
-<meta name="description" content="What the HITC website loads and collects, in plain words: Google Maps, YouTube, and message forms that open your own email app. No analytics or tracking." />
+<meta name="description" content="What the HITC website loads and collects, in plain words: Google Maps and message forms that open your own email app. No analytics or tracking." />
 <link rel="preload" href="/fonts/space-grotesk-400-700.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="css/fonts.css" />
@@ -20,9 +20,9 @@
 <nav class="nav" aria-label="Main">
   <a class="nav__logo" href="index.html" aria-label="HITC home"><img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" /></a>
   <div class="nav__links">
-    <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
     <a href="index.html#campus-connect" class="nl">Campus Connect</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="careers.html" class="nl">Careers</a>
     <a href="contact.html" class="nl">Contact</a>
   </div>
   <details class="mnav" id="mnav">
@@ -30,7 +30,7 @@
     <div class="mnav__panel">
       <a href="index.html#campus-connect">Campus Connect</a>
       <a href="about.html">About</a>
-      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
       <a href="contact.html">Contact</a>
     </div>
   </details>
@@ -73,7 +73,7 @@
         <p class="slip__row"><span>Cookies of its own</span><span>none</span></p>
         <p class="slip__row"><span>Analytics and ads</span><span>none</span></p>
         <p class="slip__row"><span>Message forms</span><span>your own email app</span></p>
-        <p class="slip__row"><span>From Google</span><span>map, videos</span></p>
+        <p class="slip__row"><span>From Google</span><span>map</span></p>
         <p class="slipcard__big"><span>Tracking</span><span>none</span></p>
       </div>
     </div>
@@ -90,8 +90,7 @@
     <dl class="spec__list">
       <div class="spec__row"><dt>Fonts, on every page</dt><dd>The site's typefaces are served from this website itself, so showing them sends nothing to Google or any other font service.</dd></div>
       <div class="spec__row"><dt>Google Maps, on Contact</dt><dd>The map on the <a class="tlink" href="contact.html">Contact</a> page is embedded from Google Maps and loads as you scroll near it. Google may set cookies and collect data under its own privacy policy. The directions links open Google Maps itself.</dd></div>
-      <div class="spec__row"><dt>YouTube, on Turnstile and Attendance</dt><dd>The demo videos on the <a class="tlink" href="turnstile.html">Turnstile</a> and <a class="tlink" href="attendance.html">Attendance</a> pages are YouTube videos, and YouTube is owned by Google. Each page shows a saved picture, and nothing is requested from YouTube until you tap play. After that, YouTube may set cookies and collect data about your viewing.</dd></div>
-      <div class="spec__row"><dt>The message forms</dt><dd>The forms on the home page and the Contact page send nothing through this website. Pressing Send opens your own email app with your message written out to info@hitc.ph, and nothing goes until you send it from there. HITC then gets it as a normal email: your name, email address, school, the product you picked and your message.</dd></div>
+      <div class="spec__row"><dt>The message forms</dt><dd>The forms on the home page and the Contact page send nothing through this website. Pressing Send opens your own email app with your message written out to info@hitc.ph, and nothing goes until you send it from there. HITC then gets it as a normal email: your name, email address, school, the topic you picked and your message.</dd></div>
       <div class="spec__row"><dt>No analytics, no tracking</dt><dd>The site runs no analytics, ads or tracking pixels, sets no cookies of its own, and keeps nothing in your browser's storage.</dd></div>
       <div class="spec__row"><dt>The server</dt><dd>The service that hosts these pages may keep short technical logs, such as IP addresses and the pages asked for, to deliver the site and keep it safe.</dd></div>
     </dl>
@@ -125,12 +124,9 @@
     <div class="foot__cols">
       <div>
         <p class="foot__head">Navigate</p>
-        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl">Services</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl" aria-current="page">Privacy</a></div>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="about.html" class="nl">About</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl" aria-current="page">Privacy</a></div>
       </div>
-      <div>
-        <p class="foot__head">Products</p>
-        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
-      </div>
+
     </div>
     <a class="totop" href="#top" aria-label="Back to top">↑</a>
   </div>

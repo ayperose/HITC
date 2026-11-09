@@ -1,12 +1,15 @@
-/* The footer every page shares (the home page and services.html link this file; pages.css imports it). */
+/* The footer every page shares (the home page links this file; pages.css imports it). */
 .foot{position:relative;z-index:1;padding:clamp(56px,6vw,84px) 8% 0;background:#F4F4F0;color:#0A0F1C;border-top:1px solid #D8D8D0;overflow:hidden;font-family:'Space Grotesk',sans-serif}
 .foot__top{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:36px clamp(32px,5vw,72px);align-items:start}
-.foot__logo{display:block;height:44px;width:auto;margin-bottom:16px;mix-blend-mode:multiply}
+.foot__logo{display:block;height:44px;width:auto;margin-bottom:16px}
 .foot__about{font-size:.95rem;line-height:1.7;color:#3D4A5C;max-width:21rem;margin-bottom:14px}
 .mailto{display:inline-block;font-weight:600;font-size:1rem;color:#1452D6;text-decoration:none;border-bottom:2px solid rgba(20,82,214,.28);padding-bottom:2px;border-radius:2px;transition:border-color .2s ease,color .2s ease}
 .mailto:hover{border-color:currentColor}
 .mailto:active{color:#0B3A9E}
 .mailto:focus-visible{outline:2px solid #1E6BFF;outline-offset:4px}
+/* an invisible hit area at least 44px each way; nothing visible moves */
+.mailto{position:relative}
+.mailto::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
 .foot__cols{display:grid;grid-template-columns:repeat(2,minmax(150px,auto));gap:clamp(32px,4.5vw,64px)}
 /* each column is headed like an index card's strip: the name, then a gold rule */
 .foot__head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;line-height:1;letter-spacing:.05em;text-transform:uppercase;color:#0A0F1C;padding-bottom:10px;margin-bottom:8px;border-bottom:2px solid #F5A800}
@@ -27,11 +30,16 @@
 @media (max-width:767px){
   .foot{padding:56px 16px 0}
   .foot__top{grid-template-columns:minmax(0,1fr) auto}
-  .foot__cols{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+  .foot__cols{grid-column:1/-1;grid-row:2;grid-template-columns:minmax(0,1fr);gap:28px}
   .totop{grid-column:2;grid-row:1}
-  /* touch rows at least 40px tall */
-  .foot__list a{padding:10px 0;font-size:1rem}
+  /* touch rows at least 44px tall */
+  .foot__list a{padding:11px 0;font-size:1rem}
+  /* the one card of links, with its links in two columns, so no link wraps */
+  .foot__cols>div{max-width:330px}
+  .foot__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
   .foot__mark{margin-top:36px;height:clamp(64px,24vw,104px)}
   .foot__mark::before{font-size:clamp(110px,40vw,170px)}
   .foot__mark span{left:20px;top:12px;font-size:1.25rem}
 }
+/* tablets and other touch screens: footer rows at least 44px tall */
+@media (pointer:coarse){.foot__list a{padding-block:11px;min-height:44px;min-width:44px}}

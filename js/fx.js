@@ -1,9 +1,8 @@
 // Home page motion, on the page's own GSAP + ScrollTrigger from npm (window.gsap, the same instance the hero's pin uses).
 // Portions adapted from third-party code under the MIT licence with the Commons Clause: see /licenses.txt
-// Vanilla ports of: Split Text, Shiny Text, Magnet, Scroll Reveal and Scroll Stack, plus the Lenis wiring.
+// Vanilla ports of: Split Text, Shiny Text, Magnet, Scroll Reveal, Scroll Stack and Counter, plus the Lenis wiring.
 // What changed from upstream is noted at each piece. Every piece shows its text whole under
 // prefers-reduced-motion, and none of them keeps a frame loop running off screen.
-import { mount as mountLanyard } from './lanyard.js';
 import { paintFront, paintBack, paintStrap } from './student-id-art.js';
 
 const root = document.documentElement;
@@ -206,6 +205,47 @@ function scrollStack(deck, { itemDistance = 90, stackDistance = 42, stackPositio
   update();
 }
 
+/* ---------- Counter: the time-in card's clock rolls like an odometer. Each digit is a strip of 0 to 9
+   moved by transform only (upstream springs each digit along the shortest way round; here a CSS transition
+   with a slight overshoot, staggered right to left). It rolls up from 0:00 the first time the card is on
+   screen, then between the time in and the time out on each press of the card's button. ---------- */
+function gateClock(card) {
+  const odo = card.querySelector('.odo'), btn = card.querySelector('[data-flip]'), note = card.querySelector('.note');
+  if (!odo || !btn || !note) return;
+  const strips = Array.from(odo.querySelectorAll('.odo__d')).map((d, i, all) => {
+    const s = document.createElement('span');
+    s.className = 'odo__s';
+    for (let n = 0; n < 10; n++) s.appendChild(document.createElement('span')).textContent = n;
+    s.style.transitionDelay = (all.length - 1 - i) * 90 + 'ms';
+    d.textContent = '';
+    d.appendChild(s);
+    return s;
+  });
+  const ampm = odo.querySelector('.odo__aps');
+  const STATES = [
+    { time: '702', pm: 0, kind: 'Time in', title: 'Maria dela Cruz: Time In', body: 'Arrived on campus at 7:02 AM.', next: 'now see her time out' },
+    { time: '431', pm: 1, kind: 'Time out', title: 'Maria dela Cruz: Time Out', body: 'Left the campus at 4:31 PM.', next: 'back to her time in' },
+  ];
+  const set = (time, pm) => {
+    strips.forEach((s, i) => s.style.setProperty('--n', time[i]));
+    if (ampm) ampm.style.setProperty('--n', pm);
+  };
+  let at = 0;
+  const show = (k) => {
+    const st = STATES[k];
+    set(st.time, st.pm);
+    note.querySelector('.note__kind').textContent = st.kind;
+    note.querySelector('.note__title').textContent = st.title;
+    note.querySelector('.note__body').textContent = st.body;
+    btn.firstChild.textContent = st.next;
+  };
+  btn.addEventListener('click', () => { at = 1 - at; show(at); });
+  if (reduce || !('IntersectionObserver' in window)) { show(0); return; }
+  set('000', 0); // first roll: from 0:00 up to 7:02, once the card is in view
+  const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); show(at); } }, { threshold: 0.35 });
+  io.observe(odo);
+}
+
 /* ---------- the student ID on its lanyard (#student-id) ---------- */
 // The badge's one-off set-up (an environment bake and texture uploads) blocks the page for a moment. The hero's
 // 3D book waits for it before its first frame (index.html, at most 2 s), so it never freezes the book's intro or
@@ -218,7 +258,9 @@ async function startLanyard() {
   const hang = document.getElementById('sid-hang');
   if (!section || !stage) return;
   const load = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
-  const [icon, logo] = await Promise.all([
+  // the badge and three.js are their own chunk, fetched once the page's text has painted
+  const afterPaint = () => new Promise((r) => requestAnimationFrame(() => setTimeout(r)));
+  const [icon, logo, , { mount: mountLanyard }] = await Promise.all([
     // new URL(…, import.meta.url): Vite sees these and ships the files in the build
     load(new URL('../brand_assets/campus-connect-deck/campus-connect-app-icon-640.webp', import.meta.url).href),
     load(new URL('../brand_assets/hitclogo-300.webp', import.meta.url).href),
@@ -226,6 +268,7 @@ async function startLanyard() {
       Promise.all(['900 80px "Barlow Condensed"', '800 80px "Barlow Condensed"', '700 60px "Barlow Condensed"', '600 30px "Space Grotesk"', '500 30px "Space Grotesk"'].map((f) => document.fonts.load(f))),
       new Promise((r) => setTimeout(r, 2500)),
     ]),
+    afterPaint().then(() => import('./lanyard.js')),
   ]);
   // the strap hangs over the empty middle column on wide screens, centred on phones
   const anchorX = () => {
@@ -266,6 +309,7 @@ document.querySelectorAll('[data-shiny]').forEach((el) => shinyText(el));
 document.querySelectorAll('[data-magnet]').forEach((el) => magnet(el));
 document.querySelectorAll('[data-reveal]').forEach((el) => scrollReveal(el));
 document.querySelectorAll('[data-stack]').forEach((el) => scrollStack(el));
+document.querySelectorAll('[data-taps]').forEach((el) => gateClock(el));
 startLanyard().catch((err) => console.warn('HITC lanyard could not start:', err)).finally(() => markBuilt());
 if (hasGsap) {
   // the fonts change line breaks, and with them every trigger below the hero

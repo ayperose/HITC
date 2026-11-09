@@ -57,7 +57,7 @@ export default function seo({ siteUrl = '' } = {}) {
             `<meta property="og:image" content="${site}/og-image.jpg" />`,
             '<meta property="og:image:width" content="1200" />',
             '<meta property="og:image:height" content="630" />',
-            '<meta property="og:image:alt" content="Students tap their school ID at an HITC eCash terminal in a school canteen" />',
+            '<meta property="og:image:alt" content="Campus Connect by HITC: a phone shows the alert Maria dela Cruz: Time In, arrived on campus at 7:02 AM" />',
             '<meta name="twitter:card" content="summary_large_image" />',
           );
         }

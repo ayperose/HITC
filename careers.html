@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
 <title>Careers | HITC, Inc.</title>
 <meta name="description" content="Join HITC, Inc. in Tuguegarao City: we are hiring a Technical Support Specialist." />
@@ -20,9 +20,9 @@
 <nav class="nav" aria-label="Main">
   <a class="nav__logo" href="index.html" aria-label="HITC home"><img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" /></a>
   <div class="nav__links">
-    <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
     <a href="index.html#campus-connect" class="nl">Campus Connect</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="careers.html" class="nl" aria-current="page">Careers</a>
     <a href="contact.html" class="nl">Contact</a>
   </div>
   <details class="mnav" id="mnav">
@@ -30,7 +30,7 @@
     <div class="mnav__panel">
       <a href="index.html#campus-connect">Campus Connect</a>
       <a href="about.html">About</a>
-      <a href="services.html">Services</a>
+      <a href="careers.html" aria-current="page">Careers</a>
       <a href="contact.html">Contact</a>
     </div>
   </details>
@@ -54,9 +54,9 @@
 </svg>
 
 <main id="main">
-<!-- ══════ HERO: the hiring poster, pinned to the desk ══════ -->
-<header class="hero desk" aria-labelledby="careers-title">
-  <div class="hero__in">
+<!-- ══════ HERO: our hiring flyer, pinned to the desk. Its tabs tear off and take the email with them ══════ -->
+<header class="hero hero--flyer desk" aria-labelledby="careers-title">
+  <div class="hero__in hero__in--flyer">
     <div>
       <p class="hero__kicker hand">now hiring, one open position</p>
       <h1 class="hero__title" id="careers-title">Join the HITC team</h1>
@@ -66,14 +66,52 @@
         <a class="hbtn hbtn--line" href="#position">See the role</a>
       </div>
     </div>
-    <figure class="poster">
-      <span class="poster__card">
-        <span class="poster__pin" aria-hidden="true"></span>
-        <img src="photos/web/hiring.webp" alt="HITC's hiring poster for a Technical Support Specialist, listing the role's responsibilities, qualifications, preferred skills and how to apply" width="900" height="1350" />
-        <span class="poster__glare" aria-hidden="true"></span>
-      </span>
-      <figcaption class="poster__cap hand">our hiring poster</figcaption>
-    </figure>
+    <div class="board" data-flyer>
+      <div class="flyer" role="group" aria-label="Our hiring flyer">
+        <span class="flyer__pin" aria-hidden="true"></span>
+        <div class="flyer__body">
+          <img class="flyer__logo" src="brand_assets/hitclogo-300.webp" alt="HITC" width="57" height="44" />
+          <p class="flyer__call">We're hiring a</p>
+          <p class="flyer__role">Technical Support Specialist</p>
+          <div class="flyer__cols">
+            <div>
+              <p class="flyer__label">What you'll do</p>
+              <ul>
+                <li>Provide tech support for hardware and software issues</li>
+                <li>Troubleshoot network and system problems</li>
+                <li>Install and maintain computer systems</li>
+                <li>Document and resolve technical issues</li>
+              </ul>
+            </div>
+            <div>
+              <p class="flyer__label">What you need</p>
+              <ul>
+                <li>IT or Computer Science graduate</li>
+                <li>Experience in tech support</li>
+                <li>Knowledge of Windows OS and networking</li>
+                <li>Strong problem-solving skills</li>
+              </ul>
+            </div>
+          </div>
+          <p class="flyer__plus"><span class="flyer__label">Nice to have</span> System maintenance and network configuration, software and hardware troubleshooting, and familiarity with routers and switches.</p>
+          <div class="flyer__foot">
+            <p><span class="flyer__label">How to apply</span> Send your resume to <a href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application">careers@hitc.ph</a>, subject "Technical Support Application".</p>
+            <p><a href="tel:+63783771337">(078) 377-1337</a><br />HITC Bldg., #154 Tuliao St., Caritan Norte, Tuguegarao City</p>
+          </div>
+        </div>
+        <div class="flyer__tabs" aria-hidden="true">
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>
+          <a class="flyer__tab" href="mailto:careers@hitc.ph?subject=Technical%20Support%20Application" tabindex="-1" draggable="false"><b>careers@hitc.ph</b><span>(078) 377-1337</span></a>          <svg class="flyer__fibres" aria-hidden="true"></svg>
+        </div>
+      </div>
+      <p class="board__hint hand" data-touch="pull a tab down to take our email" aria-hidden="true"><svg><use href="#i-arrow-r"/></svg><span>tear off a tab to take our email</span></p>
+    </div>
   </div>
 </header>
 
@@ -174,12 +212,9 @@
     <div class="foot__cols">
       <div>
         <p class="foot__head">Navigate</p>
-        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl">Services</a><a href="careers.html" class="nl" aria-current="page">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="about.html" class="nl">About</a><a href="careers.html" class="nl" aria-current="page">Careers</a><a href="contact.html" class="nl">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
       </div>
-      <div>
-        <p class="foot__head">Products</p>
-        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
-      </div>
+
     </div>
     <a class="totop" href="#top" aria-label="Back to top">↑</a>
   </div>

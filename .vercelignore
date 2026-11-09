@@ -1,3 +1,6 @@
 # local files, not part of the live site
 .playwright-cli
 temporary screenshots
+
+# Jiro MCP server config, not part of the build
+.mcp.json

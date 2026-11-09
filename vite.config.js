@@ -12,17 +12,17 @@ const SITE_URL = process.env.SITE_URL || '';
 
 const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 
-// HITC ships 12 static pages, each a build input (the 404 page is public/404.html, copied as it is). The old dev pages (logo-compare, logo-preview,
+// HITC ships 5 static pages, each a build input (the 404 page is public/404.html, copied as it is). The old dev pages (logo-compare, logo-preview,
 // logo-variations, nav-test) are left out on purpose: they must never ship.
 // If port 5173 is taken Vite moves to the next free one, so always use the URL it prints.
-const pages = ['index', 'services', 'about', 'attendance', 'careers', 'contact', 'ebroadcasting', 'ecash', 'iask', 'sfms', 'turnstile', 'privacy'];
+const pages = ['index', 'about', 'careers', 'contact', 'privacy'];
 
 export default defineConfig({
   plugins: [
     security({
       csp: {
-        // YouTube videos (attendance, turnstile) and the contact map, whose src js/pages.js sets from data-geo
-        'frame-src': ['https://www.youtube.com', 'https://www.google.com'],
+        // the contact map, whose src js/pages.js sets from data-geo
+        'frame-src': ['https://www.google.com'],
         // the contact form posts to Web3Forms with fetch
         'connect-src': ['https://api.web3forms.com'],
       },

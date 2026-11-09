@@ -1,371 +1,15 @@
-// HITC inner pages: the product props, About, Contact and Careers (2026-10-24).
+// HITC inner pages: About, Contact and Careers.
 // Portions adapted from third-party code under the MIT licence with the Commons Clause: see /licenses.txt
-// Vanilla ports of: Split Flap Text, Spring Check, Text Type, Bounce Cards, Counter, Stack, Slide Commit,
-// Flip Card, Rotating Text, Fold Text and Tilted Card. Each port keeps upstream's timing and spring values; what changed is noted at
-// each piece. Every piece moves only transform and opacity, shows its final state under
-// prefers-reduced-motion, and none keeps a frame loop running when idle.
+// Vanilla ports of: Rotating Text, Fold Text, Tear Ticket and Halftone Reveal. Every piece moves only transform
+// and opacity (Halftone Reveal draws on a canvas), shows its final state under prefers-reduced-motion, and none
+// keeps a frame loop running when idle.
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-const TAU = Math.PI * 2;
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-const wait = (ms) => new Promise((r) => setTimeout(r, reduce ? 0 : ms));
-
-/* ---------- a damped spring on one number, stepped like an odometer counter (240 Hz sub-steps).
-   duration is one undamped period; bounce 0 is critically damped. ---------- */
-function spring(from, to, { duration = 0.6, bounce = 0.2, velocity = 0 } = {}, onUpdate, onDone) {
-  let pos = from, vel = velocity, raf = 0, last = 0;
-  const omega = TAU / duration, zeta = 1 - bounce;
-  const handle = { stop: () => cancelAnimationFrame(raf), get pos() { return pos; }, get vel() { return vel; } };
-  if (reduce) { pos = to; onUpdate(to); onDone && onDone(); return handle; }
-  const frame = (now) => {
-    const elapsed = last ? Math.min((now - last) / 1000, 1 / 20) : 1 / 60;
-    last = now;
-    const steps = Math.ceil(elapsed * 240), dt = elapsed / steps;
-    for (let i = 0; i < steps; i++) { vel += (-omega * omega * (pos - to) - 2 * zeta * omega * vel) * dt; pos += vel * dt; }
-    if (Math.abs(pos - to) < 0.0005 * Math.max(1, Math.abs(to)) && Math.abs(vel) < 0.01) { pos = to; vel = 0; onUpdate(to); onDone && onDone(); return; }
-    onUpdate(pos);
-    raf = requestAnimationFrame(frame);
-  };
-  raf = requestAnimationFrame(frame);
-  return handle;
-}
-
-/* ---------- Split Flap Text: a departures board that clacks through to each phrase.
-   Upstream's tiles, cascade, random flips per tile and remounted leaves are kept; its brightness filter on the
-   turning leaf is dropped (transform only). ---------- */
-function splitFlap(el, { pad = 13, flipMs = 80, staggerMs = 50, flips = 5, glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' } = {}) {
-  el.textContent = '';
-  el.style.setProperty('--flap', flipMs / 1000 + 's');
-  const make = (cls, ch) => { const s = document.createElement('span'); s.className = cls; const c = document.createElement('span'); c.className = 'flap__char'; c.textContent = ch; s.appendChild(c); return s; };
-  const tiles = Array.from({ length: pad }, () => {
-    const t = document.createElement('span');
-    t.className = 'flap__tile';
-    const top = make('flap__half flap__half--top', ' '), bottom = make('flap__half flap__half--bottom', ' ');
-    t.append(top, bottom);
-    el.appendChild(t);
-    return { t, top: top.firstChild, bottom: bottom.firstChild, leaves: [] };
-  });
-  let raf = 0;
-  const norm = (s) => String(s).toUpperCase().slice(0, pad).padEnd(pad, ' ');
-  // tile.face is the letter a tile settles on if its flip stops now (the lower half). A new phrase starts from
-  // these, not from the last phrase asked for: a phrase that interrupts a running cascade used to skip the tiles
-  // whose last target matched, and left them on a random letter (e.g. "TIME IN JHNXS").
-  const paint = (tile, current, next, flipping) => {
-    tile.face = current;
-    tile.top.textContent = flipping ? next : current;
-    tile.bottom.textContent = current;
-    tile.leaves.forEach((l) => l.remove());
-    tile.leaves = flipping ? [make('flap__leaf flap__leaf--front', current), make('flap__leaf flap__leaf--back', next)] : [];
-    tile.leaves.forEach((l) => tile.t.appendChild(l));
-  };
-  tiles.forEach((tile) => { tile.face = ' '; });
-  const settle = (target) => tiles.forEach((tile, i) => paint(tile, target[i], target[i], false));
-  const show = (text, gold = false) => {
-    const target = norm(text);
-    cancelAnimationFrame(raf);
-    tiles.forEach((tile) => tile.t.classList.toggle('is-gold', gold));
-    if (reduce) { settle(target); return; }
-    // stop any flip in progress where it stands, then flip every tile that doesn't read the target yet
-    tiles.forEach((tile) => { if (tile.leaves.length) paint(tile, tile.face, tile.face, false); });
-    const from = tiles.map((tile) => tile.face);
-    const plans = [];
-    for (let i = 0; i < pad; i++) {
-      if (from[i] === target[i]) continue;
-      const seq = Array.from({ length: flips }, () => glyphs.charAt(Math.floor(Math.random() * glyphs.length)));
-      seq.push(target[i]);
-      plans.push({ i, from: from[i], seq, start: i * staggerMs, step: -1, done: false });
-    }
-    const t0 = performance.now();
-    const tick = (now) => {
-      const elapsed = now - t0;
-      let running = false;
-      plans.forEach((p) => {
-        const local = elapsed - p.start;
-        if (local < 0) { running = true; return; }
-        const step = Math.floor(local / flipMs);
-        if (step < p.seq.length) {
-          running = true;
-          if (step !== p.step) { p.step = step; paint(tiles[p.i], step === 0 ? p.from : p.seq[step - 1], p.seq[step], true); }
-        } else if (!p.done) { p.done = true; paint(tiles[p.i], p.seq[p.seq.length - 1], p.seq[p.seq.length - 1], false); }
-      });
-      if (running) raf = requestAnimationFrame(tick);
-      else settle(target); // the end state is always exactly the phrase
-    };
-    raf = requestAnimationFrame(tick);
-  };
-  return { show };
-}
-
-/* ---------- Spring Check: the box fills on a spring, swells past 1, and the tick draws in.
-   Upstream draws the tick with stroke-dashoffset; here the tick is wiped in with scaleX. ---------- */
-function springCheck(el) {
-  const fill = $('.sc__fill', el), tick = $('.sc__tick', el), box = $('.sc__box', el);
-  let t = el.classList.contains('is-on') ? 1 : 0, anim;
-  const write = (v) => {
-    t = v;
-    fill.style.transform = `scale(${Math.max(v, 0)})`;
-    box.style.transform = `scale(${1 + 0.35 * Math.max(0, v - 1)})`;
-    tick.style.transform = `scaleX(${clamp(v, 0, 1)})`;
-  };
-  write(t);
-  return {
-    set(on) {
-      anim && anim.stop();
-      // upstream: visualDuration 0.2 s, bounce from zetaOf(0.2)
-      anim = spring(t, on ? 1 : 0, { duration: 0.32, bounce: 0.45 }, write);
-    },
-  };
-}
-
-/* ---------- Text Type: types a sentence with a blinking caret. Upstream's typingSpeed (50 ms) with a
-   little variable speed; no deleting or looping here, it types once per send. ---------- */
-function textType(el, { speed = 34 } = {}) {
-  const out = $('.tt__text', el);
-  let timer = 0;
-  return {
-    type(text, done) {
-      clearTimeout(timer);
-      if (reduce) { out.textContent = text; done && done(); return; }
-      let i = 0;
-      out.textContent = '';
-      const step = () => {
-        i += 1;
-        out.textContent = text.slice(0, i);
-        if (i < text.length) timer = setTimeout(step, speed + Math.random() * speed * 0.8);
-        else done && done();
-      };
-      timer = setTimeout(step, 220);
-    },
-  };
-}
-
-/* ---------- Bounce Cards: photo cards in a fan; the hovered one straightens and swells and its
-   neighbours are pushed aside. Upstream's spread, rotation pattern and push are kept; the cards start in
-   place rather than bouncing in, so nothing is ever blank. ---------- */
-function bounceCards(el, { spread = 0.22, rotation = 10, push = 0.1, hoverScale = 1.06 } = {}) {
-  const PATTERN = [1, 0.5, -0.3, -1, 0.2, 0.75, -0.6, 0.35, -0.85, 0.1];
-  const cards = $$('.bounce__card', el);
-  const middle = (cards.length - 1) / 2;
-  const place = (hovered) => {
-    const w = el.clientWidth;
-    cards.forEach((c, i) => {
-      const x = (i - middle) * spread * w + (hovered >= 0 && i !== hovered ? Math.sign(i - hovered) * push * w : 0);
-      c.style.setProperty('--x', x.toFixed(1) + 'px');
-      c.style.setProperty('--rot', (i === hovered ? 0 : rotation * PATTERN[i % PATTERN.length]) + 'deg');
-      c.style.setProperty('--s', i === hovered ? hoverScale : 1);
-      c.style.zIndex = i === hovered ? 10 : String(i + 1);
-    });
-  };
-  place(-1);
-  addEventListener('resize', () => place(-1));
-  if (!fine || reduce) return;
-  cards.forEach((c, i) => {
-    c.addEventListener('pointerenter', () => place(i));
-    c.addEventListener('pointerleave', () => place(-1));
-  });
-}
-
-/* ---------- Counter: an odometer whose digits roll on springs to each new value, ones first.
-   Upstream's spring (duration 0.7 s, bounce 0.2), stagger (0.04 s) and wrap-around numerals are kept;
-   leading zeros fade and the digits slide up to the peso sign instead of animating their width. ---------- */
-function odometer(el, { slots = 4, value = 0, duration = 0.7, bounce = 0.2, stagger = 0.04 } = {}) {
-  el.textContent = '';
-  el.classList.add('odo');
-  const sym = document.createElement('span');
-  sym.className = 'odo__sym';
-  sym.textContent = '₱';
-  const row = document.createElement('span');
-  row.style.display = 'inline-flex';
-  row.style.transition = reduce ? 'none' : 'transform .6s cubic-bezier(.34,1.56,.64,1)';
-  el.append(sym, row);
-  const W = 0.5, C = 0.22; // em widths of a digit and of the comma
-  const digits = [];
-  let comma = null;
-  for (let s = 0; s < slots; s++) {
-    if (slots - s === 3 && s > 0) { comma = document.createElement('span'); comma.className = 'odo__comma'; comma.textContent = ','; row.appendChild(comma); }
-    const win = document.createElement('span');
-    win.className = 'odo__digit';
-    const nums = Array.from({ length: 10 }, (_, n) => { const sp = document.createElement('span'); sp.textContent = n; win.appendChild(sp); return sp; });
-    row.appendChild(win);
-    digits.push({ win, nums, pos: 0, vel: 0, target: 0, wait: 0 });
-  }
-  const mod = (v, b) => ((v % b) + b) % b;
-  const wrap = (o) => mod(o + 5, 10) - 5;
-  const paint = (d) => d.nums.forEach((sp, n) => { sp.style.transform = `translateY(${(wrap(n - d.pos) * 100).toFixed(2)}%)`; });
-  const lead = (v) => {
-    const str = String(v).padStart(slots, '0');
-    const firstReal = Math.min(str.search(/[1-9]/) < 0 ? slots - 1 : str.search(/[1-9]/), slots - 1);
-    digits.forEach((d, i) => { d.win.style.opacity = i < firstReal ? '0' : '1'; });
-    const commaHidden = comma && firstReal > 0;
-    if (comma) comma.style.opacity = commaHidden ? '0' : '1';
-    row.style.transform = `translateX(${-(firstReal * W + (commaHidden ? C : 0))}em)`;
-  };
-  let raf = 0, last = 0, current = value;
-  const frame = (now) => {
-    raf = 0;
-    const elapsed = Math.min((now - last) / 1000, 1 / 20);
-    last = now;
-    const omega = TAU / duration, zeta = 1 - bounce;
-    let busy = false;
-    digits.forEach((d) => {
-      let left = elapsed;
-      if (d.wait > 0) { const used = Math.min(d.wait, left); d.wait -= used; left -= used; }
-      if (left > 0) {
-        const steps = Math.ceil(left * 240), dt = left / steps;
-        for (let i = 0; i < steps; i++) { d.vel += (-omega * omega * (d.pos - d.target) - 2 * zeta * omega * d.vel) * dt; d.pos += d.vel * dt; }
-      }
-      if (d.wait <= 0 && Math.abs(d.pos - d.target) < 0.002 && Math.abs(d.vel) < 0.02) { d.target = mod(Math.round(d.target), 10); d.pos = d.target; d.vel = 0; }
-      else busy = true;
-      paint(d);
-    });
-    if (busy) raf = requestAnimationFrame(frame);
-  };
-  const set = (v, instant = false) => {
-    const up = v >= current;
-    current = v;
-    const str = String(v).padStart(slots, '0');
-    const moving = [];
-    digits.forEach((d, i) => {
-      const to = Number(str[i]);
-      const now = mod(Math.round(d.target), 10);
-      let step = mod(to - now, 10);
-      if (!up && step) step -= 10;
-      if (step) { d.target += step; moving.push(i); }
-      if (instant || reduce) { d.target = to; d.pos = to; d.vel = 0; paint(d); }
-    });
-    lead(v);
-    if (instant || reduce) return;
-    moving.sort((a, b) => b - a).forEach((i, order) => { digits[i].wait = order * stagger; });
-    if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
-  };
-  set(value, true);
-  return { set, get value() { return current; } };
-}
-
-/* ---------- Stack: a pile of photos; the top one flies off and tucks under the rest.
-   Upstream's "fan" layout (rotate position x spread x 8 deg, scale 1 - position x depth x 0.12) and its
-   visible count are kept; the whole pile is one button instead of a drag surface. ---------- */
-function stackPile(btn, { spread = 0.5, depth = 0.5, visible = 4 } = {}) {
-  let order = $$('.pile__card', btn);
-  const live = $('[data-pile-live]', btn.parentElement);
-  const layout = () => order.forEach((c, p) => {
-    c.style.setProperty('--rot', (p * spread * 8 * (p % 2 ? -1 : 1)).toFixed(2) + 'deg');
-    c.style.setProperty('--s', (1 - p * depth * 0.12).toFixed(3));
-    c.style.setProperty('--y', (p * 8) + 'px');
-    c.style.zIndex = String(order.length - p);
-    c.style.opacity = p < visible ? '1' : '0';
-  });
-  layout();
-  let busy = false;
-  btn.addEventListener('click', async () => {
-    if (busy) return;
-    busy = true;
-    const top = order[0];
-    top.classList.add('is-leaving');
-    await wait(330);
-    order = [...order.slice(1), top];
-    top.classList.remove('is-leaving');
-    layout();
-    if (live) live.textContent = 'Now showing: ' + ($('img', order[0]).alt || '');
-    busy = false;
-  });
-}
-
-/* ---------- Slide Commit: drag the handle to the end to confirm. Upstream's spring (stiffness
-   260 + speed x 6.4, critical damping, a bouncier return), keyboard keys and hold time are kept; the capsule's
-   clip-path becomes a scaleX fill. ---------- */
-function slideCommit(el, onConfirm, { holdMs = 2200 } = {}) {
-  const grip = $('.slide__grip', el), fill = $('.slide__fill', el), label = $('.slide__label', el);
-  let x = 0, anim = null, drag = null, done = false;
-  const travel = () => el.clientWidth - 8 - grip.offsetWidth;
-  const write = (v) => {
-    x = v;
-    const T = travel(), inner = el.clientWidth - 8;
-    grip.style.transform = `translateX(${v.toFixed(1)}px)`;
-    fill.style.transform = `scaleX(${((v + grip.offsetWidth) / inner).toFixed(4)})`;
-    fill.style.opacity = String(clamp(v / 24, 0, 1)); // hidden under the handle at rest, where scaleX would squash its round end
-    label.style.opacity = done ? '0' : String(clamp(1 - v / (T * 0.55), 0, 1));
-    grip.setAttribute('aria-valuenow', String(Math.round((v / T) * 100)));
-  };
-  const k = 260 + 0.5 * 640, crit = 2 * Math.sqrt(k * 0.9); // speed 50, mass 0.9
-  const omega = Math.sqrt(k / 0.9), period = TAU / omega;
-  const to = (v, bounce) => { anim && anim.stop(); anim = spring(x, v, { duration: period, bounce }, write); };
-  const commit = () => {
-    if (done) return;
-    done = true;
-    anim && anim.stop();
-    write(travel());
-    el.classList.add('is-done');
-    onConfirm();
-    setTimeout(() => { done = false; el.classList.remove('is-done'); to(0, 0.38); }, reduce ? holdMs : holdMs);
-  };
-  write(0);
-  grip.addEventListener('pointerdown', (e) => {
-    if (done || e.button !== 0) return;
-    anim && anim.stop();
-    drag = { id: e.pointerId, grab: e.clientX - x };
-    grip.setPointerCapture(e.pointerId);
-  });
-  grip.addEventListener('pointermove', (e) => {
-    if (!drag || drag.id !== e.pointerId) return;
-    write(clamp(e.clientX - drag.grab, 0, travel()));
-  });
-  const up = (e) => {
-    if (!drag || drag.id !== e.pointerId) return;
-    drag = null;
-    if (x >= travel() - 1) commit();
-    else to(0, 0.38);
-  };
-  grip.addEventListener('pointerup', up);
-  grip.addEventListener('pointercancel', up);
-  grip.addEventListener('keydown', (e) => {
-    if (done) return;
-    const T = travel();
-    if (e.key === 'End' || e.key === 'Enter') { e.preventDefault(); commit(); }
-    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); const n = Math.min(T, x + T / 10); write(n); if (n >= T) commit(); }
-    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); write(Math.max(0, x - T / 10)); }
-    else if (e.key === 'Home' || e.key === 'Escape') { e.preventDefault(); write(0); }
-  });
-  addEventListener('resize', () => { if (!done) write(0); });
-}
-
-/* ---------- Flip Card: turns over on a spring (stiffness 170, damping 20) and tilts toward a
-   fine pointer (12 deg max). Drag-to-flip and the glare are left out; click, Enter and Space flip it. ---------- */
-function flipCard(btn) {
-  const rotor = $('.flip__rotor', btn);
-  let turn = 0, tx = 0, ty = 0, anim = null, tiltRaf = 0, want = { x: 0, y: 0 };
-  // which face is toward the viewer is also set by class (past 90 degrees), so a browser that draws the back of a
-  // turned face, or flattens 3D, still shows only the right one
-  const write = () => {
-    rotor.style.transform = `rotateX(${tx.toFixed(2)}deg) rotateY(${(turn + ty).toFixed(2)}deg)`;
-    const a = (((turn + ty) % 360) + 360) % 360;
-    btn.classList.toggle('is-back', a > 90 && a < 270);
-  };
-  const omega = Math.sqrt(170), duration = TAU / omega, bounce = 1 - 20 / (2 * omega);
-  btn.addEventListener('click', () => {
-    const base = Math.round(turn / 180) * 180;
-    const back = Math.abs(Math.round(base / 180)) % 2 === 1;
-    const target = back ? base - 180 : base + 180;
-    btn.setAttribute('aria-pressed', String(!back));
-    anim && anim.stop();
-    anim = spring(turn, target, { duration, bounce, velocity: anim ? anim.vel : 0 }, (v) => { turn = v; write(); });
-  });
-  if (!fine || reduce) return;
-  const ease = () => {
-    tx += (want.x - tx) * 0.18; ty += (want.y - ty) * 0.18;
-    write();
-    tiltRaf = Math.abs(want.x - tx) + Math.abs(want.y - ty) > 0.05 ? requestAnimationFrame(ease) : 0;
-  };
-  btn.addEventListener('pointermove', (e) => {
-    const r = btn.getBoundingClientRect();
-    want = { x: (0.5 - (e.clientY - r.top) / r.height) * 24, y: ((e.clientX - r.left) / r.width - 0.5) * 24 };
-    if (!tiltRaf) tiltRaf = requestAnimationFrame(ease);
-  });
-  btn.addEventListener('pointerleave', () => { want = { x: 0, y: 0 }; if (!tiltRaf) tiltRaf = requestAnimationFrame(ease); });
-}
+const say = (el, text) => { if (el) el.textContent = text; };
 
 /* ---------- Rotating Text: one word slides up and out as the next slides in (upstream's "slide"
    effect, rotationInterval 2000 ms, spring in). The box keeps the longest word's width instead of animating
@@ -416,143 +60,368 @@ function foldText(el, { duration = 650, stagger = 45, angle = 92 } = {}) {
   });
 }
 
-/* ---------- Tilted Card: the poster tilts toward the pointer (rotateAmplitude 12, scaleOnHover
-   1.05, spring follow) and its glare slides with it. Fine pointers only. ---------- */
-function tiltedCard(el, { amp = 12, scale = 1.05 } = {}) {
-  if (!fine || reduce) return;
-  const card = $('.poster__card', el), glare = $('.poster__glare', el);
-  let cur = { x: 0, y: 0, s: 1, g: 0 }, want = { x: 0, y: 0, s: 1, g: 0 }, raf = 0;
-  const step = () => {
-    let moving = false;
-    for (const k of ['x', 'y', 's', 'g']) { cur[k] += (want[k] - cur[k]) * 0.14; if (Math.abs(want[k] - cur[k]) > 0.001) moving = true; }
-    card.style.transform = `rotateX(${cur.x.toFixed(2)}deg) rotateY(${cur.y.toFixed(2)}deg) scale(${cur.s.toFixed(3)})`;
-    if (glare) glare.style.transform = `translateX(${cur.g.toFixed(1)}%)`;
-    raf = moving ? requestAnimationFrame(step) : 0;
+/* ---------- Tear Ticket: every tab along the flyer's foot is a small ticket stub (upstream's vertical
+   orientation, tearAngle 30, resistance 0.45). Pulling a tab turns it about its far top corner; the paper bridges
+   between the perforation holes snap one by one, nearest the pull first, with fibres stretched across the gap;
+   then the tab follows the pointer and drops away when let go. The flyer swings on its pin as the paper gives.
+   A torn tab copies the email; a plain click on a tab opens it. Under reduced motion a 28 px pull tears at once.
+   The maths runs in the flyer's own (rotated) frame, so it holds at any resting angle. ---------- */
+const EMAIL = 'careers@hitc.ph';
+function tearTabs(board, { holes = 4, hole = 3, stretch = 12, tearAngle = 30, resistance = 0.45, gravity = 2400 } = {}) {
+  const flyer = $('.flyer', board), strip = flyer && $('.flyer__tabs', flyer);
+  if (!strip) return;
+  const pin = $('.flyer__pin', flyer), fibres = $('.flyer__fibres', strip), hint = $('.board__hint span', board);
+  const NS = 'http://www.w3.org/2000/svg';
+  const limit = (tearAngle * Math.PI) / 180;
+  const wrapA = (a) => Math.atan2(Math.sin(a), Math.cos(a));
+  const live = new Set();
+  let raf = 0, last = 0, sw = 0, swv = 0, pull = 0, copied = false;
+  if (hint && !fine && board.querySelector('[data-touch]')) hint.textContent = board.querySelector('[data-touch]').dataset.touch;
+
+  // the flyer's angle and the pin's place on screen, to turn screen points into strip coordinates
+  const frame = () => {
+    const a = ((parseFloat(getComputedStyle(flyer).getPropertyValue('--tilt')) || 0) + sw) * Math.PI / 180;
+    const r = pin.getBoundingClientRect();
+    return { a, px: r.left + r.width / 2, py: r.top + r.height / 2, ox: pin.offsetLeft + pin.offsetWidth / 2 - strip.offsetLeft, oy: pin.offsetTop + pin.offsetHeight / 2 - strip.offsetTop };
   };
-  const go = () => { if (!raf) raf = requestAnimationFrame(step); };
-  el.addEventListener('pointermove', (e) => {
-    const r = el.getBoundingClientRect();
-    const ox = (e.clientX - r.left) / r.width - 0.5, oy = (e.clientY - r.top) / r.height - 0.5;
-    want = { x: -oy * 2 * amp, y: ox * 2 * amp, s: scale, g: ox * 60 };
-    go();
+  const local = (e) => {
+    const f = frame(), dx = e.clientX - f.px, dy = e.clientY - f.py, c = Math.cos(-f.a), s = Math.sin(-f.a);
+    return { x: f.ox + dx * c - dy * s, y: f.oy + dx * s + dy * c };
+  };
+
+  // a torn tab is the email in the visitor's hand: copy it, and say so
+  const taken = () => {
+    if (copied) return;
+    const miss = () => say(hint, `our email is ${EMAIL}`);
+    try { navigator.clipboard.writeText(EMAIL).then(() => { copied = true; say(hint, `${EMAIL} is copied, paste it into your email`); }, miss); } catch { miss(); }
+  };
+  const lip = (t) => {
+    const el = document.createElement('i');
+    el.className = 'flyer__lip';
+    el.style.left = `${t.x0}px`;
+    el.style.width = `${t.w}px`;
+    const pts = ['0 0', '100% 0'];
+    for (let k = 10; k >= 0; k--) pts.push(`${k * 10}% ${(30 + Math.random() * 70).toFixed(0)}%`);
+    el.style.clipPath = `polygon(${pts.join(',')})`;
+    strip.appendChild(el);
+  };
+  const gone = (t) => {
+    t.el.style.visibility = 'hidden';
+    t.el.style.pointerEvents = 'none';
+    t.used = true;
+    lip(t);
+    t.paths.forEach((p) => p.remove());
+    t.paths = [];
+  };
+
+  const paint = (t, now) => {
+    const ang = t.theta * t.sign, c = Math.cos(ang), s = Math.sin(ang);
+    t.el.style.transform = `translate(${t.sx.toFixed(2)}px,${t.sy.toFixed(2)}px) rotate(${ang.toFixed(4)}rad)`;
+    t.el.style.opacity = t.fade.toFixed(3);
+    let busy = false;
+    const hx = t.x0 + t.hx;
+    t.bridges.forEach((b, i) => {
+      const near = t.paths[i * 2], far = t.paths[i * 2 + 1];
+      const ox = t.x0 + b, dx = b - t.hx;
+      const tx = hx + dx * c + t.sx, ty = dx * s + t.sy;
+      const gx = tx - ox, gy = ty, gap = Math.hypot(gx, gy);
+      const on = t.phase !== 'idle';
+      if (!t.snapped[i]) {
+        if (!on || gap < 0.35) { near.style.opacity = far.style.opacity = '0'; return; }
+        const k = clamp(gap / stretch, 0, 1), sag = gap * 0.18, w = (1.7 - 1.15 * k).toFixed(2);
+        near.setAttribute('d', `M${(ox - 1.6).toFixed(2)},0Q${(ox - 1.6 + sag + gx / 2).toFixed(2)},${(gy / 2).toFixed(2)} ${(tx - 1.6).toFixed(2)},${ty.toFixed(2)}`);
+        far.setAttribute('d', `M${(ox + 1.6).toFixed(2)},0Q${(ox + 1.6 + gx / 2 - sag).toFixed(2)},${(gy / 2).toFixed(2)} ${(tx + 1.6).toFixed(2)},${ty.toFixed(2)}`);
+        near.style.strokeWidth = far.style.strokeWidth = w;
+        near.style.opacity = far.style.opacity = '1';
+        t.span[i] = gap;
+        return;
+      }
+      const u = (now - t.snapAt[i]) / 170;
+      if (u >= 1) { near.style.opacity = far.style.opacity = '0'; return; }
+      busy = true;
+      const left = (1 - u) * (1 - u), len = (t.span[i] || stretch) * 0.5 * left;
+      const ux = gap > 0.01 ? gx / gap : 0, uy = gap > 0.01 ? gy / gap : 1;
+      near.setAttribute('d', `M${ox.toFixed(2)},0L${(ox + ux * len).toFixed(2)},${(uy * len).toFixed(2)}`);
+      far.setAttribute('d', `M${tx.toFixed(2)},${ty.toFixed(2)}L${(tx - ux * len).toFixed(2)},${(ty - uy * len).toFixed(2)}`);
+      near.style.strokeWidth = far.style.strokeWidth = '0.9';
+      near.style.opacity = far.style.opacity = left.toFixed(2);
+    });
+    return busy;
+  };
+
+  const step = (now) => {
+    const dt = clamp((now - last) / 1000, 0.001, 0.034);
+    last = now;
+    pull = 0;
+    for (const t of live) {
+      if (t.hx === null && !(t.phase === 'held' && hinge(t))) {
+        if (t.phase !== 'held') { t.phase = 'idle'; t.paths.forEach((p) => p.remove()); t.paths = []; live.delete(t); }
+        continue;
+      }
+      if (t.phase === 'held') {
+        const intact = t.bridges.filter((_, i) => !t.snapped[i]).length;
+        const follow = 0.92 * (1 - resistance * (intact / t.bridges.length));
+        const a = Math.atan2(t.point.y, t.point.x - (t.x0 + t.hx));
+        const want = clamp(wrapA(a - t.a0) * t.sign * follow, 0, limit + 0.1);
+        t.theta += (want - t.theta) * (1 - Math.exp(-dt / 0.035));
+        const px = clamp((t.point.x - t.start.x) * 0.05, -3, 3), py = clamp((t.point.y - t.start.y) * 0.05, -2, 5);
+        t.sx += (px - t.sx) * (1 - Math.exp(-dt / 0.05));
+        t.sy += (py - t.sy) * (1 - Math.exp(-dt / 0.05));
+        const slack = Math.hypot(t.sx, t.sy), reach = Math.hypot(t.point.x - t.start.x, t.point.y - t.start.y);
+        // a tab is tall and narrow, so its far corner barely turns: once most of the perforation has gone and the
+        // pull keeps up, the tear runs on through the rest, one bridge at a time; a long pull always tears it
+        const runs = intact <= t.bridges.length / 2 && (t.theta > limit * 0.4 || reach > 60) && now - (t.lastSnap || 0) > 45;
+        let left = 0, ran = false;
+        t.bridges.map((b, i) => [Math.abs(b - t.hx), i]).sort((p, q) => q[0] - p[0]).forEach(([d, i]) => {
+          if (t.snapped[i]) return;
+          const runOn = runs && !ran;
+          if (2 * d * Math.sin(t.theta / 2) + slack > stretch || t.theta >= limit || reach > 150 || runOn) {
+            if (runOn) ran = true;
+            t.snapped[i] = true;
+            t.snapAt[i] = t.lastSnap = now;
+            swv -= (t.lever * 26) / t.bridges.length;
+          } else left += 1;
+        });
+        if (!left) { t.phase = 'free'; swv -= t.lever * 10; }
+        else pull += t.lever * (t.theta / limit) * 2.2;
+      } else if (t.phase === 'free') {
+        const c = Math.cos(t.theta * t.sign), s = Math.sin(t.theta * t.sign);
+        const gx = t.grab.x - (t.x0 + t.hx), gy = t.grab.y;
+        const wx = t.point.x - (t.x0 + t.hx) - (gx * c - gy * s), wy = t.point.y - (gx * s + gy * c);
+        t.sx += (wx - t.sx) * (1 - Math.exp(-dt / 0.045));
+        t.sy += (wy - t.sy) * (1 - Math.exp(-dt / 0.045));
+        const hang = limit * 0.55 + clamp(t.pvx * 0.0009 * t.sign, -0.3, 0.3);
+        t.theta += (hang - t.theta) * (1 - Math.exp(-dt / 0.12));
+      } else if (t.phase === 'drop') {
+        t.age += dt;
+        t.vy += gravity * dt;
+        t.sx += t.vx * dt;
+        t.sy += t.vy * dt;
+        t.theta += t.spin * dt;
+        if (t.age > 0.16) t.fade = clamp(1 - (t.age - 0.16) / 0.36, 0, 1);
+        if (t.fade <= 0) { gone(t); live.delete(t); continue; }
+      } else if (t.phase === 'return') {
+        t.thetaV += (-300 * t.theta - 24 * t.thetaV) * dt;
+        t.theta += t.thetaV * dt;
+        t.sx += -t.sx * (1 - Math.exp(-dt / 0.07));
+        t.sy += -t.sy * (1 - Math.exp(-dt / 0.07));
+        if (Math.abs(t.theta) < 0.0008 && Math.abs(t.thetaV) < 0.01 && Math.hypot(t.sx, t.sy) < 0.05) {
+          Object.assign(t, { theta: 0, thetaV: 0, sx: 0, sy: 0, phase: 'idle' });
+        }
+      }
+      const busy = paint(t, now);
+      if (t.phase === 'idle' && !busy) {
+        t.el.style.transform = t.el.style.zIndex = '';
+        t.paths.forEach((p) => p.remove());
+        t.paths = [];
+        live.delete(t);
+      }
+    }
+    // the flyer swings on its pin: pulled toward the tab while the paper holds, kicked back as it gives
+    if (reduce) pull = swv = 0;
+    swv += (-70 * (sw - pull) - 7 * swv) * dt;
+    sw += swv * dt;
+    const moving = Math.abs(sw) > 0.004 || Math.abs(swv) > 0.02;
+    flyer.style.setProperty('--swing', `${(moving ? sw : 0).toFixed(3)}deg`);
+    raf = live.size || moving ? requestAnimationFrame(step) : 0;
+    if (!raf) { sw = 0; swv = 0; }
+  };
+  const run = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); } };
+
+  // where the grab sits on the tab as it is turned now, and the angle the pull starts from
+  const hold = (t) => {
+    const ang = -t.theta * t.sign, c = Math.cos(ang), s = Math.sin(ang), hx = t.x0 + t.hx;
+    const ux = t.point.x - t.sx - hx, uy = t.point.y - t.sy;
+    t.grab = { x: hx + ux * c - uy * s, y: ux * s + uy * c };
+    t.a0 = Math.atan2(t.grab.y, t.grab.x - hx) - (t.theta * t.sign) / 0.92;
+  };
+  // the tab turns about whichever top corner the pull opens it from hardest: straight down, the far corner
+  // (the near side gives first); pulled sideways, the corner on the side it is pulled toward
+  const hinge = (t) => {
+    const fx = t.point.x - t.start.x, fy = t.point.y - t.start.y;
+    if (Math.hypot(fx, fy) < 4) return false;
+    const gx = t.start.x - t.x0, gy = t.start.y;
+    const right = -((gx - t.w) * fy - gy * fx), left = gx * fy - gy * fx;
+    const r = right > left;
+    Object.assign(t, { hx: r ? t.w : 0, sign: r ? -1 : 1, point: t.start });
+    t.el.style.transformOrigin = `${t.hx}px 0px`;
+    hold(t);
+    t.point = { x: t.start.x + fx, y: t.start.y + fy };
+    return true;
+  };
+
+  const tabs = $$('.flyer__tab', strip).map((el) => ({ el, used: false, phase: 'idle', id: null, paths: [], theta: 0, hx: null }));
+  tabs.forEach((t) => {
+    const { el } = t;
+    el.addEventListener('dragstart', (e) => e.preventDefault());
+    el.addEventListener('click', (e) => { if (t.dragged) e.preventDefault(); });
+    el.addEventListener('pointerdown', (e) => {
+      if (t.used || e.button !== 0 || t.id !== null || t.phase === 'drop') return;
+      try { el.setPointerCapture(e.pointerId); } catch {}
+      const p = local(e);
+      t.id = e.pointerId;
+      t.dragged = false;
+      Object.assign(t, { start: p, point: p, pt: performance.now(), pvx: 0, pvy: 0 });
+      const w = el.offsetWidth, x0 = el.offsetLeft;
+      if (!t.bridges || w !== t.w || x0 !== t.x0) { // the perforation; bridges already snapped stay snapped
+        const bridge = Math.max(2, (w - holes * hole) / (holes + 1));
+        Object.assign(t, {
+          w, x0, snapped: [], snapAt: [], span: [],
+          bridges: Array.from({ length: holes + 1 }, (_, i) => i * (bridge + hole) + bridge / 2),
+          lever: ((x0 + w / 2) / strip.offsetWidth - 0.5) * 2,
+        });
+      }
+      if (!t.paths.length) t.paths = t.bridges.flatMap(() => [0, 1].map(() => fibres.appendChild(document.createElementNS(NS, 'path'))));
+      if (t.theta < 0.01) Object.assign(t, { hx: null, theta: 0, thetaV: 0, sx: 0, sy: 0, fade: 1, age: 0 }); // hinge chosen once the pull has a direction
+      else hold(t);
+      t.phase = 'held';
+      el.style.zIndex = '2'; // over its neighbours while it moves
+      board.dataset.grabbing = '';
+      live.add(t);
+      run();
+    });
+    el.addEventListener('pointermove', (e) => {
+      if (t.id !== e.pointerId) return;
+      const p = local(e), now = performance.now(), dt = Math.max(0.004, (now - t.pt) / 1000);
+      t.pvx += ((p.x - t.point.x) / dt - t.pvx) * 0.35;
+      t.pvy += ((p.y - t.point.y) / dt - t.pvy) * 0.35;
+      t.pt = now;
+      t.point = p;
+      const moved = Math.hypot(p.x - t.start.x, p.y - t.start.y);
+      if (moved > 6) t.dragged = true;
+      if (reduce && moved > 28) { // tear at once
+        t.id = null;
+        delete board.dataset.grabbing;
+        live.delete(t);
+        gone(t);
+        t.el.style.transform = '';
+        taken();
+      }
+    });
+    const up = (e) => {
+      if (t.id !== e.pointerId) return;
+      t.id = null;
+      try { if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId); } catch {}
+      delete board.dataset.grabbing;
+      if (t.phase === 'free') {
+        const still = performance.now() - t.pt > 80;
+        t.vx = still ? 0 : clamp(t.pvx, -1600, 1600);
+        t.vy = still ? 0 : clamp(t.pvy, -1600, 1200);
+        t.spin = clamp(t.vx * 0.004, -6, 6) + 1.2 * t.sign;
+        t.age = 0;
+        t.phase = 'drop';
+        taken();
+      } else if (t.phase === 'held') t.phase = 'return';
+      run();
+    };
+    el.addEventListener('pointerup', up);
+    el.addEventListener('pointercancel', up);
+    el.addEventListener('lostpointercapture', up);
   });
-  el.addEventListener('pointerleave', () => { want = { x: 0, y: 0, s: 1, g: 0 }; go(); });
+}
+
+/* ---------- Halftone Reveal: the photo is printed as a halftone, navy dots on paper; the pointer (or a tap)
+   brings the colour photo through, and the dots close over it again. Upstream draws this in a WebGL shader;
+   here it is canvas 2D: the dots are drawn once per size, and frames run only while a reveal is fading.
+   Under reduced motion the colour photo simply shows. ---------- */
+function halftone(fig, { cell = 5.5, radius = 72, fade = 0.045, ink = '22,36,79', paper = '253,253,251' } = {}) {
+  const frame = $('.ht__frame', fig), img = frame && $('img', frame);
+  if (reduce || !img) return;
+  const view = document.createElement('canvas');
+  view.setAttribute('aria-hidden', 'true');
+  const dots = document.createElement('canvas'), mask = document.createElement('canvas');
+  const v = view.getContext('2d'), d = dots.getContext('2d'), m = mask.getContext('2d');
+  let W = 0, H = 0, dpr = 1, raf = 0, idle = 0, last = null;
+  const draw = () => {
+    v.globalCompositeOperation = 'copy';
+    v.drawImage(dots, 0, 0);
+    v.globalCompositeOperation = 'destination-out';
+    v.drawImage(mask, 0, 0);
+    v.globalCompositeOperation = 'source-over';
+  };
+  const build = () => {
+    const r = frame.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = Math.round(r.width * dpr); H = Math.round(r.height * dpr);
+    if (!W || !H || !img.naturalWidth) return;
+    for (const c of [view, dots, mask]) { c.width = W; c.height = H; }
+    // one sample per dot, from the part of the photo that object-fit: cover shows
+    const c = Math.max(4, Math.min(cell, r.width / 90)) * dpr, cols = Math.ceil(W / c) + 1, rows = Math.ceil(H / c) + 1; // finer dots on small screens
+    const s = document.createElement('canvas');
+    s.width = cols; s.height = rows;
+    const sx = s.getContext('2d', { willReadFrequently: true });
+    sx.imageSmoothingQuality = 'high';
+    const k = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const sw = (cols * c) / k, sh = (rows * c) / k;
+    sx.drawImage(img, (img.naturalWidth - W / k) / 2, (img.naturalHeight - H / k) / 2, sw, sh, 0, 0, cols, rows);
+    const px = sx.getImageData(0, 0, cols, rows).data;
+    d.fillStyle = `rgb(${paper})`;
+    d.fillRect(0, 0, W, H);
+    d.fillStyle = `rgb(${ink})`;
+    d.beginPath();
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const i = (y * cols + x) * 4;
+        const lum = Math.pow((0.2126 * px[i] + 0.7152 * px[i + 1] + 0.0722 * px[i + 2]) / 255, 0.62); // lifts the dim office light
+        const dark = clamp((1 - lum) * 1.12 - 0.03, 0, 1);
+        const rad = c * 0.6 * Math.sqrt(dark);
+        if (rad < 0.35) continue;
+        const cx = (x + 0.5 + (y % 2) * 0.5) * c, cy = (y + 0.5) * c; // every other row offset: a 45 degree screen
+        d.moveTo(cx + rad, cy);
+        d.arc(cx, cy, rad, 0, Math.PI * 2);
+      }
+    }
+    d.fill();
+    draw();
+    if (!view.isConnected) frame.appendChild(view);
+  };
+  const loop = () => {
+    m.globalCompositeOperation = 'destination-out';
+    m.fillStyle = `rgba(0,0,0,${fade})`;
+    m.fillRect(0, 0, W, H);
+    m.globalCompositeOperation = 'source-over';
+    idle += 1;
+    if (idle > 110) { m.clearRect(0, 0, W, H); raf = 0; } else raf = requestAnimationFrame(loop);
+    draw();
+  };
+  const kick = () => { idle = 0; if (!raf) raf = requestAnimationFrame(loop); };
+  const stamp = (x, y, r, a) => {
+    const g = m.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, `rgba(0,0,0,${a})`);
+    g.addColorStop(0.5, `rgba(0,0,0,${a * 0.8})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    m.fillStyle = g;
+    m.beginPath();
+    m.arc(x, y, r, 0, Math.PI * 2);
+    m.fill();
+  };
+  const at = (e) => { const r = frame.getBoundingClientRect(); return [(e.clientX - r.left) * dpr, (e.clientY - r.top) * dpr]; };
+  frame.addEventListener('pointermove', (e) => {
+    if (!W) return;
+    const [x, y] = at(e), r = radius * dpr;
+    if (last) {
+      const dx = x - last[0], dy = y - last[1], n = Math.min(24, Math.ceil(Math.hypot(dx, dy) / (r * 0.25)));
+      for (let i = 1; i <= n; i++) stamp(last[0] + (dx * i) / n, last[1] + (dy * i) / n, r, 0.55);
+    } else stamp(x, y, r, 0.55);
+    last = [x, y];
+    kick();
+  });
+  frame.addEventListener('pointerleave', () => { last = null; });
+  frame.addEventListener('pointerdown', (e) => {
+    if (!W) return;
+    const [x, y] = at(e);
+    stamp(x, y, radius * dpr * 1.9, 1);
+    last = null;
+    kick();
+  });
+  let queued = 0;
+  new ResizeObserver(() => { if (!queued) queued = requestAnimationFrame(() => { queued = 0; build(); }); }).observe(frame);
+  if (img.complete && img.naturalWidth) build(); else img.addEventListener('load', build, { once: true });
+  const hint = $('.ht__hint', fig.parentElement);
+  if (hint && !fine && hint.dataset.touch) hint.textContent = hint.dataset.touch;
 }
 
 /* ═════════════════ the pages ═════════════════ */
-
-const say = (el, text) => { if (el) el.textContent = text; };
-const showNote = (all, which) => all.forEach((n) => n.classList.toggle('is-on', n === which));
-
-// Turnstile: tap her ID, the reader pings, the board flaps to the time, the arm swings and the note lands.
-function gate() {
-  const box = $('[data-gate]');
-  if (!box) return;
-  const board = splitFlap($('.flap', box), { pad: 13 });
-  board.show('TAP YOUR ID');
-  const btn = $('.idtap', box), notes = $$('.note', box), live = $('[data-gate-live]', box);
-  let out = false, busy = false;
-  btn.addEventListener('click', async () => {
-    if (busy) return;
-    busy = true;
-    box.classList.add('is-tapped');
-    await wait(450);
-    box.classList.add('is-open');
-    board.show(out ? 'TIME OUT 4:31' : 'TIME IN 7:02', true);
-    showNote(notes, notes[out ? 1 : 0]);
-    say(live, out ? 'Gate opened. Time out, 4:31 PM, sent to her parents.' : 'Gate opened. Time in, 7:02 AM, sent to her parents.');
-    await wait(2600);
-    box.classList.remove('is-open', 'is-tapped');
-    out = !out;
-    busy = false;
-  });
-}
-
-// Attendance Manager: the gate taps fill Friday's row, and the tick springs in.
-function register() {
-  const box = $('[data-reg]');
-  if (!box) return;
-  $$('.sc', box).forEach((el) => { el._sc = springCheck(el); });
-  const fri = $('[data-reg-fri] .sc', box)._sc;
-  const cellIn = $('[data-reg-in]', box), cellOut = $('[data-reg-out]', box);
-  const btn = $('[data-reg-tap]', box), label = $('span', btn), notes = $$('.note', box);
-  const blankIn = cellIn.innerHTML, blankOut = cellOut.innerHTML;
-  let stage = 0;
-  const swap = async (cell, html) => { cell.style.opacity = '0'; await wait(160); cell.innerHTML = html; cell.style.opacity = '1'; };
-  btn.addEventListener('click', async () => {
-    btn.disabled = true;
-    if (stage === 0) {
-      await swap(cellIn, '7:02 AM');
-      fri.set(true);
-      showNote(notes, notes[0]);
-      label.textContent = 'Tap out at the gate';
-    } else if (stage === 1) {
-      await swap(cellOut, '3:15 PM');
-      showNote(notes, notes[1]);
-      label.textContent = 'Start Friday again';
-    } else {
-      fri.set(false);
-      showNote(notes, null);
-      await Promise.all([swap(cellIn, blankIn), swap(cellOut, blankOut)]);
-      label.textContent = 'Tap in at the gate';
-    }
-    stage = (stage + 1) % 3;
-    btn.disabled = false;
-  });
-}
-
-// eBroadcasting: pick who it goes to, send, and the message types itself out on a phone.
-function broadcast() {
-  const box = $('[data-cast]');
-  if (!box) return;
-  const typer = textType($('.sms__bubble', box));
-  const to = $('[data-cast-to]', box), state = $('[data-cast-state]', box), btn = $('[data-cast-send]', box);
-  const msg = $('[data-cast-msg]', box).textContent.trim();
-  btn.addEventListener('click', () => {
-    const who = $('input[name="who"]:checked', box);
-    to.textContent = 'To: ' + who.value;
-    state.textContent = 'Sending…';
-    btn.disabled = true;
-    typer.type(msg, () => { state.textContent = 'Sent to ' + who.value; btn.disabled = false; });
-  });
-}
-
-// eCash: load the wallet, the balance rolls, and the parent's alert lands.
-function wallet() {
-  const box = $('[data-wallet]');
-  if (!box) return;
-  const bal = odometer($('[data-wallet-bal]', box), { slots: 4, value: 40 });
-  const note = $('.note', box), live = $('[data-wallet-live]', box);
-  $$('[data-load]', box).forEach((b) => b.addEventListener('click', () => {
-    let v = bal.value + Number(b.dataset.load);
-    if (v > 9999) v = Number(b.dataset.load);
-    bal.set(v);
-    note.classList.remove('is-on');
-    setTimeout(() => note.classList.add('is-on'), reduce ? 0 : 380);
-    say(live, `Loaded ₱${b.dataset.load}. New balance ₱${v.toLocaleString('en-US')}. Her parents get an eCash load alert.`);
-  }));
-}
-
-// SFMS: the cashier slides to post a payment; the receipt prints and the notes go out.
-function cashier() {
-  const box = $('[data-fees]');
-  if (!box) return;
-  const notes = $$('.note', box), live = $('[data-fees-live]', box);
-  const slip = $('.slip', box), stamp = $('.slip__stamp', box);
-  slideCommit($('.slide', box), async () => {
-    // the last receipt drops out of sight at once, then the new one prints
-    notes.forEach((n) => n.classList.remove('is-on'));
-    slip.style.transition = stamp.style.transition = 'none';
-    box.classList.remove('is-printed');
-    slip.getBoundingClientRect();
-    slip.style.transition = stamp.style.transition = '';
-    await wait(120);
-    box.classList.add('is-printed');
-    await wait(1500);
-    notes.forEach((n) => n.classList.add('is-on'));
-    say(live, 'Payment posted. The receipt printed, the parent is notified and the payment is in the Daily Collection Report.');
-  });
-}
 
 // About: the years fill in as they are scrolled past, transform only.
 function years() {
@@ -606,7 +475,12 @@ function map() {
   if (!el) return;
   const geo = el.dataset.geo.replace(/\s+/g, '');
   const frame = $('[data-map]', el);
-  if (frame) frame.src = `https://www.google.com/maps?q=${geo}&z=17&output=embed`;
+  // the map (Google's embed, about 450 KB) loads only once it nears the screen, not with the page
+  const load = () => { frame.src = `https://www.google.com/maps?q=${geo}&z=17&output=embed`; };
+  if (frame && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '600px 0px' });
+    io.observe(frame);
+  } else if (frame) load();
   $$('[data-directions]').forEach((a) => { a.href = `https://www.google.com/maps/dir/?api=1&destination=${geo}`; });
 }
 
@@ -625,7 +499,7 @@ function mailForms() {
       e.preventDefault();
       const f = (n) => (form.elements.namedItem(n)?.value || '').trim();
       const subject = 'Website inquiry' + (f('product') ? ': ' + f('product') : '');
-      const body = `Name: ${f('name')}\nEmail: ${f('email')}\nSchool or institution: ${f('school') || 'not given'}\nProduct of interest: ${f('product') || 'not chosen'}\n\n${f('message')}`;
+      const body = `Name: ${f('name')}\nEmail: ${f('email')}\nSchool or institution: ${f('school') || 'not given'}\nTopic: ${f('product') || 'not chosen'}\n\n${f('message')}`;
       if (!WEB3FORMS_KEY) {
         location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         say(note, `Your email app should open with the message ready to send. If it doesn't, email us at ${MAIL_TO}.`);
@@ -662,33 +536,21 @@ function phoneMenu() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && m.open) { m.open = false; $('summary', m).focus(); } });
 }
 
-// YouTube demos: a saved still and a play button; the video itself is only requested when someone taps.
-function videos() {
-  $$('[data-yt]').forEach((b) => b.addEventListener('click', () => {
-    const f = document.createElement('iframe');
-    f.src = `https://www.youtube.com/embed/${b.dataset.yt}?autoplay=1`;
-    f.title = b.dataset.title;
-    f.allow = 'autoplay; encrypted-media; picture-in-picture';
-    f.allowFullscreen = true;
-    b.replaceWith(f);
-    f.focus();
-  }));
+// a link like contact.html?topic=books#message picks that topic in the form
+function presetTopic() {
+  const TOPICS = { books: 'Books and printing', careers: 'Careers', campus: 'Campus Connect' };
+  const want = TOPICS[new URLSearchParams(location.search).get('topic')];
+  const select = $('#cf-product');
+  if (want && select) select.value = want;
 }
 
 phoneMenu();
 mailForms();
-videos();
-gate();
-register();
-broadcast();
-wallet();
-cashier();
-$$('.bounce').forEach((el) => bounceCards(el));
-$$('[data-pile]').forEach((el) => stackPile(el));
-$$('.flip').forEach(flipCard);
+presetTopic();
+$$('[data-halftone]').forEach((el) => halftone(el));
 $$('.rot').forEach((el) => rotatingText(el));
 $$('[data-fold]').forEach((el) => foldText(el));
-$$('.poster').forEach((el) => tiltedCard(el));
+$$('[data-flyer]').forEach((el) => tearTabs(el));
 years();
 openNow();
 map();

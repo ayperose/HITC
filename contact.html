@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <link rel="icon" type="image/png" href="/brand_assets/hitclogo-96.png">
 <title>Contact | HITC, Inc.</title>
 <meta name="description" content="Contact HITC, Inc. in Tuguegarao City, Cagayan: phone, email, office hours and a message form." />
@@ -20,9 +20,9 @@
 <nav class="nav" aria-label="Main">
   <a class="nav__logo" href="index.html" aria-label="HITC home"><img src="brand_assets/hitclogo-300.webp" alt="HITC" width="46" height="36" /></a>
   <div class="nav__links">
-    <a href="about.html" class="nl">About</a>
-    <div class="nav-dropdown"><a href="index.html#services" class="nl">Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a><div class="nav-dropdown-panel"><a href="attendance.html">Attendance Manager</a><a href="turnstile.html">Turnstile System</a><a href="ebroadcasting.html">eBroadcasting</a><a href="sfms.html">SFMS</a><a href="ecash.html">eCash System</a><a href="iask.html">iAsk eLibrary</a></div></div>
     <a href="index.html#campus-connect" class="nl">Campus Connect</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="careers.html" class="nl">Careers</a>
     <a href="contact.html" class="nl" aria-current="page">Contact</a>
   </div>
   <details class="mnav" id="mnav">
@@ -30,7 +30,7 @@
     <div class="mnav__panel">
       <a href="index.html#campus-connect">Campus Connect</a>
       <a href="about.html">About</a>
-      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
       <a href="contact.html" aria-current="page">Contact</a>
     </div>
   </details>
@@ -108,7 +108,7 @@
 
     <div class="form">
       <h2 class="form__title">Send us a message</h2>
-      <p class="form__sub">Tell us about your school, and the HITC team will write back.</p>
+      <p class="form__sub">Tell us about your school, or ask about our books, and the HITC team will write back.</p>
       <form id="contact-form" class="mailform">
         <div class="form__two">
           <div class="field"><label for="cf-name">Name</label><input id="cf-name" type="text" name="name" placeholder="Juan dela Cruz" autocomplete="name" required /></div>
@@ -116,17 +116,13 @@
         </div>
         <div class="field"><label for="cf-school">School or institution</label><input id="cf-school" type="text" name="school" placeholder="Cagayan National High School" autocomplete="organization" /></div>
         <div class="field">
-          <label for="cf-product">Product of interest</label>
+          <label for="cf-product">What it's about</label>
           <select id="cf-product" name="product">
-            <option value="">Select a product...</option>
+            <option value="">Choose a topic...</option>
             <option>Campus Connect</option>
-            <option>Attendance Manager</option>
-            <option>Turnstile System</option>
-            <option>eBroadcasting System</option>
-            <option>SFMS (School Fee Management)</option>
-            <option>eCash System</option>
-            <option>iAsk eLibrary</option>
-            <option>Full Suite / Multiple Products</option>
+            <option>Books and printing</option>
+            <option>Careers</option>
+            <option>Something else</option>
           </select>
         </div>
         <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" rows="4" placeholder="Tell us about your institution and what you're looking for..." required></textarea></div>
@@ -181,12 +177,9 @@
     <div class="foot__cols">
       <div>
         <p class="foot__head">Navigate</p>
-        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="about.html" class="nl">About</a><a href="services.html" class="nl">Services</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl" aria-current="page">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
+        <div class="foot__list"><a href="index.html" class="nl">Home</a><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="about.html" class="nl">About</a><a href="careers.html" class="nl">Careers</a><a href="contact.html" class="nl" aria-current="page">Contact</a><a href="privacy.html" class="nl">Privacy</a></div>
       </div>
-      <div>
-        <p class="foot__head">Products</p>
-        <div class="foot__list"><a href="index.html#campus-connect" class="nl">Campus Connect</a><a href="turnstile.html" class="nl">Turnstile</a><a href="attendance.html" class="nl">Attendance</a><a href="ebroadcasting.html" class="nl">eBroadcasting</a><a href="ecash.html" class="nl">eCash</a><a href="sfms.html" class="nl">SFMS</a><a href="iask.html" class="nl">iAsk eLibrary</a></div>
-      </div>
+
     </div>
     <a class="totop" href="#top" aria-label="Back to top">↑</a>
   </div>

@@ -512,6 +512,8 @@ export function mount(el, opts = {}) {
     return { setAllowed() {}, flip() {}, setAnchor() {}, destroy() { frontCanvas.remove(); }, still: true };
   }
 
+  // reading every shader's log back on first use stalls the page for a moment per shader; the shaders are fixed and known good
+  renderer.debug.checkShaderErrors = false;
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
